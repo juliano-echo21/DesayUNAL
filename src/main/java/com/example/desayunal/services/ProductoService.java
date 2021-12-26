@@ -21,7 +21,7 @@ public class ProductoService implements IProductoService {
 
     @Override
     public Optional<Producto> listarId(int id) {
-        return Optional.empty();
+        return data.findById(id);
     }
 
     @Override
