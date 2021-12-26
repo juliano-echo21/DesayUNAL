@@ -36,6 +36,6 @@ public class ProductoService implements IProductoService {
 
     @Override
     public void delete(int id) {
-
+        data.deleteById(id);
     }
 }
