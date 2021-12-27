@@ -43,18 +43,24 @@ public class Controlador {
         service.save(p);
         if (!file.isEmpty()) {
 
-            String sql = "SELECT max(id) FROM producto";
-            int idProducto = jdbc.queryForObject(sql,Integer.class);
 
-            sql = "INSERT INTO imagen (idProducto, nombre, tipo, tamano, pixel) VALUES(?, ?, ?, ?, ?)";
-
+            int idProducto = p.getId();
             String nombre = file.getOriginalFilename();
             String tipo   = file.getContentType();
             Long tamano   = file.getSize();
             byte[] pixel  = file.getBytes();
 
+            String sql = "SELECT count(nombre) FROM imagen WHERE id_producto = "+p.getId();
+            int n = jdbc.queryForObject(sql,Integer.class);
+            if(n != 0) {
+                sql = "UPDATE imagen SET nombre = ?, tipo = ?, tamano = ?, pixel = ? WHERE id_producto = ?";
+                jdbc.update(sql, nombre, tipo, tamano, pixel,p.getId());
+            }else{
+                sql = "INSERT INTO imagen (id_producto, nombre, tipo, tamano, pixel) VALUES(?, ?, ?, ?, ?)";
+                jdbc.update(sql, idProducto, nombre, tipo, tamano, pixel);
+            }
 
-            jdbc.update(sql, idProducto,nombre, tipo, tamano, pixel);
+
         }
         return "redirect:/listar";
     }
@@ -68,6 +74,8 @@ public class Controlador {
 
     @GetMapping("eliminar/{id}")
     public String delete(Model model, @PathVariable int id){
+        String sql = "DELETE FROM imagen WHERE id_producto = ?";
+        jdbc.update(sql,id);
         service.delete(id);
         return "redirect:/listar";
     }
@@ -76,7 +84,7 @@ public class Controlador {
     public void getUploadedPicture(
             @PathVariable int id, HttpServletResponse response)
             throws IOException {
-        String sql = "SELECT pixel, tipo FROM imagen WHERE idProducto = '" + id + "'";
+        String sql = "SELECT pixel, tipo FROM imagen WHERE id_producto = '" + id + "'";
         List<Map<String, Object>> result = jdbc.queryForList(sql);
 
         if (!result.isEmpty()) {
