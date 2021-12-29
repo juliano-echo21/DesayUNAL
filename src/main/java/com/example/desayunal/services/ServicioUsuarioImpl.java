@@ -1,8 +1,10 @@
 package com.example.desayunal.services;
 
+import com.example.desayunal.InterfacesServicios.IServicioUsuario;
+import com.example.desayunal.model.Usuario;
 import com.example.desayunal.repository.RepositorioUsuario;
 
-public class ServicioUsuarioImpl implements  ServicioUsuario{
+public class ServicioUsuarioImpl implements IServicioUsuario {
 
     private RepositorioUsuario repositorioUsuario;
 
@@ -11,6 +13,11 @@ public class ServicioUsuarioImpl implements  ServicioUsuario{
         super();
         this.repositorioUsuario = repositorioUsuario;
     }
+    @Override
+    public Usuario save(){
+        return null;
+    }
+
 
 
 }
