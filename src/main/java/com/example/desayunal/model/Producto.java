@@ -11,6 +11,7 @@ public class Producto {
     private String nombre;
     private int precio;
 
+
     public Producto(){
     }
     public Producto(int id, String nombre, int precio) {
