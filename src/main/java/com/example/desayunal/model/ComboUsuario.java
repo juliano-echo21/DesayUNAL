@@ -4,6 +4,8 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
+@Entity
+@Table( )
 public class ComboUsuario {
 
     public ComboUsuario(Usuario usuarioID, Producto productoID, int cantidadProductoCombo) {
@@ -27,7 +29,7 @@ public class ComboUsuario {
     private Producto productoID;
 
 
-    @Column(name = "cantidadProductoCombo")
+    @Column(name = "cantidadProductoCombo", nullable = false)
     @NotNull
     private int cantidadProductoCombo;
 

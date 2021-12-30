@@ -11,22 +11,22 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     @NotNull
     private String nombre;
 
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false)
     @NotNull
     private String estado;
 
-    @Column(name = "precio")
+    @Column(name = "precio", nullable = false)
     @NotNull
     private int precio;
 
-    @Column(name = "categoria")
+    @Column(name = "categoria", nullable = false)
     @NotNull
     private String categoria;
 

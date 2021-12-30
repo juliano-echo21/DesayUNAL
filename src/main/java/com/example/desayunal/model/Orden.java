@@ -22,23 +22,23 @@ public class Orden {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "fecha")
+    @Column(name = "fecha", nullable = false)
     @NotNull
     private String fecha;
 
-    @Column(name = "horaPedido")
+    @Column(name = "horaPedido", nullable = false)
     @NotNull
     private String horaPedido;
 
-    @Column(name = "horaEntrega")
+    @Column(name = "horaEntrega", nullable = false)
     @NotNull
     private String horaEntrega;
 
-    @Column(name = "precio")
+    @Column(name = "precio", nullable = false)
     @NotNull
     private int precio;
 
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false)
     @NotNull
     private String estado;
 

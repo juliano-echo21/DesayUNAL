@@ -3,10 +3,11 @@ package com.example.desayunal.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table( )
-public class DetallesOrden {
+public class DetallesOrden implements Serializable {
 
     public DetallesOrden(Orden ordenID, Producto productoID, int cantidadProducto, int subtotal) {
         this.ordenID = ordenID;
@@ -15,20 +16,22 @@ public class DetallesOrden {
         this.subtotal = subtotal;
     }
 
+    @Id
     @JoinColumn(name = "fk_ordenID", nullable = false)
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Orden ordenID;
 
+    @Id
     @JoinColumn(name = "fk_productoID", nullable = false)
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Producto productoID;
 
 
-    @Column(name = "cantidadProducto")
+    @Column(name = "cantidadProducto", nullable = false)
     @NotNull
     private int cantidadProducto;
 
-    @Column(name = "subtotal")
+    @Column(name = "subtotal", nullable = false)
     @NotNull
     private int subtotal;
 
