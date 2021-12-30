@@ -13,6 +13,7 @@ public class Producto {
 
 
     public Producto(){
+
     }
     public Producto(int id, String nombre, int precio) {
         super();
