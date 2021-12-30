@@ -7,6 +7,17 @@ import javax.persistence.*;
 @Entity
 @Table( )
 public class Orden {
+
+    public Orden(String fecha, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario, Domiciliario domiciliario) {
+        this.fecha = fecha;
+        this.horaPedido = horaPedido;
+        this.horaEntrega = horaEntrega;
+        this.precio = precio;
+        this.estado = estado;
+        this.usuario = usuario;
+        this.domiciliario = domiciliario;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
