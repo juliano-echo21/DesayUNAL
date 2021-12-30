@@ -1,7 +1,7 @@
 package com.example.desayunal.controller;
 
 import com.example.desayunal.model.Producto;
-import com.example.desayunal.services.ProductoService;
+import com.example.desayunal.servicios.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @RequestMapping
 public class Controlador {
     @Autowired
-    private ProductoService service;
+    private ServicioProducto service;
 
     @Autowired
     private JdbcTemplate jdbc;
@@ -38,9 +38,9 @@ public class Controlador {
     }
 
     @PostMapping("/save")
-    public String save(Producto p,Model model, @RequestParam("file") MultipartFile file) throws IOException {
+    public String guardar(Producto p, Model model, @RequestParam("file") MultipartFile file) throws IOException {
 
-        service.save(p);
+        service.guardar(p);
         if (!file.isEmpty()) {
 
 
@@ -73,10 +73,10 @@ public class Controlador {
     }
 
     @GetMapping("eliminar/{id}")
-    public String delete(Model model, @PathVariable int id){
+    public String eliminar(Model model, @PathVariable int id){
         String sql = "DELETE FROM imagen WHERE id_producto = ?";
         jdbc.update(sql,id);
-        service.delete(id);
+        service.eliminar(id);
         return "redirect:/listar";
     }
 

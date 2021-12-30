@@ -1,19 +1,18 @@
-package com.example.desayunal.services;
+package com.example.desayunal.servicios;
 
-import com.example.desayunal.InterfaceServices.IProductoService;
-import com.example.desayunal.interfaces.IProducto;
+import com.example.desayunal.interfacesServicios.IServicioProducto;
+import com.example.desayunal.repository.RepositorioProducto;
 import com.example.desayunal.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoService implements IProductoService {
+public class ServicioProducto implements IServicioProducto {
     @Autowired
-    private IProducto data;
+    private RepositorioProducto data;
 
     @Override
     public List<Producto> listar() {
@@ -26,7 +25,7 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
-    public int save(Producto p) {
+    public int guardar(Producto p) {
         int res = 0;
         Producto producto = data.save(p);
         if(!producto.equals(null)){
@@ -36,7 +35,7 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
-    public void delete(int id) {
+    public void eliminar(int id) {
         data.deleteById(id);
     }
 }
