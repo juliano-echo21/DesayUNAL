@@ -1,6 +1,6 @@
-package com.example.desayunal.services;
+package com.example.desayunal.servicios;
 
-import com.example.desayunal.InterfacesServicios.IServicioUsuario;
+import com.example.desayunal.interfacesServicios.IServicioUsuario;
 import com.example.desayunal.model.Usuario;
 import com.example.desayunal.repository.RepositorioUsuario;
 
