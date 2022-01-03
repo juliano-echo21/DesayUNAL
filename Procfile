@@ -1,0 +1,1 @@
+web:java -cp main.java.com.example.desayunal.DesayUnalApplication

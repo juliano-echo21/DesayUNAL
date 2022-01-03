@@ -18,15 +18,15 @@ public class Domiciliario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     @NotNull
     private String nombre;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     @NotNull
     private String password;
 
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false)
     @NotNull
     private String estado;
 

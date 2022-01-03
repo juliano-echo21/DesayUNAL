@@ -31,7 +31,7 @@ public class ServicioProducto implements IServicioProducto {
         if(!producto.equals(null)){
             res = 1;
         }
-        return 0;
+        return res;
     }
 
     @Override
