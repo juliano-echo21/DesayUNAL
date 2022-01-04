@@ -8,6 +8,11 @@ import java.util.Optional;
 public interface IServicioProducto {
     public List<Producto> listar();
     public Optional<Producto> listarId(int id);
+    public List<Producto> listarDisponibles();
+    public List<Producto> listarEstado(String estado);
+    public List<Producto> listarCategoria(String categoria);
+    public List<Producto> listarCategoriaDisponible(String categoria);
     public int guardar(Producto p);
     public void eliminar(int id);
+    
 }

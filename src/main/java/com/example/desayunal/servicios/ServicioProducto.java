@@ -4,6 +4,7 @@ import com.example.desayunal.interfacesServicios.IServicioProducto;
 import com.example.desayunal.repository.RepositorioProducto;
 import com.example.desayunal.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,4 +39,26 @@ public class ServicioProducto implements IServicioProducto {
     public void eliminar(int id) {
         data.deleteById(id);
     }
+
+    @Override
+    public List<Producto> listarDisponibles(){
+        return (List<Producto>) data.findDisponibles();
+    }
+
+    @Override
+    public List<Producto> listarCategoria(String categoria) {
+       return data.findByCategoria(categoria);
+    }
+
+    @Override
+    public List<Producto> listarEstado(String estado){
+        return data.findByEstado(estado);
+    }
+
+    @Override
+    public List<Producto> listarCategoriaDisponible(String categoria){
+        return (List<Producto>) data.findCategoriaDisponible(categoria);
+    }
+
+    
 }

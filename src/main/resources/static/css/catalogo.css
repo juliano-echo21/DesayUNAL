@@ -1,0 +1,13 @@
+body {
+  background: url(../Images/fondoCliente.png) repeat;
+  background-size:84% 100% ;
+  background-attachment: fixed;
+}
+.table {
+  background: whitesmoke;
+  border-radius: 5px;
+}
+.btn .btn-dark{
+    border-color:red !important;
+    color: tomato !important;
+}
