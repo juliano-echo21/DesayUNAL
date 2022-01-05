@@ -19,19 +19,19 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "userName") /* llamarlo nombre o username??*/
+    @Column(name = "userName", nullable = false) /* llamarlo nombre o username??*/
     @NotNull
     private String userName;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     @NotNull
     private String password;
 
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false)
     @NotNull
     private String estado;
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     @NotNull
     private String role;
 
