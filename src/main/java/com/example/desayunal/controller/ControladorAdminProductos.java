@@ -28,6 +28,7 @@ public class ControladorAdminProductos {
     public String listar(Model model){
         List<Producto> productos = service.listar();
         model.addAttribute("productos",productos);
+        model.addAttribute("page", "admin");
         return "index";
     }
 

@@ -1,0 +1,40 @@
+<!-- Navigation -->
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/desayunal}">
+          <img th:src="@{/Images/logo.png}" width="170px" title="DesayUNAL"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li th:if="${page == 'catalogo'}" class="nav-item active">
+            <li th:unless="${page == 'catalogo'}" class="nav-item"></li>
+              <a class="nav-link" th:href="@{/desayunal}">Catálogo</a>
+            </li>
+            <li th:if="${page == 'admin'}" class="nav-item active">
+            <li th:unless="${page == 'admin'}" class="nav-item"></li>
+              <a class="nav-link" th:href="@{/listar}">Administrar</a>
+            </li>
+            <!--<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>-->
+          </ul>
+          <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/login}">Iniciar Sesión</a>
+          <a class="btn btn-outline-light my-2 my-sm-0 ml-2" th:href="@{/signup}">Registrarse</a>
+          
+        </div>
+      </nav>
+</div>

@@ -35,6 +35,7 @@ public class ControladorCatalogo{
         model.addAttribute("postres", postres);
         model.addAttribute("desayunos", desayunos);
         model.addAttribute("onces", onces);
+        model.addAttribute("page", "catalogo");
         return "catalogo";
     }
 
