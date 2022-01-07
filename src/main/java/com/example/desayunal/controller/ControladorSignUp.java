@@ -27,10 +27,15 @@ public class ControladorSignUp {
         registroDto.setEstado("Activo");
         registroDto.setRole("Cliente");
 
-        /*validar */
-
-        servicio.save(registroDto);
-        return "SignUp?success";
+        String realPassword =  servicio.userPassword(registroDto.getUserName());
+        
+        if(realPassword == null)
+        {
+            servicio.save(registroDto);
+            return "SignUp?success";
+        }
+        
+        return "SignUp?failure";
     }
       
 }
