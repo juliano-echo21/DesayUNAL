@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface RepositorioUsuario extends JpaRepository<Usuario, Integer> 
 {
     @Query(value = "SELECT password FROM Usuario WHERE userName = ?1")
-    public List<Usuario> findByUserName(String userName);
+    public String findByUserName(String userName);
 
 }

@@ -16,7 +16,7 @@ public class ControladorRegistro {
     @Autowired
     private ServicioUsuario servicio;
 
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public String loggear(String userName, String password, Model model)
     {   
         Usuario usuario = servicio.userExists(userName).get(0);
@@ -34,6 +34,6 @@ public class ControladorRegistro {
         }
         
         return "catalogo";
-    }
+    }*/
 
 }

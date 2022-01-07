@@ -33,9 +33,9 @@ public class ServicioUsuario implements IServicioUsuario {
     }
 
     @Override
-    public List<Usuario> userExists(String userName)
+    public String userPassword(String userName)
     {
-        return (List<Usuario>) repositorioUsuario.findByUserName(userName);
+        return repositorioUsuario.findByUserName(userName);
     }
 
 

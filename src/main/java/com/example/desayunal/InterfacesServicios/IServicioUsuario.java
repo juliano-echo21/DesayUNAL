@@ -7,6 +7,6 @@ import com.example.desayunal.web.dto.RegistroUsuarioDto;
 public interface IServicioUsuario {
 
     Usuario save(RegistroUsuarioDto registroDto);
-    List<Usuario> userExists(String userName);
+    String userPassword(String userName);
 
 }
