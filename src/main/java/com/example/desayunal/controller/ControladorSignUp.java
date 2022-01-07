@@ -4,12 +4,13 @@ import com.example.desayunal.services.ServicioUsuario;
 import com.example.desayunal.web.dto.RegistroUsuarioDto;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/SignUp")
+@RequestMapping("/signUp")
 
 public class ControladorSignUp {
 
@@ -20,6 +21,11 @@ public class ControladorSignUp {
     public RegistroUsuarioDto registroUsuarioDto(){
 
         return new RegistroUsuarioDto();
+    }
+
+    @GetMapping
+    public String showSignUp(){
+        return "signUp";
     }
 
     @PostMapping
