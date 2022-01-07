@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping
+@RequestMapping("/login")
 public class ControladorRegistro {
     @Autowired
     private ServicioUsuario servicio;
