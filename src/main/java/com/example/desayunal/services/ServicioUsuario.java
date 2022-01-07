@@ -1,5 +1,6 @@
 package com.example.desayunal.services;
 
+import java.util.List;
 import com.example.desayunal.InterfacesServicios.IServicioUsuario;
 import com.example.desayunal.model.Usuario;
 import com.example.desayunal.repository.RepositorioUsuario;
@@ -8,11 +9,11 @@ import com.example.desayunal.web.dto.RegistroUsuarioDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServicioUsuarioImpl implements IServicioUsuario {
+public class ServicioUsuario implements IServicioUsuario {
 
     private RepositorioUsuario repositorioUsuario;
 
-    public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario ){
+    public ServicioUsuario(RepositorioUsuario repositorioUsuario ){
         super();
         this.repositorioUsuario = repositorioUsuario;
     }
@@ -29,6 +30,12 @@ public class ServicioUsuarioImpl implements IServicioUsuario {
                               );
         
         return repositorioUsuario.save(usuario);
+    }
+
+    @Override
+    public List<Usuario> userExists(String userName)
+    {
+        return (List<Usuario>) repositorioUsuario.findByUserName(userName);
     }
 
 
