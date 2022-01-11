@@ -15,12 +15,20 @@
 <body>
     <!-- Navigation -->
 	<div th:include="/barra.html::header"></div>
-    <div class="container mt-4">
+    <div class="container mt-4" >
+        <select name="forma" onchange="location = this.value;" class="btn btn-dark dropdown-toggle" style="align-items: left;">
+            <option value="">Filtrar...</option>
+            <option value="../desayunal">Todos</option>
+            <option value="../desayunal/ofertas">Ofertas</option>
+            <option value="../desayunal/desayunos">Desayunos</option>
+            <option value="../desayunal/postres">Postres</option>
+            <option value="../desayunal/onces">Onces</option>
+        </select>
         <!--<a th:href="@{/new}" class="btn btn-dark">Nuevo Producto</a>-->
         <br><br>
         <table class="table">
             <thead>
-            <tr><th><h4>TODOS LOS DISPONIBLES</h4></th></tr>
+            <tr><th><h4 th:text="${nLista}"></h4></th></tr>
             <tr align="center">
                 <th>NOMBRE</th>
                 <th>DESCRIPCIÓN</th>
@@ -46,122 +54,7 @@
                 </tr>
             </tbody>
         </table>
-        <br>
-        <table class="table">
-            <thead>
-            <tr><th><h4>OFERTAS</h4></th></tr>
-            <tr align="center">
-                <th>NOMBRE</th>
-                <th>DESCRIPCIÓN</th>
-                <th>CATEGORÍA</th>
-                <th>ESTADO</th>
-                <th>PRECIO</th>
-                <th>IMAGEN</th>
-                <th>ACCIONES</th>
-            </tr>
-            </thead>
-            <tbody align="center">
-                <tr th:each="producto:${ofertas}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.descripcion}" width="250px"></td>
-                    <td th:text="${producto.categoria}"></td>
-                    <td th:text="${producto.estado}"></td>
-                    <td th:text="${'$'+producto.precio}"></td>
-                    <td><img th:src="@{/uploaded/}+${producto.id}" width="200" height="100"></td>
-                    <td>
-                        <a th:href="@{/editar/}+${producto.id}" class="btn btn-warning">Editar</a>
-                        <a th:onclick="eliminar([[${producto.id}]])" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <table class="table">
-            <thead>
-            <tr><th><h4>DESAYUNOS</h4></th></tr>
-            <tr align="center">
-                <th>NOMBRE</th>
-                <th>DESCRIPCIÓN</th>
-                <th>CATEGORÍA</th>
-                <th>ESTADO</th>
-                <th>PRECIO</th>
-                <th>IMAGEN</th>
-                <th>ACCIONES</th>
-            </tr>
-            </thead>
-            <tbody align="center">
-                <tr th:each="producto:${desayunos}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.descripcion}" width="250px"></td>
-                    <td th:text="${producto.categoria}"></td>
-                    <td th:text="${producto.estado}"></td>
-                    <td th:text="${'$'+producto.precio}"></td>
-                    <td><img th:src="@{/uploaded/}+${producto.id}" width="200" height="100"></td>
-                    <td>
-                        <a th:href="@{/editar/}+${producto.id}" class="btn btn-warning">Editar</a>
-                        <a th:onclick="eliminar([[${producto.id}]])" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <table class="table">
-            <thead>
-            <tr><th><h4>POSTRES</h4></th></tr>
-            <tr align="center">
-                <th>NOMBRE</th>
-                <th>DESCRIPCIÓN</th>
-                <th>CATEGORÍA</th>
-                <th>ESTADO</th>
-                <th>PRECIO</th>
-                <th>IMAGEN</th>
-                <th>ACCIONES</th>
-            </tr>
-            </thead>
-            <tbody align="center">
-                <tr th:each="producto:${postres}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.descripcion}" width="250px"></td>
-                    <td th:text="${producto.categoria}"></td>
-                    <td th:text="${producto.estado}"></td>
-                    <td th:text="${'$'+producto.precio}"></td>
-                    <td><img th:src="@{/uploaded/}+${producto.id}" width="200" height="100"></td>
-                    <td>
-                        <a th:href="@{/editar/}+${producto.id}" class="btn btn-warning">Editar</a>
-                        <a th:onclick="eliminar([[${producto.id}]])" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <table class="table">
-            <thead>
-            <tr><th><h4>ONCES</h4></th></tr>
-            <tr align="center">
-                <th>NOMBRE</th>
-                <th>DESCRIPCIÓN</th>
-                <th>CATEGORÍA</th>
-                <th>ESTADO</th>
-                <th>PRECIO</th>
-                <th>IMAGEN</th>
-                <th>ACCIONES</th>
-            </tr>
-            </thead>
-            <tbody align="center">
-                <tr th:each="producto:${onces}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.descripcion}" width="250px"></td>
-                    <td th:text="${producto.categoria}"></td>
-                    <td th:text="${producto.estado}"></td>
-                    <td th:text="${'$'+producto.precio}"></td>
-                    <td><img th:src="@{/uploaded/}+${producto.id}" width="200" height="100"></td>
-                    <td>
-                        <a th:href="@{/editar/}+${producto.id}" class="btn btn-warning">Editar</a>
-                        <a th:onclick="eliminar([[${producto.id}]])" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        
         <br>
     </div>
      <!-- Optional JavaScript -->
