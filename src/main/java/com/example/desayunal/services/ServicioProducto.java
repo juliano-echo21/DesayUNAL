@@ -1,4 +1,4 @@
-package com.example.desayunal.servicios;
+package com.example.desayunal.services;
 
 import com.example.desayunal.interfacesServicios.IServicioProducto;
 import com.example.desayunal.repository.RepositorioProducto;
