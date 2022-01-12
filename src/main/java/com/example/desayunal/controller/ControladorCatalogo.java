@@ -3,7 +3,7 @@ package com.example.desayunal.controller;
 import java.util.List;
 
 import com.example.desayunal.model.Producto;
-import com.example.desayunal.servicios.ServicioProducto;
+import com.example.desayunal.services.ServicioProducto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
