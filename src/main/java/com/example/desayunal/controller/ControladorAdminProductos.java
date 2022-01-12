@@ -29,13 +29,13 @@ public class ControladorAdminProductos {
         List<Producto> productos = service.listar();
         model.addAttribute("productos",productos);
         model.addAttribute("page", "admin");
-        return "index";
+        return "listarProductos";
     }
 
     @GetMapping("/new")
     public String agregar(Model model){
         model.addAttribute("producto",new Producto());
-        return "form";
+        return "formularioProductos";
     }
 
     @PostMapping("/save")
@@ -70,7 +70,7 @@ public class ControladorAdminProductos {
     public String editar(@PathVariable int id, Model model){
         Optional<Producto> producto = service.listarId(id);
         model.addAttribute("producto",producto);
-        return "form";
+        return "formularioProductos";
     }
 
     @GetMapping("eliminar/{id}")
