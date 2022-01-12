@@ -38,11 +38,20 @@ public class ControladorSignUp {
         
         if(realPassword == null)
         {
-            servicio.save(registroDto);
-            return "SignUp?success";
+            String[] passwords = registroDto.getPassword().split(",");
+
+            if(passwords[0].equals(passwords[1]))
+            {
+                registroDto.setPassword(passwords[1]);
+                servicio.save(registroDto);
+
+                return "index";
+            }
+
+            return "SignUp?failure"; // Las contraseñas no coinciden
         }
         
-        return "SignUp?failure";
+        return "SignUp?failure"; // El nombre de usuario ya existe
     }
       
 }

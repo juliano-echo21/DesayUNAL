@@ -35,7 +35,10 @@ public class ControladorLogin {
         
         if(realPassword != null)
         {
-            if(realPassword.equals(registroDto.getPassword())) return "catalogo";
+            if(realPassword.equals(registroDto.getPassword())) 
+            {
+                return "index";
+            }
 
             return "login?failure"; // No existe el usuario
         }

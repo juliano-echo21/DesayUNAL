@@ -25,7 +25,7 @@
           <h1>Regístrate en desay-UNAL</h1>
             <div class="mb-3">
               <label for="userName" class="sr-only"></label>
-              <input type="email" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="Nombre de Usuario" th:field="*{userName}">
+              <input type="text" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="Nombre de Usuario" th:field="*{userName}">
               <div id="emailHelp" class="form-text"></div>
             </div>
             <div class="mb-3">
@@ -34,7 +34,7 @@
             </div>
             <div class="mb-3">
                 <label for="Confirmación" class="form-label"></label>
-                <input type="password" class="form-control" id="Confirmación" placeholder="Confirmación">
+                <input type="password" class="form-control" id="Confirmación" placeholder="Confirmación" th:field="*{password}">
               </div>
             <div class="bt-container">
                 <button type="submit" class="btn btn-primary btn-block ">Sign Up</button>
