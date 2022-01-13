@@ -41,6 +41,8 @@
                 <label for="Confirmación" class="form-label"></label>
                 <input type="password" class="form-control" id="Confirmación" placeholder="Confirmación" th:field="*{password}">
               </div>
+              <div th:if="${param.passwordError}" class="alert alert-danger"> Las contraseñas no coinciden </div>
+              <div th:if="${param.userError}" class="alert alert-danger"> El nombre de usuario no está disponible </div>
             <div class="bt-container">
                 <button type="submit" class="btn btn-primary btn-block ">Sign Up</button>
             </div>
@@ -49,7 +51,6 @@
               <span>¿Ya estás registrado? <a href="/" th:href="@{/login}"> Inicia sesión </a> </span>
 
             </div>
-        <div th:if="${param.passwordError}" class="alert alert-danger"> siuuu </div>
           </form>
 
     </div>

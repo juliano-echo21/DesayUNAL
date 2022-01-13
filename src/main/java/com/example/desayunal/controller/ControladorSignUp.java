@@ -56,11 +56,11 @@ public class ControladorSignUp {
                 return "index";
             }
             /*isPasswordWrong = true;*/
-            return "redirect:signUp?passwordError";
+            return "redirect:signUp?passwordError"; // las contaseñas no coinciden
         }
 
         /*isPasswordWrong = true;*/
-        return "redirect:signUp?passwordError";// El nombre de usuario ya existe
+        return "redirect:signUp?userError";// El nombre de usuario ya existe
     }
       
 }
