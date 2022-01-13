@@ -32,6 +32,9 @@
               <label for="contraseña" class="form-label"></label>
               <input type="password" class="form-control" id="contraseña" placeholder="Contraseña" th:field="*{password}">
             </div>
+              <div th:if="${param.noUser}" class="alert alert-danger"> No existe una cuenta asociada al nombre de usuario </div>
+              <div th:if="${param.userError}" class="alert alert-danger"> Datos inválidos </div>
+
             <div class="bt-container">
               <button type="submit" class="btn btn-primary btn-block ">Log in</button>
             </div>

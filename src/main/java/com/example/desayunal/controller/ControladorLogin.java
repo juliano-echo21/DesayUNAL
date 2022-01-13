@@ -40,10 +40,11 @@ public class ControladorLogin {
                 return "index";
             }
 
-            return "login?failure"; // No existe el usuario
+            return "redirect:login?userError"; // No coinciden el usuario y la contraseña
         }
         
-        return "login?failure"; // No coinciden el usuario y la contraseña
+        return "redirect:login?noUser"; // No existe el usuario
     }
+    
 
 }
