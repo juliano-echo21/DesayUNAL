@@ -30,7 +30,6 @@ public class ServicioProducto implements IServicioProducto {
         int res = 0;
         if(!editando && productoExiste(p.getNombre()))
             return 0;
-
         Producto producto = data.save(p);
         if(!producto.equals(null)){
             res = 1;

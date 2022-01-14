@@ -50,7 +50,6 @@ public class ControladorAdminProductos {
             return "redirect:new?existProduct";
         if (!file.isEmpty()) {
 
-
             int idProducto = p.getId();
             String nombre = file.getOriginalFilename();
             String tipo   = file.getContentType();
