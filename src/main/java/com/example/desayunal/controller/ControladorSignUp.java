@@ -5,6 +5,7 @@ import com.example.desayunal.web.dto.RegistroUsuarioDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/signUp")
 
 public class ControladorSignUp {
+
     @Autowired
     private ServicioUsuario servicio;
+
+    private boolean isPasswordWrong = false;
 
 
     @ModelAttribute("Usuario")
@@ -25,8 +29,12 @@ public class ControladorSignUp {
     }
 
     @GetMapping
-    public String showSignUp(){
+    public String showSignUp(Model registroDto) {
+
+       /* registroDto.addAttribute("isPasswordWrong",isPasswordWrong); */
+
         return "signUp";
+
     }
 
     @PostMapping
@@ -38,11 +46,21 @@ public class ControladorSignUp {
         
         if(realPassword == null)
         {
-            servicio.save(registroDto);
-            return "SignUp?success";
+            String[] passwords = registroDto.getPassword().split(",");
+
+            if(passwords[0].equals(passwords[1]))
+            {
+                registroDto.setPassword(passwords[1]);
+                servicio.save(registroDto);
+
+                return "index";
+            }
+            /*isPasswordWrong = true;*/
+            return "redirect:signUp?passwordError"; // las contaseñas no coinciden
         }
-        
-        return "SignUp?failure";
+
+        /*isPasswordWrong = true;*/
+        return "redirect:signUp?userError";// El nombre de usuario ya existe
     }
       
 }
