@@ -10,6 +10,7 @@ body{
 
 .my-form{
     text-align: center;
+    background-color : rgba(255, 255, 255, 0.486);
     max-width: 450px;
     max-height: 1000px;
     margin: auto;
