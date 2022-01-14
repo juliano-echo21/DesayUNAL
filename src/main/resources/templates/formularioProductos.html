@@ -43,6 +43,8 @@
                     <div class="card-header">
                         <h3>Producto</h3>
                     </div>
+                    <div th:if="${param.existProduct}" class="alert alert-danger"> El producto ya existe</div>
+
                     <div class="card-body">
                         <div class="form-group" style="display:none;">
                             <label>ID</label>

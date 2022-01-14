@@ -12,7 +12,7 @@ public interface IServicioProducto {
     public List<Producto> listarEstado(String estado);
     public List<Producto> listarCategoria(String categoria);
     public List<Producto> listarCategoriaDisponible(String categoria);
-    public int guardar(Producto p);
+    public int guardar(Producto p, boolean editando);
     public void eliminar(int id);
-    
+    public boolean productoExiste(String nombre);
 }
