@@ -14,5 +14,5 @@ public interface IServicioProducto {
     public List<Producto> listarCategoriaDisponible(String categoria);
     public int guardar(Producto p);
     public void eliminar(int id);
-    
+    public boolean productoExiste(String nombre);
 }

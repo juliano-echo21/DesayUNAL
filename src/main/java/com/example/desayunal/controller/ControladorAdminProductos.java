@@ -41,8 +41,11 @@ public class ControladorAdminProductos {
 
     @PostMapping("/save")
     public String guardar(Producto p, Model model, @RequestParam("file") MultipartFile file) throws IOException {
+        
+        int res = service.guardar(p);
 
-        service.guardar(p);
+        if(res != 1)
+            return "redirect:new?existProduct";
         if (!file.isEmpty()) {
 
 
