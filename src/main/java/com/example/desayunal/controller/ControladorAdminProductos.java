@@ -37,6 +37,7 @@ public class ControladorAdminProductos {
 
     @GetMapping("/new")
     public String agregar(Model model){
+        editando = false;
         model.addAttribute("producto",new Producto());
         return "formularioProductos";
     }
@@ -48,8 +49,8 @@ public class ControladorAdminProductos {
 
         if(!editando && res != 1)
             return "redirect:new?existProduct";
-        if (!file.isEmpty()) {
 
+        if (!file.isEmpty()) {
 
             int idProducto = p.getId();
             String nombre = file.getOriginalFilename();
