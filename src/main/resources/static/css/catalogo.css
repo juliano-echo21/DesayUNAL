@@ -11,3 +11,9 @@ body {
     border-color:red !important;
     color: tomato !important;
 }
+.descripcion{
+    width: 230px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
