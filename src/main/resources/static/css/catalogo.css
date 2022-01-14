@@ -17,3 +17,6 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.container{
+    margin-top: 5%;
+}
