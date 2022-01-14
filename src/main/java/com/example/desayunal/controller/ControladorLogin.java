@@ -37,7 +37,7 @@ public class ControladorLogin {
         {
             if(realPassword.equals(registroDto.getPassword())) 
             {
-                return "index";
+                return "redirect:desayunal";
             }
 
             return "redirect:login?userError"; // No coinciden el usuario y la contraseña

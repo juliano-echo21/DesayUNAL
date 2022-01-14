@@ -25,3 +25,11 @@ function eliminar(id){
             }
         });
 }
+function agregar(){
+    swal("Agregado al carrito", {
+        icon: "success",
+    }).then((ok)=>{
+        if(ok){
+        }
+    });
+}
