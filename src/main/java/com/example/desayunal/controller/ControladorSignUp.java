@@ -42,6 +42,11 @@ public class ControladorSignUp {
         registroDto.setEstado("Activo");
         registroDto.setRole("Cliente");
 
+        if(registroDto.getPassword() == null || registroDto.getUserName() == null)
+        {
+            return "redirect:signUp?invalidInputError";
+        }
+
         String realPassword =  servicio.userPassword(registroDto.getUserName());
         
         if(realPassword == null)
