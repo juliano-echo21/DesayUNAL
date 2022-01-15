@@ -32,6 +32,11 @@ public class ControladorLogin {
     @PostMapping
     public String loggear(@ModelAttribute("Usuario")RegistroUsuarioDto registroDto){
         String realPassword =  servicio.userPassword(registroDto.getUserName());
+
+        if(registroDto.getPassword().equals("") || registroDto.getUserName().equals(""))
+        {
+            return "redirect:login?invalidInputError";
+        }
         
         if(realPassword != null)
         {

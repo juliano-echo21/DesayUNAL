@@ -32,6 +32,7 @@
               <label for="contraseña" class="form-label"></label>
               <input type="password" class="form-control" id="contraseña" placeholder="Contraseña" th:field="*{password}">
             </div>
+              <div th:if="${param.invalidInputError}" class="alert alert-danger"> Ningún campo puede estar vacío </div>
               <div th:if="${param.noUser}" class="alert alert-danger"> No existe una cuenta asociada al nombre de usuario </div>
               <div th:if="${param.userError}" class="alert alert-danger"> Usuario o contraseña incorrectos  </div>
 
