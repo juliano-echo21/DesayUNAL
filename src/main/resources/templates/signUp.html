@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
   <head>
-    <title>desayUNAL</title>
+    <title>Registrarse</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">                           
@@ -41,10 +41,11 @@
                 <label for="Confirmación" class="form-label"></label>
                 <input type="password" class="form-control" id="Confirmación" placeholder="Confirmación" th:field="*{password}">
               </div>
+              <div th:if="${param.invalidInputError}" class="alert alert-danger"> Ningún campo puede estar vacío </div>
               <div th:if="${param.passwordError}" class="alert alert-danger"> Las contraseñas no coinciden </div>
               <div th:if="${param.userError}" class="alert alert-danger"> El nombre de usuario no está disponible </div>
             <div class="bt-container">
-                <button type="submit" class="btn btn-primary btn-block ">Sign Up</button>
+                <button type="submit" class="btn btn-primary btn-block "> Registrarse </button>
             </div>
 
             <div class="footer">

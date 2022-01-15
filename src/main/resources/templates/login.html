@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns="http://thymeleaf.org">
   <head>
-    <title>desayUNAL</title>
+    <title>Iniciar Sesión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">                           
     
@@ -32,6 +32,7 @@
               <label for="contraseña" class="form-label"></label>
               <input type="password" class="form-control" id="contraseña" placeholder="Contraseña" th:field="*{password}">
             </div>
+              <div th:if="${param.invalidInputError}" class="alert alert-danger"> Ningún campo puede estar vacío </div>
               <div th:if="${param.noUser}" class="alert alert-danger"> No existe una cuenta asociada al nombre de usuario </div>
               <div th:if="${param.userError}" class="alert alert-danger"> Usuario o contraseña incorrectos  </div>
 

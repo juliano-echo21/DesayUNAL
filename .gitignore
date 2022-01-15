@@ -34,3 +34,6 @@ build/
 .vscode/
 
 src/main/resources/application.properties
+src/main/resources/application.properties
+src/main/java/com/example/desayunal/DesayUnalApplication.java
+src/main/resources/application.properties

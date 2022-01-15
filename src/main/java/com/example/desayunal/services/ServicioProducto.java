@@ -26,13 +26,23 @@ public class ServicioProducto implements IServicioProducto {
     }
 
     @Override
-    public int guardar(Producto p) {
+    public int guardar(Producto p, boolean editando) {
         int res = 0;
+        if(!editando && productoExiste(p.getNombre()))
+            return 0;
         Producto producto = data.save(p);
         if(!producto.equals(null)){
             res = 1;
         }
         return res;
+    }
+
+    public boolean productoExiste(String nombre){
+        System.err.println("resultado" + data.productoExiste(nombre));
+        if(data.productoExiste(nombre) != 0)
+            return true;
+        
+        return false;
     }
 
     @Override

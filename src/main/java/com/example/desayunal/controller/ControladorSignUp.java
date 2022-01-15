@@ -41,13 +41,18 @@ public class ControladorSignUp {
     public String registroCuentaUsusario(@ModelAttribute("Usuario")RegistroUsuarioDto registroDto){
         registroDto.setEstado("Activo");
         registroDto.setRole("Cliente");
+        
+        String[] passwords = registroDto.getPassword().split(",");
+
+        if(passwords.length < 2 || passwords[0].equals("") || registroDto.getUserName().equals(""))
+        {
+            return "redirect:signUp?invalidInputError";
+        }
 
         String realPassword =  servicio.userPassword(registroDto.getUserName());
         
         if(realPassword == null)
         {
-            String[] passwords = registroDto.getPassword().split(",");
-
             if(passwords[0].equals(passwords[1]))
             {
                 registroDto.setPassword(passwords[1]);

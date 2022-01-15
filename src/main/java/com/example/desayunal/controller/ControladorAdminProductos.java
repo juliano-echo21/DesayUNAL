@@ -25,27 +25,32 @@ public class ControladorAdminProductos {
     @Autowired
     private JdbcTemplate jdbc;
 
+    private boolean editando = false;
+
     @GetMapping("/listar")
     public String listar(Model model){
         List<Producto> productos = service.listar();
         model.addAttribute("productos",productos);
         model.addAttribute("page", "admin");
-        return "index";
+        return "listarProductos";
     }
 
     @GetMapping("/new")
     public String agregar(Model model){
+        editando = false;
         model.addAttribute("producto",new Producto());
-        return "form";
+        return "formularioProductos";
     }
 
     @PostMapping("/save")
     public String guardar(Producto p, Model model, @RequestParam("file") MultipartFile file) throws IOException {
+        
+        int res = service.guardar(p,editando);
 
-        service.guardar(p);
+        if(!editando && res != 1)
+            return "redirect:new?existProduct";
+
         if (!file.isEmpty()) {
-
-
             int idProducto = p.getId();
             String nombre = file.getOriginalFilename();
             String tipo   = file.getContentType();
@@ -64,14 +69,16 @@ public class ControladorAdminProductos {
 
 
         }
+        editando = false;
         return "redirect:/listar";
     }
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable int id, Model model){
+        editando = true;
         Optional<Producto> producto = service.listarId(id);
         model.addAttribute("producto",producto);
-        return "form";
+        return "formularioProductos";
     }
 
     @GetMapping("eliminar/{id}")

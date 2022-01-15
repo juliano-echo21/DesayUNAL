@@ -32,13 +32,18 @@ public class ControladorLogin {
     @PostMapping
     public String loggear(@ModelAttribute("Usuario")RegistroUsuarioDto registroDto){
         String realPassword =  servicio.userPassword(registroDto.getUserName());
+
+        if(registroDto.getPassword().equals("") || registroDto.getUserName().equals(""))
+        {
+            return "redirect:login?invalidInputError";
+        }
         
         if(realPassword != null)
         {
             if(realPassword.equals(registroDto.getPassword())) 
             {
-                return "index";
-                
+
+                return "redirect:desayunal";
             }
 
             return "redirect:login?userError"; // No coinciden el usuario y la contraseña

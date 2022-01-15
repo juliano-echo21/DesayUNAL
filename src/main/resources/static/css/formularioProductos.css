@@ -1,13 +1,12 @@
 body {
-  background: url(../Images/FondoAdmin.png) repeat;
+  background: url(../Images/AdministradorFondo.png) repeat;
   background-size:84% 100% ;
   background-attachment: fixed;
-}
-.table {
-  background: whitesmoke;
-  border-radius: 5px;
 }
 .btn .btn-dark{
     border-color:red !important;
     color: tomato !important;
+}
+.lb1{
+    font-weight: bold;
 }
