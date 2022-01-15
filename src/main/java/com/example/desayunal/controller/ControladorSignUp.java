@@ -44,7 +44,7 @@ public class ControladorSignUp {
         
         String[] passwords = registroDto.getPassword().split(",");
 
-        if(passwords.length < 2 || passwords[0].equals("") || registroDto.equals(""))
+        if(passwords.length < 2 || passwords[0].equals("") || registroDto.getUserName().equals(""))
         {
             return "redirect:signUp?invalidInputError";
         }
