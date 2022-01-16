@@ -43,6 +43,8 @@ public class ControladorLogin {
             if(realPassword.equals(registroDto.getPassword())) 
             {
 
+                servicio.actualizarEstadoLogin(true);
+                servicio.actualizarUsuarioConectado(registroDto);
                 return "redirect:desayunal";
             }
 
@@ -51,6 +53,7 @@ public class ControladorLogin {
         
         return "redirect:login?noUser"; // No existe el usuario
     }
+    
     
 
 }

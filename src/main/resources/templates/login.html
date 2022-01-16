@@ -37,7 +37,12 @@
               <div th:if="${param.userError}" class="alert alert-danger"> Usuario o contraseña incorrectos  </div>
 
             <div class="bt-container">
-              <button type="submit" class="btn btn-primary btn-block ">Log in</button>
+              <button type="submit" class="btn btn-primary btn-block ">Iniciar sesión</button>
+            </div>
+
+            <div class="footer">
+              <span>¿No estás registrado? <a href="/" th:href="@{/signUp}">Registrarse </a> </span>
+
             </div>
           </form>
 

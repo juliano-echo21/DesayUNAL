@@ -12,12 +12,30 @@ import org.springframework.stereotype.Service;
 public class ServicioUsuario implements IServicioUsuario {
 
     private RepositorioUsuario repositorioUsuario;
+    private boolean logueado;
+    private RegistroUsuarioDto usuarioConectado;
 
     public ServicioUsuario(RepositorioUsuario repositorioUsuario ){
         super();
         this.repositorioUsuario = repositorioUsuario;
+        this.logueado = false;
     }
 
+    public void actualizarEstadoLogin(boolean estado){
+        this.logueado = estado;
+    }
+
+    public boolean getEstadoLogin(){
+        return this.logueado;
+    }
+
+    public void actualizarUsuarioConectado(RegistroUsuarioDto usuario){
+        this.usuarioConectado = usuario;
+    }
+
+    public RegistroUsuarioDto getUsuarioConectado(){
+        return this.usuarioConectado;
+    }
     @Override
     public Usuario save(RegistroUsuarioDto registroDto)
     {
