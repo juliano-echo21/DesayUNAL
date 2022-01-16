@@ -12,8 +12,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -32,12 +35,13 @@ public class ControladorCatalogo{
     public String listarDisponibles(Model model){
         return listarDisponibles(model, "todos");
     }
-    @GetMapping("/desayunal/{id}")
-    public String listarDisponibles(Model model, @PathVariable String id){
+
+    @RequestMapping("/desayunal")
+    public String listarDisponibles(Model model, @RequestParam String filtro){
         List<Producto> productos = sProducto.listarDisponibles();
         String nLista = "Todos los productos";
 
-        switch(id){
+        switch(filtro){
             case "ofertas":
                 productos = sProducto.listarEstado("Oferta");
                 nLista = "Ofertas";
@@ -66,11 +70,14 @@ public class ControladorCatalogo{
             model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
         return "catalogo";
     }
-
+    
     @GetMapping("/logout")
     public String logout(Model model){
         sUsuario.actualizarEstadoLogin(false);
         return "redirect:desayunal";
     }
+
+    
+
 
 }

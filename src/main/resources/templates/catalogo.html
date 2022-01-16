@@ -15,15 +15,17 @@
 <body>
     <!-- Navigation -->
 	<div th:include="/barra.html::header"></div>
+    <form th:action="@{/desayunal}" method="POST"> 
     <div class="container">
-        <select name="forma" onchange="location = this.value;" class="btn btn-dark dropdown-toggle" style="align-items: left;">
+        <select name="filtro" onchange="this.form.submit()" th:value="${filtro}" class="btn btn-dark dropdown-toggle" style="align-items: left;">
             <option value="">Filtrar...</option>
-            <option value="../desayunal">Todos</option>
-            <option value="../desayunal/ofertas">Ofertas</option>
-            <option value="../desayunal/desayunos">Desayunos</option>
-            <option value="../desayunal/postres">Postres</option>
-            <option value="../desayunal/onces">Onces</option>
+            <option value="">Todos</option>
+            <option value="ofertas">Ofertas</option>
+            <option value="desayunos">Desayunos</option>
+            <option value="postres">Postres</option>
+            <option value="onces">Onces</option>
         </select>
+    </form>
         <!--<a th:href="@{/new}" class="btn btn-dark">Nuevo Producto</a>-->
         <br><br>
 
