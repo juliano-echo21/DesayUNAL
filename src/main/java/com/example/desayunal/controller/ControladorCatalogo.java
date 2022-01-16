@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.example.desayunal.model.Producto;
 import com.example.desayunal.services.ServicioProducto;
+import com.example.desayunal.services.ServicioUsuario;
+import com.example.desayunal.web.dto.RegistroUsuarioDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping
 public class ControladorCatalogo{
+    @Autowired
+    private ServicioUsuario sUsuario;
+
     @Autowired
     private ServicioProducto sProducto;
 
@@ -54,7 +59,18 @@ public class ControladorCatalogo{
         model.addAttribute("productos",productos);
         model.addAttribute("nLista", nLista);
         model.addAttribute("page", "catalogo");
+        model.addAttribute("logueado", sUsuario.getEstadoLogin());
+        if(sUsuario.getUsuarioConectado() != null)
+            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
+        else
+            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
         return "catalogo";
+    }
+
+    @GetMapping("/logout")
+    public String logout(Model model){
+        sUsuario.actualizarEstadoLogin(false);
+        return "redirect:desayunal";
     }
 
 }

@@ -57,8 +57,9 @@ public class ControladorSignUp {
             {
                 registroDto.setPassword(passwords[1]);
                 servicio.save(registroDto);
-
-                return "index";
+                servicio.actualizarEstadoLogin(true);
+                servicio.actualizarUsuarioConectado(registroDto);
+                return "redirect:desayunal";
             }
             /*isPasswordWrong = true;*/
             return "redirect:signUp?passwordError"; // las contaseñas no coinciden

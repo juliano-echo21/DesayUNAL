@@ -2,6 +2,8 @@ package com.example.desayunal.controller;
 
 import com.example.desayunal.model.Producto;
 import com.example.desayunal.services.ServicioProducto;
+import com.example.desayunal.services.ServicioUsuario;
+import com.example.desayunal.web.dto.RegistroUsuarioDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +25,9 @@ public class ControladorAdminProductos {
     private ServicioProducto service;
 
     @Autowired
+    private ServicioUsuario sUsuario;
+
+    @Autowired
     private JdbcTemplate jdbc;
 
     private boolean editando = false;
@@ -32,6 +37,11 @@ public class ControladorAdminProductos {
         List<Producto> productos = service.listar();
         model.addAttribute("productos",productos);
         model.addAttribute("page", "admin");
+        model.addAttribute("logueado", sUsuario.getEstadoLogin());
+        if(sUsuario.getUsuarioConectado() != null)
+            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
+        else
+            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
         return "listarProductos";
     }
 
@@ -39,6 +49,11 @@ public class ControladorAdminProductos {
     public String agregar(Model model){
         editando = false;
         model.addAttribute("producto",new Producto());
+        model.addAttribute("logueado", sUsuario.getEstadoLogin());
+        if(sUsuario.getUsuarioConectado() != null)
+            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
+        else
+            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
         return "formularioProductos";
     }
 
@@ -78,6 +93,11 @@ public class ControladorAdminProductos {
         editando = true;
         Optional<Producto> producto = service.listarId(id);
         model.addAttribute("producto",producto);
+        model.addAttribute("logueado", sUsuario.getEstadoLogin());
+        if(sUsuario.getUsuarioConectado() != null)
+            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
+        else
+            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
         return "formularioProductos";
     }
 
