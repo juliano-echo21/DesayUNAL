@@ -31,9 +31,13 @@ public class ControladorAdminProductos {
     private JdbcTemplate jdbc;
 
     private boolean editando = false;
-
+    
     @GetMapping("/listar")
     public String listar(Model model){
+        if(!sUsuario.getEstadoLogin()){
+            return "redirect:desayunal";
+        }
+
         List<Producto> productos = service.listar();
         model.addAttribute("productos",productos);
         model.addAttribute("page", "admin");
@@ -47,6 +51,9 @@ public class ControladorAdminProductos {
 
     @GetMapping("/new")
     public String agregar(Model model){
+        if(!sUsuario.getEstadoLogin()){
+            return "redirect:desayunal";
+        }
         editando = false;
         model.addAttribute("producto",new Producto());
         model.addAttribute("logueado", sUsuario.getEstadoLogin());
@@ -82,7 +89,6 @@ public class ControladorAdminProductos {
                 jdbc.update(sql, idProducto, nombre, tipo, tamano, pixel);
             }
 
-
         }
         editando = false;
         return "redirect:/listar";
@@ -90,6 +96,9 @@ public class ControladorAdminProductos {
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable int id, Model model){
+        if(!sUsuario.getEstadoLogin()){
+            return "redirect:../desayunal";
+        }
         editando = true;
         Optional<Producto> producto = service.listarId(id);
         model.addAttribute("producto",producto);
