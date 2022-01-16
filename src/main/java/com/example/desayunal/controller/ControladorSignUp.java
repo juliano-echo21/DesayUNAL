@@ -61,6 +61,7 @@ public class ControladorSignUp {
                 servicio.actualizarUsuarioConectado(registroDto);
                 return "redirect:desayunal";
             }
+            
             /*isPasswordWrong = true;*/
             return "redirect:signUp?passwordError"; // las contaseñas no coinciden
         }
