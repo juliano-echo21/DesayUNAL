@@ -1,19 +1,19 @@
 package com.example.desayunal.model;
 
 public class Carrito {
-    int item;
+    int id;
     int idProducto;
     String nombre;
     String descripcion;
-    double precioCompra;
+    int precioCompra;
     int cantidad;
-    double subTotal;
+    int subTotal;
 
     public Carrito(){}
 
 
-    public Carrito(int item, int idProducto, String nombre, String descripcion, double precioCompra, int cantidad, double subTotal) {
-        this.item = item;
+    public Carrito(int item, int idProducto, String nombre, String descripcion, int precioCompra, int cantidad, int subTotal) {
+        this.id = item;
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -23,12 +23,12 @@ public class Carrito {
     }
     
 
-    public int getItem() {
-        return this.item;
+    public int getId() {
+        return this.id;
     }
 
-    public void setItem(int item) {
-        this.item = item;
+    public void setId(int item) {
+        this.id = item;
     }
 
     public int getIdProducto() {
@@ -55,11 +55,11 @@ public class Carrito {
         this.descripcion = descripcion;
     }
 
-    public double getPrecioCompra() {
+    public int getPrecioCompra() {
         return this.precioCompra;
     }
 
-    public void setPrecioCompra(double precioCompra) {
+    public void setPrecioCompra(int precioCompra) {
         this.precioCompra = precioCompra;
     }
 
@@ -71,11 +71,11 @@ public class Carrito {
         this.cantidad = cantidad;
     }
 
-    public double getSubTotal() {
+    public int getSubTotal() {
         return this.subTotal;
     }
 
-    public void setSubTotal(double subTotal) {
+    public void setSubTotal(int subTotal) {
         this.subTotal = subTotal;
     }
 

@@ -22,9 +22,9 @@
             </li>
             <!-- BOTÓN CARRITO-->
             <li class="nav-item"></li> 
-              <a th:if="${logueado == true}" class="nav-link" th:href="@{/carrito}">
+              <a th:if="${logueado == true && page == 'catalogo'}" class="nav-link" th:href="@{/carrito}">
                 <i class="fa fa-cart-plus" style="color:white; font-size: 20px;">
-                  <label style="color:orange;font-size: 12px;" th:href="@{/login}" th:text="${'('+contador+')'}"></label>
+                  <label style="color:orange;font-size: 12px;" th:text="${'('+contador+')'}"></label>
                 </i>
               </a>
            
@@ -38,8 +38,12 @@
             
             <!--DROPDOWN USUARIO  -->
             <div th:if="${logueado == true}" class="nav-item dropdown" style="margin-right: 7%;">
+              
               <a style="color:white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${usuarioConectado.userName}">   
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                 <i class="fa fa-user-circle" style="font-size: 20px;">
+                  <label style="font-family:calibri;" th:text="${usuarioConectado.userName}"></label> 
+                </i>  
               </a>
               
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" >

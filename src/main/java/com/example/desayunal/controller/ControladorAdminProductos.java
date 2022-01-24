@@ -41,11 +41,7 @@ public class ControladorAdminProductos {
         List<Producto> productos = service.listar();
         model.addAttribute("productos",productos);
         model.addAttribute("page", "admin");
-        model.addAttribute("logueado", sUsuario.getEstadoLogin());
-        if(sUsuario.getUsuarioConectado() != null)
-            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
-        else
-            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
+        model = sUsuario.actualizarEstados(model);
         return "listarProductos";
     }
 
@@ -56,11 +52,7 @@ public class ControladorAdminProductos {
         }
         editando = false;
         model.addAttribute("producto",new Producto());
-        model.addAttribute("logueado", sUsuario.getEstadoLogin());
-        if(sUsuario.getUsuarioConectado() != null)
-            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
-        else
-            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
+        model = sUsuario.actualizarEstados(model);
         return "formularioProductos";
     }
 
@@ -102,11 +94,7 @@ public class ControladorAdminProductos {
         editando = true;
         Optional<Producto> producto = service.listarId(id);
         model.addAttribute("producto",producto);
-        model.addAttribute("logueado", sUsuario.getEstadoLogin());
-        if(sUsuario.getUsuarioConectado() != null)
-            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
-        else
-            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
+        model = sUsuario.actualizarEstados(model);
         return "formularioProductos";
     }
 

@@ -7,6 +7,7 @@ import com.example.desayunal.repository.RepositorioUsuario;
 import com.example.desayunal.web.dto.RegistroUsuarioDto;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class ServicioUsuario implements IServicioUsuario {
@@ -56,5 +57,13 @@ public class ServicioUsuario implements IServicioUsuario {
         return repositorioUsuario.findByUserName(userName);
     }
 
-
+    public Model actualizarEstados(Model model){
+        model.addAttribute("logueado", getEstadoLogin());
+        if(getUsuarioConectado() != null)
+            model.addAttribute("usuarioConectado", getUsuarioConectado());
+        else
+            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
+        
+        return model;
+    }
 }

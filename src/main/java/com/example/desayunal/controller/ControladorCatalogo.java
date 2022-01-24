@@ -62,11 +62,7 @@ public class ControladorCatalogo{
         model.addAttribute("productos",productos);
         model.addAttribute("nLista", nLista);
         model.addAttribute("page", "catalogo");
-        model.addAttribute("logueado", sUsuario.getEstadoLogin());
-        if(sUsuario.getUsuarioConectado() != null)
-            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
-        else
-            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
+        model = sUsuario.actualizarEstados(model);
         model.addAttribute("contador", ControladorCarrito.cantidadCarrito);
         return "catalogo";
     }

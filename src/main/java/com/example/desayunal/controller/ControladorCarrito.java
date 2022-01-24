@@ -5,6 +5,7 @@ import java.util.Stack;
 import com.example.desayunal.model.Carrito;
 import com.example.desayunal.model.Producto;
 import com.example.desayunal.services.ServicioProducto;
+import com.example.desayunal.services.ServicioUsuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +20,12 @@ public class ControladorCarrito {
     @Autowired
     private ServicioProducto sProducto;
     
+    @Autowired 
+    private ServicioUsuario sUsuario;
+
     private Stack<Carrito> listaCarrito = new Stack<>();
     private int item;
-    private double totalPagar = 0.0;
+    private int totalPagar = 0;
     private int cantidad = 1;
     public static int cantidadCarrito = 0;
     
@@ -32,7 +36,7 @@ public class ControladorCarrito {
         Producto p = sProducto.listarId(id).get();
 
         Carrito car = new Carrito();
-        car.setItem(item++);
+        car.setId(++item);
         car.setIdProducto(id);
         car.setNombre(p.getNombre());
         car.setDescripcion(p.getDescripcion());
@@ -48,5 +52,17 @@ public class ControladorCarrito {
         System.out.println(id);
     
         return "redirect:../desayunal?agregado";
+    }
+
+    @GetMapping("/carrito")
+    public String carrito(Model model){
+        totalPagar = 0;
+        for (Carrito c : listaCarrito){
+            totalPagar += c.getSubTotal();
+        }
+        model.addAttribute("carrito", listaCarrito);
+        model.addAttribute("totalPagar",totalPagar);
+        model = sUsuario.actualizarEstados(model);
+        return "carrito";   
     }
 }
