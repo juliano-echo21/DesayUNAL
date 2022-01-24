@@ -15,7 +15,15 @@
 <body>
      <!-- Navigation -->
 	<div th:include="/barra.html::header"></div>
+    
+    
     <div class="container">
+        <div class="sidebar">
+            <a class="active" href="#home">Home</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </div>
         <a th:href="@{/new}" class="btn btn-dark">Nuevo Producto</a>
         <br><br>
         <table class="table">
