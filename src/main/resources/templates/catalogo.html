@@ -63,7 +63,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-success" th:onclick="agregar()">Agregar</button>
+                                <button th:if="${logueado == true}" type="button" class="btn btn-success" th:onclick="agregar()">Agregar</button>
+                                <button th:if="${logueado == false}" type="button" class="btn btn-success" th:onclick="loguearse()">Agregar</button>
                             </div>
                         </div>
                     </div>
@@ -89,7 +90,8 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-success" th:onclick="agregar()">Agregar</button>
+                                <button th:if="${logueado == true}" type="button" class="btn btn-success" th:onclick="agregar()">Agregar</button>
+                                <button th:if="${logueado == false}" type="button" class="btn btn-success" th:onclick="loguearse()">Agregar</button>
                             </div>
                         </div>
                     </div>

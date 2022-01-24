@@ -25,9 +25,19 @@ function eliminar(id){
             }
         });
 }
+
 function agregar(){
     swal("Agregado al carrito", {
         icon: "success",
+    }).then((ok)=>{
+        if(ok){
+        }
+    });
+}
+
+function loguearse(){
+    swal("Debe iniciar sesión", {
+        icon: "error",
     }).then((ok)=>{
         if(ok){
         }
