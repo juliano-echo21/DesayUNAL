@@ -1,5 +1,7 @@
 package com.example.desayunal.controller;
 
+
+
 import java.util.List;
 
 import com.example.desayunal.model.Producto;
@@ -12,9 +14,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -68,6 +67,7 @@ public class ControladorCatalogo{
             model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
         else
             model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
+        model.addAttribute("contador", ControladorCarrito.cantidadCarrito);
         return "catalogo";
     }
     
@@ -77,7 +77,6 @@ public class ControladorCatalogo{
         return "redirect:desayunal";
     }
 
-  
 
 
 }
