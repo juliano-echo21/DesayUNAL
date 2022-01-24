@@ -67,8 +67,11 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <a th:if="${logueado == true}" type="button" class="btn btn-success" th:href="@{/agregarCarrito/}+${producto.id}">Agregar</a>
-                                <button th:if="${logueado == false}" type="button" class="btn btn-success" th:onclick="loguearse()">Agregar</button>
+                                <a th:if="${logueado == true}" type="button" class="btn btn-success" th:href="@{/agregarCarrito/}+${producto.id}">
+                                    Agregar
+                                    <i class="fa fa-cart-plus" style="color:white; font-size: 16px;"></i></a>
+                                <button th:if="${logueado == false}" type="button" class="btn btn-success" th:onclick="loguearse()"> Agregar
+                                    <i class="fa fa-cart-plus" style="color:white; font-size: 16px;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -94,8 +97,12 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <a th:if="${logueado == true}" type="button" class="btn btn-success" th:href="@{/agregarCarrito/}+${producto.id}">Agregar</a>
-                                <button th:if="${logueado == false}" type="button" class="btn btn-success" th:onclick="loguearse()">Agregar</button>
+                                <a th:if="${logueado == true}" type="button" class="btn btn-success" th:href="@{/agregarCarrito/}+${producto.id}"> 
+                                    Agregar
+                                    <i class="fa fa-cart-plus" style="color:white; font-size: 16px;"></i></a>
+                                <button th:if="${logueado == false}" type="button" class="btn btn-success" th:onclick="loguearse()">
+                                    Agregar
+                                    <i class="fa fa-cart-plus" style="color:white; font-size: 16px;"></i></button>
                             </div>
                         </div>
                     </div>
