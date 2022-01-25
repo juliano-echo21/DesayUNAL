@@ -32,7 +32,9 @@ public class ControladorSignUp {
     public String showSignUp(Model registroDto) {
 
        /* registroDto.addAttribute("isPasswordWrong",isPasswordWrong); */
-
+       if(servicio.getEstadoLogin()){
+        return "redirect:desayunal";
+    }
         return "signUp";
 
     }

@@ -22,7 +22,7 @@
             </li>
             <!-- BOTÓN CARRITO-->
             <li class="nav-item"></li> 
-              <a th:if="${logueado == true && page == 'catalogo'}" class="nav-link" th:href="@{/carrito}">
+              <a th:if="${logueado == true && page == 'catalogo'}" class="nav-link" th:href="@{/carrito}" title="Ver el carrito">
                 <i class="fa fa-shopping-cart" style="color:white; font-size: 20px;">
                   <label style="color:orange;font-size: 12px;" th:text="${'('+contador+')'}"></label>
                 </i>
@@ -42,7 +42,7 @@
               <a style="color:white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                  <i class="fa fa-user-circle" style="font-size: 20px;">
-                  <label style="font-family:calibri;" th:text="${usuarioConectado.userName}"></label> 
+                  <label style="font-family:calibri;font-weight: bold;cursor: pointer;" th:text="${usuarioConectado.userName}"></label> 
                 </i>  
               </a>
               

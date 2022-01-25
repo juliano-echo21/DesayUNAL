@@ -30,12 +30,14 @@ public class ControladorCarrito {
     private int totalPagar = 0;
     private int cantidad = 1;
     public static int cantidadCarrito = 0;
+    private String usuario;
     
     @GetMapping("/agregarCarrito/{id}")
     public String agregarCarrito( @PathVariable int id, Model model){
         int pos = 0;
         cantidad = 1;
         Producto p = sProducto.listarId(id).get();
+        
 
         if(!listaCarrito.empty()){
             for(int i = 0; i < listaCarrito.size(); i++){
@@ -80,6 +82,11 @@ public class ControladorCarrito {
 
     @GetMapping("/carrito")
     public String carrito(Model model){
+        if(!sUsuario.getEstadoLogin()){
+            vaciarCarrito();
+            return "redirect:desayunal";
+        }
+
         totalPagar = 0;
         for (Carrito c : listaCarrito){
             totalPagar += c.getSubTotal();
@@ -96,6 +103,7 @@ public class ControladorCarrito {
             if(listaCarrito.get(i).getId() == idp)
                 listaCarrito.remove(i);
         }
+        actualizarLista();
         cantidadCarrito = listaCarrito.size();
     }
 
@@ -110,5 +118,20 @@ public class ControladorCarrito {
         }
     }
 
+    private void actualizarLista(){
+        item = 1;
+        for(Carrito c: listaCarrito){
+            c.setId(item++);
+        }
+        item = listaCarrito.size();
+    }
+
+    @RequestMapping("/vaciarCarrito")
+    public String vaciarCarrito(){
+        listaCarrito.clear();
+        item = 0;
+        cantidadCarrito = 0;
+        return "redirect:desayunal";
+    }
     
 }

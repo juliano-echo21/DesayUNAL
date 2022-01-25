@@ -94,3 +94,19 @@ $(document).ready(function(){
         parent.location.href="carrito";
     })
 });
+
+function cancelarCompra(){
+    swal({
+        title: "¿Está seguro de cancelar la compra?",
+        text: "El carrito será eliminado",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((OK) => {
+            if (OK) {
+                parent.location.href="vaciarCarrito";
+            } else {
+            }
+        });
+}

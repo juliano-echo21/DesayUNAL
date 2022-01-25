@@ -70,7 +70,7 @@ public class ControladorCatalogo{
     @GetMapping("/logout")
     public String logout(Model model){
         sUsuario.actualizarEstadoLogin(false);
-        return "redirect:desayunal";
+        return "redirect:vaciarCarrito";
     }
 
 
