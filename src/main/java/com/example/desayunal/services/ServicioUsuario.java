@@ -1,6 +1,8 @@
 package com.example.desayunal.services;
 
 import java.util.List;
+import java.util.Optional;
+
 import com.example.desayunal.interfacesServicios.IServicioUsuario;
 import com.example.desayunal.model.Usuario;
 import com.example.desayunal.repository.RepositorioUsuario;
@@ -66,4 +68,15 @@ public class ServicioUsuario implements IServicioUsuario {
         
         return model;
     }
+
+    @Override
+    public Optional<Usuario> buscarId(int id) {
+        return repositorioUsuario.findById(id);
+    }
+
+    @Override
+    public List<Usuario> buscarUserName(String userName) {
+        return repositorioUsuario.buscarUserName(userName);
+    }
+    
 }

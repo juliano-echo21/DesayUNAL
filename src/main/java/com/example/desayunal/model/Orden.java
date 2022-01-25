@@ -8,14 +8,15 @@ import javax.persistence.*;
 @Table( )
 public class Orden {
 
-    public Orden(String fecha, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario, Domiciliario domiciliario) {
+    
+
+    public Orden(String fecha, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
         this.fecha = fecha;
         this.horaPedido = horaPedido;
         this.horaEntrega = horaEntrega;
         this.precio = precio;
         this.estado = estado;
         this.usuario = usuario;
-        this.domiciliario = domiciliario;
     }
 
     @Id
@@ -46,7 +47,65 @@ public class Orden {
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Usuario usuario;
 
-    @JoinColumn(name = "fk_domiciliarioID", nullable = false)
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Domiciliario domiciliario;
+   
+
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFecha() {
+        return this.fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHoraPedido() {
+        return this.horaPedido;
+    }
+
+    public void setHoraPedido(String horaPedido) {
+        this.horaPedido = horaPedido;
+    }
+
+    public String getHoraEntrega() {
+        return this.horaEntrega;
+    }
+
+    public void setHoraEntrega(String horaEntrega) {
+        this.horaEntrega = horaEntrega;
+    }
+
+    public int getPrecio() {
+        return this.precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public String getEstado() {
+        return this.estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+  
+
 }

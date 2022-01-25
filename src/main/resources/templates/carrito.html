@@ -68,7 +68,8 @@
                         <input type="text" readonly="" style="font-size:22px;font-weight: bold;text-align: center;" class="form-control" th:value="${'$'+ totalPagar}">
                     </div>
                     <div class="card-footer" style="color: white;">
-                        <a  class="btn btn-success btn-block">Finalizar compra</a>
+                        <a th:if="${carrito.isEmpty}" class="btn btn-success btn-block" th:onclick="carritoVacio()">Finalizar compra</a>
+                        <a th:unless="${carrito.isEmpty}" class="btn btn-success btn-block" th:onclick="compraExitosa()">Finalizar compra</a>
                         <a  class="btn btn-danger btn-block" th:onclick="cancelarCompra()">Cancelar compra</a>
                     </div>
                 </div>

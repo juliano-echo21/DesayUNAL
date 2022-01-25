@@ -1,9 +1,15 @@
 package com.example.desayunal.controller;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 
 import com.example.desayunal.model.Carrito;
+import com.example.desayunal.model.DetallesOrden;
+import com.example.desayunal.model.Orden;
 import com.example.desayunal.model.Producto;
+import com.example.desayunal.model.Usuario;
+import com.example.desayunal.services.ServicioOrden;
 import com.example.desayunal.services.ServicioProducto;
 import com.example.desayunal.services.ServicioUsuario;
 
@@ -24,6 +30,9 @@ public class ControladorCarrito {
     
     @Autowired 
     private ServicioUsuario sUsuario;
+
+    @Autowired
+    private ServicioOrden sOrden;
 
     private Stack<Carrito> listaCarrito = new Stack<>();
     private int item;
@@ -132,6 +141,29 @@ public class ControladorCarrito {
         item = 0;
         cantidadCarrito = 0;
         return "redirect:desayunal";
+    }
+
+    @RequestMapping("/generarCompra")
+    public String generarCompra(Model model) {
+
+        Usuario usuario = sUsuario.buscarUserName(sUsuario.getUsuarioConectado().getUserName()).get(0);
+        
+        
+        Orden orden = new Orden("","","",totalPagar,"",usuario);
+        int res = sOrden.guardar(orden);
+
+        guardarDetalles(orden);
+        vaciarCarrito();
+        return "redirect:desayunal";
+    }
+
+    private void guardarDetalles(Orden orden){
+        for(Carrito c: listaCarrito){
+            Producto producto = sProducto.listarId(c.getIdProducto()).get();
+            DetallesOrden dOrden = new DetallesOrden(orden,producto,c.getCantidad(),c.getSubTotal());
+            int res = sOrden.guardarDetalles(dOrden);       
+        }
+        
     }
     
 }

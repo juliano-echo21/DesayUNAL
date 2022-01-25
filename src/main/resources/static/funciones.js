@@ -35,8 +35,31 @@ function agregar(){
     });
 }
 
+function compraExitosa(){
+    swal("Compra exitosa!!!", {
+        icon: "success",
+    }).then((ok)=>{
+        if(ok){
+            parent.location.href="generarCompra";
+        }else{       
+            parent.location.href="generarCompra";
+        }
+    });
+
+}
+
 function loguearse(){
     swal("Debe iniciar sesión", {
+        icon: "error",
+    }).then((ok)=>{
+        if(ok){
+        }
+    });
+}
+
+
+function carritoVacio(){
+    swal("No hay productos en el carrito", {
         icon: "error",
     }).then((ok)=>{
         if(ok){
