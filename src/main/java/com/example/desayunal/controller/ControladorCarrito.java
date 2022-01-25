@@ -1,5 +1,6 @@
 package com.example.desayunal.controller;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.Stack;
@@ -149,7 +150,7 @@ public class ControladorCarrito {
         Usuario usuario = sUsuario.buscarUserName(sUsuario.getUsuarioConectado().getUserName()).get(0);
         
         
-        Orden orden = new Orden("","","",totalPagar,"",usuario);
+        Orden orden = new Orden(obtenerFecha(),obtenerHora(),"",totalPagar,"",usuario);
         int res = sOrden.guardar(orden);
 
         guardarDetalles(orden);
@@ -165,5 +166,28 @@ public class ControladorCarrito {
         }
         
     }
-    
+
+    private String obtenerFecha(){
+        Calendar calendario = Calendar.getInstance();
+        String dia = completar(Integer.toString(calendario.get(Calendar.DATE)));
+        String mes = completar(Integer.toString(calendario.get(Calendar.MONTH) % 12 + 1));
+        String annio = Integer.toString(calendario.get(Calendar.YEAR));
+
+        return dia.concat("/" + mes + "/" + annio);
+    }
+
+    private String obtenerHora(){
+        Calendar calendario = Calendar.getInstance();
+        String hora = Integer.toString(calendario.get(Calendar.HOUR) + 12*calendario.get(Calendar.AM_PM));
+        String minuto = completar(Integer.toString(calendario.get(Calendar.MINUTE)));
+        String segundo = completar(Integer.toString(calendario.get(Calendar.SECOND)));
+        return hora.concat(":" + minuto + ":" + segundo);
+    }
+
+    private String completar(String dato){
+        if(dato.length() == 1)
+            dato = "0".concat(dato);
+
+        return dato;
+    }
 }
