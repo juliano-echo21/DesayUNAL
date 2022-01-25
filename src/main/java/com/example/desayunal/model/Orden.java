@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table( )
 public class Orden {
 
-    
+    public Orden(){}
 
     public Orden(String fecha, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
         this.fecha = fecha;

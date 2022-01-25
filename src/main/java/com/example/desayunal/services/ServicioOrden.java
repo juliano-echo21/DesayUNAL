@@ -1,8 +1,11 @@
 package com.example.desayunal.services;
 
+import java.util.List;
+
 import com.example.desayunal.interfacesServicios.IServicioOrden;
 import com.example.desayunal.model.DetallesOrden;
 import com.example.desayunal.model.Orden;
+import com.example.desayunal.model.Usuario;
 import com.example.desayunal.repository.RepositorioDetallesOrden;
 import com.example.desayunal.repository.RepositorioOrden;
 
@@ -35,5 +38,15 @@ public class ServicioOrden implements IServicioOrden {
             res = 1;
         }
         return res;
+    }
+
+    @Override
+    public List<Orden> listarPorUsuario(Usuario usuario){
+        return (List<Orden>) data.findByUsuario(usuario);
+    }
+
+    @Override
+    public List<DetallesOrden> listarDetalles(Orden orden) {
+        return (List<DetallesOrden>) repDetalles.findByOrdenID(orden);
     }
 }
