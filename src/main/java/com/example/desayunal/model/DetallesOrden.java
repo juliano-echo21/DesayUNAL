@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Table( )
 public class DetallesOrden implements Serializable {
 
+    public DetallesOrden(){}
+    
     public DetallesOrden(Orden ordenID, Producto productoID, int cantidadProducto, int subtotal) {
         this.ordenID = ordenID;
         this.productoID = productoID;

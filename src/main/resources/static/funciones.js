@@ -116,6 +116,9 @@ $(document).ready(function(){
         
         parent.location.href="carrito";
     })
+
+    
+    $('.collapse').collapse();
 });
 
 function cancelarCompra(){
