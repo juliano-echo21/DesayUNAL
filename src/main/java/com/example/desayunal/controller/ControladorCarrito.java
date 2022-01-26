@@ -157,7 +157,7 @@ public class ControladorCarrito {
         Usuario usuario = sUsuario.buscarUserName(sUsuario.getUsuarioConectado().getUserName()).get(0);
         
         
-        Orden orden = new Orden(obtenerFecha(),obtenerHora(),"",totalPagar,"",usuario);
+        Orden orden = new Orden(obtenerFecha(),obtenerHora(),obtenerHora(),totalPagar,"Entregado",usuario);
         int res = sOrden.guardar(orden);
 
         guardarDetalles(orden);
