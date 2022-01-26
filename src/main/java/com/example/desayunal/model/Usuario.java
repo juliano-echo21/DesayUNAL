@@ -8,6 +8,9 @@ import javax.persistence.*;
 @Table( )
 public class Usuario {
 
+    public Usuario(){
+        
+    }
     public Usuario(String userName, String password, String estado, String role) {
         super();
         this.userName = userName;

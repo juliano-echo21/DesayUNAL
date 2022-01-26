@@ -1,12 +1,15 @@
 package com.example.desayunal.services;
 
 import java.util.List;
+import java.util.Optional;
+
 import com.example.desayunal.interfacesServicios.IServicioUsuario;
 import com.example.desayunal.model.Usuario;
 import com.example.desayunal.repository.RepositorioUsuario;
 import com.example.desayunal.web.dto.RegistroUsuarioDto;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class ServicioUsuario implements IServicioUsuario {
@@ -56,5 +59,24 @@ public class ServicioUsuario implements IServicioUsuario {
         return repositorioUsuario.findByUserName(userName);
     }
 
+    public Model actualizarEstados(Model model){
+        model.addAttribute("logueado", getEstadoLogin());
+        if(getUsuarioConectado() != null)
+            model.addAttribute("usuarioConectado", getUsuarioConectado());
+        else
+            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
+        
+        return model;
+    }
 
+    @Override
+    public Optional<Usuario> buscarId(int id) {
+        return repositorioUsuario.findById(id);
+    }
+
+    @Override
+    public List<Usuario> buscarUserName(String userName) {
+        return repositorioUsuario.buscarUserName(userName);
+    }
+    
 }

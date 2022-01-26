@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Table( )
 public class DetallesOrden implements Serializable {
 
+    public DetallesOrden(){}
+    
     public DetallesOrden(Orden ordenID, Producto productoID, int cantidadProducto, int subtotal) {
         this.ordenID = ordenID;
         this.productoID = productoID;
@@ -17,11 +19,14 @@ public class DetallesOrden implements Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
     @JoinColumn(name = "fk_ordenID", nullable = false)
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Orden ordenID;
 
-    @Id
+    
     @JoinColumn(name = "fk_productoID", nullable = false)
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Producto productoID;
@@ -66,4 +71,14 @@ public class DetallesOrden implements Serializable {
     public void setSubtotal(int subtotal) {
         this.subtotal = subtotal;
     }
+
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

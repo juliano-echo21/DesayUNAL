@@ -1,5 +1,7 @@
 package com.example.desayunal.controller;
 
+
+
 import java.util.List;
 
 import com.example.desayunal.model.Producto;
@@ -12,9 +14,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -63,21 +62,17 @@ public class ControladorCatalogo{
         model.addAttribute("productos",productos);
         model.addAttribute("nLista", nLista);
         model.addAttribute("page", "catalogo");
-        model.addAttribute("logueado", sUsuario.getEstadoLogin());
-        if(sUsuario.getUsuarioConectado() != null)
-            model.addAttribute("usuarioConectado", sUsuario.getUsuarioConectado());
-        else
-            model.addAttribute("usuarioConectado", new RegistroUsuarioDto());
+        model = sUsuario.actualizarEstados(model);
+        model.addAttribute("contador", ControladorCarrito.cantidadCarrito);
         return "catalogo";
     }
     
     @GetMapping("/logout")
     public String logout(Model model){
         sUsuario.actualizarEstadoLogin(false);
-        return "redirect:desayunal";
+        return "redirect:vaciarCarrito";
     }
 
-    
 
 
 }

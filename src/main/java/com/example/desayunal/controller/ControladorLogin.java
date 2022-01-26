@@ -26,6 +26,9 @@ public class ControladorLogin {
 
     @GetMapping
     public String showLogin(String userName, String password, Model model) {
+        if(servicio.getEstadoLogin()){
+            return "redirect:desayunal";
+        }
         return "login";
     }
 
