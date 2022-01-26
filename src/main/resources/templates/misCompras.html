@@ -59,11 +59,7 @@
                                         <tr th:each="detalle:${detalles.get(ordenStat.index)}">
                                                 <td th:text="${detalleStat.index+1}"></td>
                                                 <td th:text="${detalle.productoID.nombre}"></td>
-<<<<<<< HEAD
                                                 <td th:text="${'$'+detalle.subtotal/detalle.cantidadProducto}"></td>
-=======
-                                                <td th:text="${'$'+detalle.productoID.precio}"></td>
->>>>>>> f762e76465f1017da6c81d4cd6733c250a5a67e8
                                                 <td th:text="${detalle.cantidadProducto}"></td>
                                                 <td th:text="${'$'+detalle.subtotal}"></td>
                                             </tr>

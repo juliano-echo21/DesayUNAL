@@ -67,7 +67,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <a th:if="${logueado == true}" type="button" class="btn btn-success" th:href="@{/agregarCarrito/}+${producto.id}">
+                                <input type="hidden" id="idProducto" th:value="${producto.id}">
+                                <a th:if="${logueado == true}" type="button" class="btn btn-success" style="color: white;" id="addCarrito">
                                     Agregar
                                     <i class="fa fa-cart-plus" style="color:white; font-size: 16px;"></i></a>
                                 <button th:if="${logueado == false}" type="button" class="btn btn-success" th:onclick="loguearse()"> Agregar
@@ -97,7 +98,8 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <a th:if="${logueado == true}" type="button" class="btn btn-success" th:href="@{/agregarCarrito/}+${producto.id}"> 
+                                <input type="hidden" id="idProducto" th:value="${producto.id}">
+                                <a th:if="${logueado == true}" style="color: white;" type="button" class="btn btn-success" id="addCarrito"> 
                                     Agregar
                                     <i class="fa fa-cart-plus" style="color:white; font-size: 16px;"></i></a>
                                 <button th:if="${logueado == false}" type="button" class="btn btn-success" th:onclick="loguearse()">

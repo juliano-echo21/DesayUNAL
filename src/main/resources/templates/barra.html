@@ -24,7 +24,8 @@
             <li class="nav-item"></li> 
               <a th:if="${logueado == true && page == 'catalogo'}" class="nav-link" th:href="@{/carrito}" title="Ver el carrito">
                 <i class="fa fa-shopping-cart" style="color:white; font-size: 20px;">
-                  <label style="color:orange;font-size: 12px;" th:text="${'('+contador+')'}"></label>
+                  
+                  <label style="color:orange;font-size: 12px; font-weight: bold;" id="contCarrito" th:text="${'('+contador+')'}"></label>
                 </i>
               </a>
            

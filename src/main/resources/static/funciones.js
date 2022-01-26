@@ -68,6 +68,27 @@ function carritoVacio(){
 }
 
 $(document).ready(function(){
+    //Agregar producto al carrito
+    $("div #addCarrito").click(function (){    
+        agregar();
+        var idp = $(this).parent().find("#idProducto").val();
+        
+        var url="agregarAlCarrito";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: "idp="+idp,
+            success: function(data, textStatus, jqXHR){
+            }
+        })
+        actContador();
+    });
+
+    function actContador(){
+        document.getElementById('contCarrito').innerHTML = '+';
+      
+    }
+    //Eliminar los elementos del carrito
     $("tr #btnDelete").click(function (){
     
         var idp = $(this).parent().find("#idp").val();
@@ -91,6 +112,7 @@ $(document).ready(function(){
             });
     });
 
+    //Llama la función del controlador
     function eliminar(idp){
         var url="eliminarDelCarrito";
         $.ajax({
@@ -102,6 +124,7 @@ $(document).ready(function(){
         })
     }
 
+    //Modifica la cantidad de un producto del carrito
     $("tr #cantidad").change(function(){
         var idp = $(this).parent().find("#idpro").val();
         var cantidad = $(this).parent().find("#cantidad").val();

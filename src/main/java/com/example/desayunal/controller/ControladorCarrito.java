@@ -42,8 +42,13 @@ public class ControladorCarrito {
     public static int cantidadCarrito = 0;
     private String usuario;
     
+    @PostMapping("/agregarAlCarrito")
+    public void agregarAlCarrito(@RequestParam int idp){
+        agregarCarrito(idp);
+    }
+
     @GetMapping("/agregarCarrito/{id}")
-    public String agregarCarrito( @PathVariable int id, Model model){
+    public String agregarCarrito(@PathVariable int id){
         int pos = 0;
         cantidad = 1;
         Producto p = sProducto.listarId(id).get();
@@ -85,7 +90,6 @@ public class ControladorCarrito {
         cantidadCarrito = listaCarrito.size();
        /* for(int i = 0 ; i < 10; i++)
             System.out.println(p.getNombre());*/
-        System.out.println(id);
     
         return "redirect:../desayunal?agregado";
     }
