@@ -15,6 +15,8 @@ import com.example.desayunal.services.ServicioProducto;
 import com.example.desayunal.services.ServicioUsuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +45,9 @@ public class ControladorCarrito {
     private String usuario;
     
     @PostMapping("/agregarAlCarrito")
-    public void agregarAlCarrito(@RequestParam int idp){
+    public ResponseEntity<?> agregarAlCarrito(@RequestParam int idp){
         agregarCarrito(idp);
+        return new ResponseEntity(cantidadCarrito,HttpStatus.OK);
     }
 
     @GetMapping("/agregarCarrito/{id}")
@@ -193,5 +196,11 @@ public class ControladorCarrito {
             dato = "0".concat(dato);
 
         return dato;
+    }
+
+    @PostMapping("/actContador")
+    public ResponseEntity<?> actContador(){
+        cantidadCarrito = listaCarrito.size();
+        return new ResponseEntity(cantidadCarrito,HttpStatus.OK);
     }
 }

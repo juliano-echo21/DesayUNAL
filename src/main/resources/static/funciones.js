@@ -79,13 +79,28 @@ $(document).ready(function(){
             url: url,
             data: "idp="+idp,
             success: function(data, textStatus, jqXHR){
+                $("#contCarrito").html('('+data+')');
+            },
+            error: function(data,textStatus,jqXHR){
+                actContador();
             }
         })
-        actContador();
     });
 
     function actContador(){
-        document.getElementById('contCarrito').innerHTML = '+';
+        $.ajax({
+            type: 'POST',
+            url: "/actContador",
+            processData: false,
+            contentType: false,
+            success: function(res){
+                $("#contCarrito").html('('+res+')');
+            },
+            error:function(){
+                $("#contCarrito").html('⦿');
+            }
+        })
+        //document.getElementById('contCarrito').innerHTML = '+';
       
     }
     //Eliminar los elementos del carrito
