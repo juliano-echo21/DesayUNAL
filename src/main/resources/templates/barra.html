@@ -18,7 +18,7 @@
             </li>
             <li th:if="${page == 'admin'}" class="nav-item active">
               <li th:unless="${page == 'admin'}" class="nav-item"></li>
-              <a th:if="${logueado == true}" class="nav-link" th:href="@{/listar}">Administrar</a>
+              <a th:if="${logueado == true && usuarioConectado.role == 'Administrador'}" class="nav-link" th:href="@{/listar}">Administrar</a>
             </li>
             
            
@@ -27,7 +27,7 @@
             
              <!--BOTONES INICIAR SESIÓN Y REGISTRARSE-->
             <a th:if="${logueado == false}" class="btn btn-outline-success my-2 my-sm-0" th:href="@{/login}">Iniciar Sesión</a>
-            <a th:if="${logueado == false}" class="btn btn-outline-light my-2 my-sm-0 ml-2" th:href="@{/signUp}">Registrarse</a>
+            <a th:if="${logueado == false}" class="btn btn-outline-light my-2 my-sm-0 ml-2" th:href="@{/signUp}" style="margin-right: 2%;">Registrarse</a>
 
             <!-- BOTÓN CARRITO-->
             <div class="nav-item" style="margin-right:-1%"> 
@@ -44,7 +44,7 @@
               <a style="color:white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                  <i class="fa fa-user-circle" style="font-size: 20px;">
-                  <label style="font-family:calibri;font-weight: bold;cursor: pointer;" th:text="${usuarioConectado.userName}"></label> 
+                  <label style="font-family:calibri;font-weight: bold;cursor: pointer;" th:text="${usuarioConectado.getuserName}"></label> 
                 </i>  
               </a>
               

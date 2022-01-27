@@ -154,7 +154,7 @@ public class ControladorCarrito {
     @RequestMapping("/generarCompra")
     public String generarCompra(Model model) {
 
-        Usuario usuario = sUsuario.buscarUserName(sUsuario.getUsuarioConectado().getUserName()).get(0);
+        Usuario usuario = sUsuario.getUsuarioConectado();
         
         
         Orden orden = new Orden(obtenerFecha(),obtenerHora(),obtenerHora(),totalPagar,"Entregado",usuario);

@@ -26,7 +26,7 @@ public class ControladorCompras {
 
     @RequestMapping("/misCompras")
     public String misCompras(Model model){
-        Usuario usuario = sUsuario.buscarUserName(sUsuario.getUsuarioConectado().getUserName()).get(0);
+        Usuario usuario = sUsuario.getUsuarioConectado();
         List<Orden> lCompras = sOrden.listarPorUsuario(usuario);
         ArrayList<List<DetallesOrden>> lDetalles = new ArrayList<>();
          
