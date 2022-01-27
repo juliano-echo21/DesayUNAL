@@ -145,6 +145,13 @@ $(document).ready(function(){
     $("tr #cantidad").change(function(){
         var idp = $(this).parent().find("#idpro").val();
         var cantidad = $(this).parent().find("#cantidad").val();
+        if(cantidad < 1){
+            $(this).parent().find("#cantidad").val(1);
+            return;
+        }
+        cantidad = parseInt(cantidad);
+        $(this).parent().find("#cantidad").val(cantidad);
+        
         var url = "actualizarCarrito";
         $.ajax({
             type: 'POST',
