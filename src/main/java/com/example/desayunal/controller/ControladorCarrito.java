@@ -155,7 +155,11 @@ public class ControladorCarrito {
     public String generarCompra(Model model) {
 
         Usuario usuario = sUsuario.getUsuarioConectado();
-        
+        usuario = sUsuario.buscarUserName(usuario.getuserName()).get(0);
+        totalPagar = 0;
+        for (Carrito c : listaCarrito){
+            totalPagar += c.getSubTotal();
+        }
         
         Orden orden = new Orden(obtenerFecha(),obtenerHora(),obtenerHora(),totalPagar,"Entregado",usuario);
         int res = sOrden.guardar(orden);

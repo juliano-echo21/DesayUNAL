@@ -1,6 +1,7 @@
 package com.example.desayunal.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.example.desayunal.model.DetallesOrden;
@@ -30,6 +31,7 @@ public class ControladorCompras {
         List<Orden> lCompras = sOrden.listarPorUsuario(usuario);
         ArrayList<List<DetallesOrden>> lDetalles = new ArrayList<>();
          
+        Collections.reverse(lCompras);
         model.addAttribute("compras", lCompras);
         model = sUsuario.actualizarEstados(model);
 
