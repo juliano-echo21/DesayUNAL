@@ -13,8 +13,23 @@ body {
 }
 
 .container{
-  margin-top: 5%;
+    margin-top: 7%;
 }
+#sidebar-container{
+    min-height: 100%;
+}
+.menu{
+    margin-top: 5%;
+    position: fixed;
+
+}
+a:hover{
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+}
+
 
 
 .sidebar {
