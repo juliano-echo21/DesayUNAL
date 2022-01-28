@@ -18,16 +18,9 @@
      <!-- Navigation -->
 	<div th:include="/barra.html::header"></div>
      <div  class="row mr-0 pr-0">
-         <div class="col-sm-2 mr-0 pr-0">
-             <div id="sidebar-container" class="bg-secondary">
-                 <div class="menu">
-                     <a class="d-block p-3 text-light" th:href="@{/listar}"><i class="icon ion-md-grid mr-2 lead"></i>Productos</a>
-                     <a href="#" class="d-block p-3 text-light"><i class="icon ion-md-paper mr-2 lead"></i>Reporte</a>
-                     <a href="#" class="d-block p-3 text-light"><i class="icon ion-md-trophy mr-2 lead"></i>Análisis</a>
-                 </div>
 
-                 
-             </div>
+         <div class="col-sm-2 mr-0 pr-0 bg-secondary">
+             <div th:include="/sideBar.html::sidebar"></div>
          </div>
          <div class="col-sm-9">
              <div class="container">
