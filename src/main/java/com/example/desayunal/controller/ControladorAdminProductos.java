@@ -45,6 +45,14 @@ public class ControladorAdminProductos {
         return "listarProductos";
     }
 
+    @GetMapping("/reporte")
+    public String reporte(Model model){
+        if(!sUsuario.getEstadoLogin()){
+            return "redirect:desayunal";
+        }
+        return "reporte";
+    }
+
     @GetMapping("/new")
     public String agregar(Model model){
         if(!sUsuario.getEstadoLogin()){
