@@ -147,7 +147,7 @@ $(document).ready(function(){
         var cantidad = $(this).parent().find("#cantidad").val();
         if(cantidad < 1){
             $(this).parent().find("#cantidad").val(1);
-            return;
+            cantidad = 1;
         }
         cantidad = parseInt(cantidad);
         $(this).parent().find("#cantidad").val(cantidad);
