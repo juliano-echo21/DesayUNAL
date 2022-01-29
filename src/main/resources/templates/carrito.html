@@ -45,12 +45,18 @@
                             <td th:text="${pCarrito.id}"></td>
                             <td th:text="${pCarrito.nombre}"></td>
                             <td th:text="${pCarrito.descripcion}" ></td>
-                            <td th:text="${'$'+pCarrito.precioCompra}"></td>
+                            <td>
+                                 <label th:text="${'$'+pCarrito.precioCompra}"></label>
+                                <input type="hidden" id = "precio" th:value="${pCarrito.precioCompra}">
+                            </td>
                             <td>
                                 <input type="hidden" id = "idpro" th:value="${pCarrito.id}">
                                 <input type="number" min="1" class="form-control" id="cantidad" style="width: 70px;" th:value="${pCarrito.cantidad}">
                             </td>
-                            <td th:text="${'$'+pCarrito.subTotal}"></td>
+                            <td>
+                                <input type="hidden" id="subtVal" th:value="${pCarrito.subTotal}"></label>
+                                <label id="subt" th:text="${'$'+pCarrito.subTotal}"></label>
+                            </td>
                             <td>
                                 <input type="hidden" id="idp" th:value="${pCarrito.id}">
                                 <a href="#" id="btnDelete">
@@ -68,7 +74,8 @@
                     </div>
                     <div class="card-body">
                         <label>Total a pagar</label>
-                        <input type="text" readonly="" style="font-size:22px;font-weight: bold;text-align: center;" class="form-control" th:value="${'$'+ totalPagar}">
+                        <input type="text" id="total" readonly="" style="font-size:22px;font-weight: bold;text-align: center;" class="form-control" th:value="${'$'+ totalPagar}">
+                        <input type="hidden" id="totalVal" th:value="${totalPagar}">
                     </div>
                     <div class="card-footer" style="color: white;">
                         <a th:if="${carrito.isEmpty}" class="btn btn-success btn-block" th:onclick="carritoVacio()">Finalizar compra</a>

@@ -35,7 +35,7 @@
                             
                           <button class="accordion-button collapsed" data-toggle="collapse" th:data-target="${'#'+orden.id}" aria-expanded="false">
                             
-                            <label style="font-weight: bold;">#</label><label style=" width: 10%;" th:text="${ordenStat.index+1}"></label>
+                            <label style="font-weight: bold;">#</label><label style=" width: 10%;" th:text="${ordenStat.size - ordenStat.index}"></label>
                             <label style="font-weight: bold;">Total:&nbsp;</label><label style=" width: 15%;" th:text="${'$'+orden.precio}"></label>
                             <label style="font-weight: bold;">Fecha:&nbsp;</label><label style=" width: 20%;" th:text="${orden.fecha}"></label>
                             <label style="font-weight: bold;">Hora:&nbsp;</label><label style=" width: 20%;"  th:text="${orden.horaPedido}"></label>
