@@ -46,8 +46,8 @@
                          <td th:text="${'$'+producto.precio}"></td>
                          <td><img th:src="@{/uploaded/}+${producto.id}" width="200" height="100"></td>
                          <td>
-                             <a th:href="@{/editar/}+${producto.id}" class="btn btn-warning">Editar</a>
-                             <a th:onclick="eliminar([[${producto.id}]])" class="btn btn-danger">Eliminar</a>
+                             <a th:href="@{/editar/}+${producto.id}" class="btn btn-warning m-1">Editar</a>
+                             <a th:onclick="eliminar([[${producto.id}]])" class="btn btn-danger m-1">Eliminar</a>
                          </td>
                      </tr>
                      </tbody>
