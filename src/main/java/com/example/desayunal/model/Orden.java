@@ -10,8 +10,10 @@ public class Orden {
 
     public Orden(){}
 
-    public Orden(String fecha, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
-        this.fecha = fecha;
+    public Orden(short dia, short mes, short año, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
+        this.dia = dia;
+        this.mes = mes;
+        this.año = año;
         this.horaPedido = horaPedido;
         this.horaEntrega = horaEntrega;
         this.precio = precio;
@@ -23,9 +25,17 @@ public class Orden {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "fecha", nullable = false)
+    @Column(name = "dia", nullable = false)
     @NotNull
-    private String fecha;
+    private short dia;
+
+    @Column(name = "mes", nullable = false)
+    @NotNull
+    private short mes;
+
+    @Column(name = "año", nullable = false)
+    @NotNull
+    private short año;
 
     @Column(name = "horaPedido", nullable = false)
     @NotNull
