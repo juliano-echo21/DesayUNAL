@@ -11,6 +11,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface RepositorioDetallesOrden extends CrudRepository<DetallesOrden,Integer>{
     public List<DetallesOrden> findByOrdenID(Orden usuario);
 
-    @Query(value = "SELECT cantidad_producto FROM detalles_orden WHERE fk_ordenid = ?2 AND fk_productoid = ?1")
+    @Query(value = "SELECT cantidadProducto FROM DetallesOrden WHERE ordenID = ?2 AND productoID = ?1")
     public int timesSoldProductByOrdenId(int idProducto, int idOrden);
 }
