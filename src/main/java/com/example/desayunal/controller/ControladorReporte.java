@@ -42,7 +42,7 @@ public class ControladorReporte {
                 productosId.clear();
                 productosId.add(productId);
 
-                ventasT = 0;
+                ventasT = ventasTmp;
             }
             else if(ventasTmp == ventasT){
                 productosId.add(productId);
