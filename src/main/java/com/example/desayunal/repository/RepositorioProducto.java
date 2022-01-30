@@ -24,6 +24,6 @@ public interface RepositorioProducto extends CrudRepository<Producto,Integer> {
     @Query(value = "SELECT COUNT(p.id) FROM Producto p WHERE p.nombre = ?1")
     public long productoExiste(String nombre);
 
-    @Query(value = "SELECT COUNT(p.id) FROM producto")
+    @Query(value = "SELECT COUNT(id) FROM producto")
     public int totalProducts();
 }
