@@ -10,7 +10,7 @@ public class Orden {
 
     public Orden(){}
 
-    public Orden(short dia, short mes, short año, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
+    public Orden(int dia, int mes, int año, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
         this.dia = dia;
         this.mes = mes;
         this.año = año;
@@ -27,15 +27,15 @@ public class Orden {
 
     @Column(name = "dia", nullable = false)
     @NotNull
-    private short dia;
+    private int dia;
 
     @Column(name = "mes", nullable = false)
     @NotNull
-    private short mes;
+    private int mes;
 
     @Column(name = "año", nullable = false)
     @NotNull
-    private short año;
+    private int año;
 
     @Column(name = "horaPedido", nullable = false)
     @NotNull
@@ -68,12 +68,28 @@ public class Orden {
         this.id = id;
     }
 
-    public String getFecha() {
-        return this.fecha;
+    public int getDia() {
+        return this.dia;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return this.mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAño() {
+        return this.año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
     }
 
     public String getHoraPedido() {
