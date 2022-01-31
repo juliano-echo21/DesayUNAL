@@ -160,8 +160,8 @@ public class ControladorCarrito {
         for (Carrito c : listaCarrito){
             totalPagar += c.getSubTotal();
         }
-        
-        String[] fecha = obtenerFecha().split("/");
+        String[] fecha = {"1","1","2022"};
+        fecha = obtenerFecha().split("/");
         Orden orden = new Orden(Integer.valueOf(fecha[0]), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[2]), obtenerHora(),"",totalPagar,"",usuario);
         int res = sOrden.guardar(orden);
 
