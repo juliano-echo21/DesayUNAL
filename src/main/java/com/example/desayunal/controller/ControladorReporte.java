@@ -1,9 +1,11 @@
 package com.example.desayunal.controller;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.example.desayunal.services.ServicioProducto;
+import com.example.desayunal.model.DetallesOrden;
 import com.example.desayunal.services.ServicioOrden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,32 +25,59 @@ public class ControladorReporte {
     private ServicioProducto servicioP;
 
     public List<Integer> productosMasVendidosMes(int mes){
-        Iterator<Integer> ordenesIterator;
+        Iterator<DetallesOrden> detallesOrdenIterator;
         List<Integer> ordenes = servicioO.idsOrdenesPorMes(mes);
-        List<Integer> productosId = new LinkedList<Integer>();
-        int productos = servicioP.totalProductos();
-        int ventasTmp;
+        HashMap<Integer, Integer> productosTotal = new HashMap<Integer, Integer>();
+        List<Integer> productosMasVendidosId = new LinkedList<Integer>();
+
+        Iterator<Integer> iterator = ordenes.iterator();
+
+
+        DetallesOrden detallesOrden;
+        
+        int idProducto;
+        int cantidadProducto;
+        int idOrden;
+        
         int ventasT = 0;
+        int ventaP;
 
-        for(int productId = 1; productId <= productos; ++productId){
-            ordenesIterator = ordenes.iterator();
-            ventasTmp = 0;
+        while(iterator.hasNext()){
+            idOrden = iterator.next();
 
-            while(ordenesIterator.hasNext()){
-                ventasTmp += servicioO.ventasProductoPorOrden(productId, ordenesIterator.next());
+            detallesOrdenIterator = servicioO.detallesOrden(idOrden).iterator();
+
+            while(detallesOrdenIterator.hasNext()){
+                detallesOrden = detallesOrdenIterator.next();
+                idProducto = detallesOrden.getProductoID().getId();
+                cantidadProducto = detallesOrden.getCantidadProducto();
+
+                if(productosTotal.containsKey(idProducto)){
+                    productosTotal.replace(idProducto, productosTotal.get(idProducto) + cantidadProducto);
+                }
+                else{
+                    productosTotal.put(idProducto, cantidadProducto);
+                }
+            }   
+        }
+
+        iterator = productosTotal.keySet().iterator();
+
+        while(iterator.hasNext()){
+            idProducto = iterator.next();
+            ventaP = productosTotal.get(idProducto);
+
+            if(ventaP > ventasT){
+                productosMasVendidosId.clear();
+                productosMasVendidosId.add(idProducto);
+
+                ventasT = ventaP;
             }
-
-            if(ventasTmp > ventasT){
-                productosId.clear();
-                productosId.add(productId);
-
-                ventasT = ventasTmp;
-            }
-            else if(ventasTmp == ventasT){
-                productosId.add(productId);
+            else if(ventaP == ventasT){
+                productosMasVendidosId.add(idProducto);
             }
         }
 
-        return productosId;
+        return productosMasVendidosId;
     }
 }

@@ -13,4 +13,7 @@ public interface RepositorioDetallesOrden extends CrudRepository<DetallesOrden,I
 
     @Query(value = "SELECT cantidadProducto FROM DetallesOrden WHERE ordenID = ?2 AND productoID = ?1")
     public int timesSoldProductByOrdenId(int idProducto, int idOrden);
+
+    @Query(value = "SELECT id FROM DetallesOrden WHERE ordenID = ?1")
+    public List<DetallesOrden>  productsId(int idOrden);
 }

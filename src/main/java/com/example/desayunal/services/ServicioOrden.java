@@ -59,4 +59,9 @@ public class ServicioOrden implements IServicioOrden {
     public int ventasProductoPorOrden(int idProducto, int idOrden){
         return repDetalles.timesSoldProductByOrdenId(idProducto, idOrden);
     }
+
+    @Override
+    public List<DetallesOrden> detallesOrden(int idOrden){
+        return repDetalles.productsId(idOrden);
+    }
 }
