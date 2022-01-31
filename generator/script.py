@@ -81,7 +81,7 @@ def crearOrdenes():
         subtotales = []
         dia= random.randint(1,28)
         mes = random.randint(1,12)
-        año = 2021
+        anio = 2021
         estado = "Entregado"
         usuario = random.randint(1,2001)
         hora_entrega = "12:12:12"
@@ -102,12 +102,12 @@ def crearOrdenes():
             subtotales.append(cantidades[k]* produc_compra[k][5])
 
 
-        sql = "INSERT INTO orden (dia,mes,año,estado,hora_entrega,hora_pedido,precio,fk_usuarioid) VALUES (%(dia)s,%(mes)s,%(año)s,%(estado)s,%(hora_entrega)s,%(hora_pedido)s,%(precio)s,%(usuario)s)"
+        sql = "INSERT INTO orden (dia,mes,anio,estado,hora_entrega,hora_pedido,precio,fk_usuarioid) VALUES (%(dia)s,%(mes)s,%(anio)s,%(estado)s,%(hora_entrega)s,%(hora_pedido)s,%(precio)s,%(usuario)s)"
         
         values = {
                 "dia" : dia,
                 "mes" : mes,
-                "año" : año,
+                "anio" : anio,
                 "estado": estado,
                 "hora_entrega":hora_entrega,
                 "hora_pedido":hora_pedido,
@@ -141,6 +141,5 @@ def  crearDetalleOrden(i,cantidades,produc_compra,subtotales):
 crearUsuario()
 crearProductos()
 crearOrdenes()
-#pruebas()
 
 
