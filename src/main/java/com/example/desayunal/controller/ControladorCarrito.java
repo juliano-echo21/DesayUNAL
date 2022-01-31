@@ -161,7 +161,8 @@ public class ControladorCarrito {
             totalPagar += c.getSubTotal();
         }
         
-        Orden orden = new Orden(obtenerFecha(),obtenerHora(),obtenerHora(),totalPagar,"Entregado",usuario);
+        String[] fecha = obtenerFecha().split("/");
+        Orden orden = new Orden(Integer.valueOf(fecha[0]), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[2]), obtenerHora(),"",totalPagar,"",usuario);
         int res = sOrden.guardar(orden);
 
         guardarDetalles(orden);

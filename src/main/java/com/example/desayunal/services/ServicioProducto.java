@@ -70,5 +70,8 @@ public class ServicioProducto implements IServicioProducto {
         return (List<Producto>) data.findCategoriaDisponible(categoria);
     }
 
-    
+    @Override
+    public int totalProductos(){
+        return data.totalProducts();
+    }
 }

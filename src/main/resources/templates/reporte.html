@@ -19,7 +19,8 @@
 </head>
 
 <body>
-    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
     <!-- Navigation -->
     <div th:include="/barra.html::header"></div>
     <div class="row mr-0 pr-0">
@@ -57,38 +58,171 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-10" style="width:100%; height:400px;">
-                        <h1>Ajacibaibaisbc</h1>
+                <div class="row mt-5">
+                    <div id="grafica" class="col" style=" height:400px;">
                         <script>
-                                const chart = Highcharts.chart('container', {
-                                    chart: {
-                                        type: 'bar'
-                                    },
+                            Highcharts.chart('grafica', {
+
+                                title: {
+                                    text: 'Solar Employment Growth by Sector, 2010-2016'
+                                },
+
+                                subtitle: {
+                                    text: 'Source: thesolarfoundation.com'
+                                },
+
+                                yAxis: {
                                     title: {
-                                        text: 'Fruit Consumption'
-                                    },
-                                    xAxis: {
-                                        categories: ['Apples', 'Bananas', 'Oranges']
-                                    },
-                                    yAxis: {
-                                        title: {
-                                            text: 'Fruit eaten'
+                                        text: 'Number of Employees'
+                                    }
+                                },
+
+                                xAxis: {
+                                    accessibility: {
+                                        rangeDescription: 'Range: 2010 to 2017'
+                                    }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+                                        pointStart: 2010
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'Installation',
+                                    data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                                }, {
+                                    name: 'Manufacturing',
+                                    data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+                                }, {
+                                    name: 'Sales & Distribution',
+                                    data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+                                }, {
+                                    name: 'Project Development',
+                                    data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+                                }, {
+                                    name: 'Other',
+                                    data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
                                         }
-                                    },
-                                    series: [{
-                                        name: 'Jane',
-                                        data: [1, 0, 4]
-                                    }, {
-                                        name: 'John',
-                                        data: [5, 7, 3]
                                     }]
-                                });
-                            ;
+                                }
+
+                            });
                         </script>
                     </div>
-                </div>
 
+                </div>
+                <div class="row mt-5">
+                    <div class="col-sm-5" id="pastel">
+                        <script>
+                            Highcharts.chart('pastel', {
+                                chart: {
+                                    plotBackgroundColor: null,
+                                    plotBorderWidth: null,
+                                    plotShadow: false,
+                                    type: 'pie'
+                                },
+                                title: {
+                                    text: 'Browser market shares in January, 2018'
+                                },
+                                tooltip: {
+                                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                },
+                                accessibility: {
+                                    point: {
+                                        valueSuffix: '%'
+                                    }
+                                },
+                                plotOptions: {
+                                    pie: {
+                                        allowPointSelect: true,
+                                        cursor: 'pointer',
+                                        dataLabels: {
+                                            enabled: false
+                                        },
+                                        showInLegend: true
+                                    }
+                                },
+                                series: [{
+                                    name: 'Brands',
+                                    colorByPoint: true,
+                                    data: [{
+                                        name: 'Desayunos',
+                                        y: 40,
+                                        sliced: true,
+                                        selected: true
+                                    }, {
+                                        name: 'Postres',
+                                        y: 25
+                                    }, {
+                                        name: 'Onces',
+                                        y: 35
+                                    }]
+                                }]
+                            });
+                        </script>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="card" >
+                            <div class="card-body">
+                                <h5 class="card-title" style="width: 100%; height: 100%;">Usuarios frecuentes</h5>
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Cliente</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Correo</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -111,7 +245,7 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="funciones.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+
 
 </body>
 
