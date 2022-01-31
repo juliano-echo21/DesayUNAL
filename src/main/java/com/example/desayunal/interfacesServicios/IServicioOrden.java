@@ -11,4 +11,6 @@ public interface IServicioOrden  {
     public int guardarDetalles(DetallesOrden dO);
     public List<Orden> listarPorUsuario(Usuario usuario);
     public List<DetallesOrden> listarDetalles(Orden orden);
+    public List<Integer> idsOrdenesPorMes(int mes);
+    public int ventasProductoPorOrden(int idProducto, int idOrden);
 }

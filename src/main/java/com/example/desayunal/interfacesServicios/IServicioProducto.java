@@ -15,4 +15,5 @@ public interface IServicioProducto {
     public int guardar(Producto p, boolean editando);
     public void eliminar(int id);
     public boolean productoExiste(String nombre);
+    public int  totalProductos();
 }

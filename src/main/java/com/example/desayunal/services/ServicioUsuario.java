@@ -16,7 +16,7 @@ public class ServicioUsuario implements IServicioUsuario {
 
     private RepositorioUsuario repositorioUsuario;
     private boolean logueado;
-    private RegistroUsuarioDto usuarioConectado;
+    private Usuario usuarioConectado;
 
     public ServicioUsuario(RepositorioUsuario repositorioUsuario ){
         super();
@@ -32,11 +32,11 @@ public class ServicioUsuario implements IServicioUsuario {
         return this.logueado;
     }
 
-    public void actualizarUsuarioConectado(RegistroUsuarioDto usuario){
+    public void actualizarUsuarioConectado(Usuario usuario){
         this.usuarioConectado = usuario;
     }
 
-    public RegistroUsuarioDto getUsuarioConectado(){
+    public Usuario getUsuarioConectado(){
         return this.usuarioConectado;
     }
     @Override
