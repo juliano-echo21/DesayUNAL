@@ -87,6 +87,7 @@ $(document).ready(function(){
         })
     });
 
+    //Actualiza el contador del carrito
     function actContador(){
         $.ajax({
             type: 'POST',
@@ -125,6 +126,7 @@ $(document).ready(function(){
                 } else {
                 }
             });
+
     });
 
     //Llama la función del controlador
@@ -138,8 +140,49 @@ $(document).ready(function(){
             }
         })
     }
+    
+    //Actualizar los totales en función de la cantidad en el carrito
+    $("tr #cantidad").change(function(){
+        var idp = $(this).parent().find("#idpro").val();
+        var cantidad = $(this).parent().find("#cantidad").val();
+        if(cantidad < 1){
+            $(this).parent().find("#cantidad").val(1);
+            cantidad = 1;
+        }
+        cantidad = parseInt(cantidad);
+        $(this).parent().find("#cantidad").val(cantidad);
+        
+        var url = "actualizarCarrito";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: "idp="+idp+"&cantidad="+cantidad,
+            success: function(data, textStatus, jqXHR){
+            }
+        });
 
-    //Modifica la cantidad de un producto del carrito
+        
+        
+        var precio = $(this).parent().parent().find("#precio").val(); 
+        var subtotal = $(this).parent().parent().find("#subtVal").val();
+        var nSubtotal = precio* cantidad;
+
+        $(this).parent().parent().find("#subtVal").val(nSubtotal);
+        $(this).parent().parent().find("#subt").html('$'+nSubtotal);
+
+        var total = parseInt(document.getElementById('totalVal').value) -subtotal + nSubtotal;
+
+        document.getElementById('total').value = '$'+parseInt(total);       
+        document.getElementById('totalVal').value = total;
+    })
+
+    function act(){
+        $("tr #idpros").val(function(){
+            return 3333;
+        })
+    }
+
+    /*Modifica la cantidad de un producto del carrito
     $("tr #cantidad").change(function(){
         var idp = $(this).parent().find("#idpro").val();
         var cantidad = $(this).parent().find("#cantidad").val();
@@ -153,7 +196,7 @@ $(document).ready(function(){
         });
         
         parent.location.href="carrito";
-    })
+    })*/
 
     
     $('.collapse').collapse();

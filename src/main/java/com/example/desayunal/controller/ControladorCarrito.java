@@ -154,9 +154,14 @@ public class ControladorCarrito {
     @RequestMapping("/generarCompra")
     public String generarCompra(Model model) {
 
-        Usuario usuario = sUsuario.buscarUserName(sUsuario.getUsuarioConectado().getUserName()).get(0);
-        
-        String[] fecha = obtenerFecha().split("/");
+        Usuario usuario = sUsuario.getUsuarioConectado();
+        usuario = sUsuario.buscarUserName(usuario.getuserName()).get(0);
+        totalPagar = 0;
+        for (Carrito c : listaCarrito){
+            totalPagar += c.getSubTotal();
+        }
+        String[] fecha = {"1","1","2022"};
+        fecha = obtenerFecha().split("/");
         Orden orden = new Orden(Integer.valueOf(fecha[0]), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[2]), obtenerHora(),"",totalPagar,"",usuario);
         int res = sOrden.guardar(orden);
 

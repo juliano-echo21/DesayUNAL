@@ -1,5 +1,6 @@
 package com.example.desayunal.controller;
 
+import com.example.desayunal.model.Usuario;
 import com.example.desayunal.services.ServicioUsuario;
 import com.example.desayunal.web.dto.RegistroUsuarioDto;
 
@@ -45,9 +46,9 @@ public class ControladorLogin {
         {
             if(realPassword.equals(registroDto.getPassword())) 
             {
-
+                Usuario usuarioConectado = servicio.buscarUserName(registroDto.getUserName()).get(0);
                 servicio.actualizarEstadoLogin(true);
-                servicio.actualizarUsuarioConectado(registroDto);
+                servicio.actualizarUsuarioConectado(usuarioConectado);
                 return "redirect:desayunal";
             }
 

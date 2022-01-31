@@ -34,7 +34,7 @@ public class ControladorAdminProductos {
     
     @GetMapping("/listar")
     public String listar(Model model){
-        if(!sUsuario.getEstadoLogin()){
+        if(!sUsuario.getEstadoLogin() || !sUsuario.getUsuarioConectado().getRole().equals("Administrador")){
             return "redirect:desayunal";
         }
 
@@ -55,7 +55,7 @@ public class ControladorAdminProductos {
 
     @GetMapping("/new")
     public String agregar(Model model){
-        if(!sUsuario.getEstadoLogin()){
+        if(!sUsuario.getEstadoLogin() || !sUsuario.getUsuarioConectado().getRole().equals("Administrador")){
             return "redirect:desayunal";
         }
         editando = false;
@@ -96,7 +96,7 @@ public class ControladorAdminProductos {
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable int id, Model model){
-        if(!sUsuario.getEstadoLogin()){
+        if(!sUsuario.getEstadoLogin() || !sUsuario.getUsuarioConectado().getRole().equals("Administrador")){
             return "redirect:../desayunal";
         }
         editando = true;

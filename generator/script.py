@@ -20,6 +20,13 @@ def crearUsuario():
     estado = "Activo"
     role = "Cliente"
     vals = []
+
+    #primero un admin
+    v = ("meluk","12345","activo","Administrador")
+    sql = "INSERT INTO usuario (user_name, password, estado, role) VALUES (%s, %s, %s, %s);"
+    mydb.commit()
+
+    cursor.execute(sql, v)
     for i in range (2000): ##crear 2000 usuarios
 
         user = data["random_names"][i]
@@ -33,11 +40,23 @@ def crearUsuario():
     mydb.commit()
     print(cursor.rowcount, "insertados.")
 
+def crearProductos():
+    nombres = ["changua","cafe en leche", "chocolate","Arepa con queso","Croissant","Huevo revuelto","Sandwich","Huevos fritos","Torta de Chocolate","Galleta de chocolate","Caldo","Tamal","Hojaldre"]
+    precios = [2500,3000,4000,5000,10000,6500]
+    for i in range(len(nombres)):
+        values = ( "desayuno", "rico","disponible",nombres[i],random.choice(precios) )
+
+        sql = "INSERT INTO producto (categoria, descripcion, estado, nombre,precio) VALUES (%s, %s, %s, %s,%s);"
+        cursor.execute(sql, values)
+    
+    mydb.commit()
+
+
 
 def generarCantidades(n):
     l =[]
     for i in range(n):
-        l.append( random.randint(1,10))
+        l.append( random.randint(1,8))
     return l
 
 def traerProductos():
@@ -57,10 +76,12 @@ def crearOrdenes():
     n_ord = cursor.fetchall()[0][0]
 
     
-    for i in range(n_ord+1, n_ord + 20000): #30.000 ordenes
+    for i in range(n_ord+1, n_ord + 1000): #30.000 ordenes
         precio = 0
         subtotales = []
-        fecha = "{0}/{1}/2021".format(random.randint(1,28),random.randint(1,12))
+        dia= random.randint(1,28)
+        mes = random.randint(1,12)
+        anio = 2021
         estado = "Entregado"
         usuario = random.randint(1,2001)
         hora_entrega = "12:12:12"
@@ -81,11 +102,13 @@ def crearOrdenes():
             subtotales.append(cantidades[k]* produc_compra[k][5])
 
 
-        sql = "INSERT INTO orden (estado,fecha,hora_entrega,hora_pedido,precio,fk_usuarioid) VALUES (%(estado)s,%(fecha)s,%(hora_entrega)s,%(hora_pedido)s,%(precio)s,%(usuario)s)"
+        sql = "INSERT INTO orden (dia,mes,anio,estado,hora_entrega,hora_pedido,precio,fk_usuarioid) VALUES (%(dia)s,%(mes)s,%(anio)s,%(estado)s,%(hora_entrega)s,%(hora_pedido)s,%(precio)s,%(usuario)s)"
         
         values = {
+                "dia" : dia,
+                "mes" : mes,
+                "anio" : anio,
                 "estado": estado,
-                "fecha":fecha,
                 "hora_entrega":hora_entrega,
                 "hora_pedido":hora_pedido,
                 "precio":precio,
@@ -115,10 +138,8 @@ def  crearDetalleOrden(i,cantidades,produc_compra,subtotales):
         mydb.commit()
 
 
-
-
 crearUsuario()
+crearProductos()
 crearOrdenes()
-#pruebas()
 
 
