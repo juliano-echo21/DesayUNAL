@@ -10,10 +10,10 @@ public class Orden {
 
     public Orden(){}
 
-    public Orden(int dia, int mes, int año, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
+    public Orden(int dia, int mes, int anio, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
         this.dia = dia;
         this.mes = mes;
-        this.año = año;
+        this.anio = anio;
         this.horaPedido = horaPedido;
         this.horaEntrega = horaEntrega;
         this.precio = precio;
@@ -33,9 +33,9 @@ public class Orden {
     @NotNull
     private int mes;
 
-    @Column(name = "año", nullable = false)
+    @Column(name = "anio", nullable = false)
     @NotNull
-    private int año;
+    private int anio;
 
     @Column(name = "horaPedido", nullable = false)
     @NotNull
@@ -84,12 +84,12 @@ public class Orden {
         this.mes = mes;
     }
 
-    public int getAño() {
-        return this.año;
+    public int getAnio() {
+        return this.anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAño(int anio) {
+        this.anio = anio;
     }
 
     public String getHoraPedido() {
