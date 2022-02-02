@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.example.desayunal.services.ServicioProducto;
+import com.example.desayunal.services.ServicioUsuario;
 import com.example.desayunal.model.DetallesOrden;
 import com.example.desayunal.model.Orden;
 import com.example.desayunal.model.Producto;
@@ -18,13 +19,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/reporte")
 public class ControladorReporte {
     @Autowired
     private ServicioOrden servicioO;
 
     @Autowired
+    private ServicioUsuario sUsuario;
+
+    @Autowired
     private ServicioProducto servicioP;
+
+    @GetMapping("/reporte")
+    public String reporte(Model model){
+        if(!sUsuario.getEstadoLogin()){
+            return "redirect:desayunal";
+        }
+
+        Iterator<Producto> productos = productosMasVendidosMes(2).iterator();
+        
+        while(productos.hasNext()){
+            System.out.println(productos.next().getNombre());
+        }
+
+        return "reporte";
+    }
 
     public List<Producto> productosMasVendidosMes(int mes){
         Iterator<DetallesOrden> detallesOrdenIterator;
@@ -45,6 +63,7 @@ public class ControladorReporte {
         int ventasT = 0;
         int ventaP;
 
+
         while(iterator.hasNext()){
             orden = iterator.next();
 
@@ -53,6 +72,7 @@ public class ControladorReporte {
             while(detallesOrdenIterator.hasNext()){
                 detallesOrden = detallesOrdenIterator.next();
                 producto = detallesOrden.getProductoID();
+
                 cantidadProducto = detallesOrden.getCantidadProducto();
 
                 if(productosTotal.containsKey(producto)){
@@ -66,8 +86,9 @@ public class ControladorReporte {
 
         iteratorP = productosTotal.keySet().iterator();
 
-        while(iterator.hasNext()){
+        while(iteratorP.hasNext()){
             producto = iteratorP.next();
+
             ventaP = productosTotal.get(producto);
 
             if(ventaP > ventasT){

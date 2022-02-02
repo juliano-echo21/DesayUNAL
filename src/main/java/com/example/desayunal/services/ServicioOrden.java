@@ -52,7 +52,7 @@ public class ServicioOrden implements IServicioOrden {
 
     @Override 
     public List<Orden> idsOrdenesPorMes(int mes){
-        return data.idsByMes(mes);
+        return (List<Orden>) data.idsByMes(mes);
     }
 
     @Override

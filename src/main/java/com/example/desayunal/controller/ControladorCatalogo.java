@@ -35,6 +35,8 @@ public class ControladorCatalogo{
         return listarDisponibles(model, "todos");
     }
 
+
+
     @RequestMapping("/desayunal")
     public String listarDisponibles(Model model, @RequestParam String filtro){
         List<Producto> productos = sProducto.listarDisponibles();
