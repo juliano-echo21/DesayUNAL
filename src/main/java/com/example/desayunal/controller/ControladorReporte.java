@@ -1,9 +1,14 @@
 package com.example.desayunal.controller;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.example.desayunal.services.ServicioProducto;
+import com.example.desayunal.services.ServicioUsuario;
+import com.example.desayunal.model.DetallesOrden;
+import com.example.desayunal.model.Orden;
+import com.example.desayunal.model.Producto;
 import com.example.desayunal.services.ServicioOrden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,41 +19,89 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/reporte")
 public class ControladorReporte {
     @Autowired
     private ServicioOrden servicioO;
 
     @Autowired
+    private ServicioUsuario sUsuario;
+
+    @Autowired
     private ServicioProducto servicioP;
 
-    public List<Integer> productosMasVendidosMes(int mes){
-        Iterator<Integer> ordenesIterator;
-        List<Integer> ordenes = servicioO.idsOrdenesPorMes(mes);
-        List<Integer> productosId = new LinkedList<Integer>();
-        int productos = servicioP.totalProductos();
-        int ventasTmp;
+    @GetMapping("/reporte")
+    public String reporte(Model model){
+        if(!sUsuario.getEstadoLogin()){
+            return "redirect:desayunal";
+        }
+
+        Iterator<Producto> productos = productosMasVendidosMes(2).iterator();
+        
+        while(productos.hasNext()){
+            System.out.println(productos.next().getNombre());
+        }
+
+        return "reporte";
+    }
+
+    public List<Producto> productosMasVendidosMes(int mes){
+        Iterator<DetallesOrden> detallesOrdenIterator;
+        List<Orden> ordenes = servicioO.idsOrdenesPorMes(mes);
+        HashMap<Producto, Integer> productosTotal = new HashMap<Producto, Integer>();
+        List<Producto> productosMasVendidos = new LinkedList<Producto>();
+
+        Iterator<Orden> iterator = ordenes.iterator();
+        Iterator<Producto> iteratorP;
+
+
+        DetallesOrden detallesOrden;
+        
+        Producto producto;
+        int cantidadProducto;
+        Orden orden;
+        
         int ventasT = 0;
+        int ventaP;
 
-        for(int productId = 1; productId <= productos; ++productId){
-            ordenesIterator = ordenes.iterator();
-            ventasTmp = 0;
 
-            while(ordenesIterator.hasNext()){
-                ventasTmp += servicioO.ventasProductoPorOrden(productId, ordenesIterator.next());
+        while(iterator.hasNext()){
+            orden = iterator.next();
+
+            detallesOrdenIterator = servicioO.detallesOrden(orden).iterator();
+
+            while(detallesOrdenIterator.hasNext()){
+                detallesOrden = detallesOrdenIterator.next();
+                producto = detallesOrden.getProductoID();
+
+                cantidadProducto = detallesOrden.getCantidadProducto();
+
+                if(productosTotal.containsKey(producto)){
+                    productosTotal.replace(producto, productosTotal.get(producto) + cantidadProducto);
+                }
+                else{
+                    productosTotal.put(producto, cantidadProducto);
+                }
+            }   
+        }
+
+        iteratorP = productosTotal.keySet().iterator();
+
+        while(iteratorP.hasNext()){
+            producto = iteratorP.next();
+
+            ventaP = productosTotal.get(producto);
+
+            if(ventaP > ventasT){
+                productosMasVendidos.clear();
+                productosMasVendidos.add(producto);
+
+                ventasT = ventaP;
             }
-
-            if(ventasTmp > ventasT){
-                productosId.clear();
-                productosId.add(productId);
-
-                ventasT = ventasTmp;
-            }
-            else if(ventasTmp == ventasT){
-                productosId.add(productId);
+            else if(ventaP == ventasT){
+                productosMasVendidos.add(producto);
             }
         }
 
-        return productosId;
+        return productosMasVendidos;
     }
 }
