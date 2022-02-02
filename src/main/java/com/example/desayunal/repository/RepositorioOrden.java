@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepositorioOrden extends CrudRepository<Orden,Integer>{
+    @Query(value = "SELECT p FROM Orden p WHERE p.usuario = ?1")
     public List<Orden> findByUsuario(Usuario usuario);
 
     @Query(value = "SELECT p FROM Orden p WHERE p.mes = ?1")

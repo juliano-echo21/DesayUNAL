@@ -69,4 +69,9 @@ public class ServicioOrden implements IServicioOrden {
     public List<Orden> idsOrdenesPorFecha(int dia, int mes, int año){
         return data.idsByFecha(dia, mes, año);
     }
+
+    @Override
+    public List<Orden> idsOrdenesPorUsuario(Usuario usuario){
+        return data.findByUsuario(usuario);
+    }
 }
