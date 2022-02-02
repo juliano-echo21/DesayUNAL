@@ -42,6 +42,11 @@ public class ControladorReporte {
         List<Producto> productos = productosMasVendidosMes();
         model.addAttribute("masVendidos", productos);
         model.addAttribute("mayorVentas", mayorVentaMes);
+
+        //Las siguientes 2 lineas se utilizan para que se muestre correctamente la info en la barra de navegación
+        model.addAttribute("page", "admin");
+        model = sUsuario.actualizarEstados(model);
+        
        /* while(productos.hasNext()){
             System.out.println(productos.next().getNombre());
         }*/
