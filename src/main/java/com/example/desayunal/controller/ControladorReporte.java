@@ -33,12 +33,17 @@ public class ControladorReporte {
     private ServicioProducto servicioP;
 
     private int mayorVentaMes;
+    private int mes;
+    private int dia;
 
     @GetMapping("/reporte")
     public String reporte(Model model){
         if(!sUsuario.getEstadoLogin()){
             return "redirect:desayunal";
         }
+
+        mes = obtenerMes();
+        dia = obtenerDia();
 
         List<Producto> productos = productosMasVendidosMes();
         model.addAttribute("masVendidos", productos);
@@ -63,12 +68,33 @@ public class ControladorReporte {
         return dia;
     }
 
+    public int ingresosTotalesMes(){
+        int ingresosTotales = 0;
+        Iterator<Orden> ordenesIterator = servicioO.idsOrdenesPorMes(mes).iterator();
+
+        while(ordenesIterator.hasNext()){
+            ingresosTotales += ordenesIterator.next().getPrecio(); 
+        }
+
+        return ingresosTotales;
+    }
+
+    public int ingresosTotalesDia(){
+        int ingresosTotales = 0;
+        Iterator<Orden> ordenesIterator = servicioO.idsOrdenesPorFecha(dia, mes, 2022).iterator();
+
+        while(ordenesIterator.hasNext()){
+            ingresosTotales += ordenesIterator.next().getPrecio();
+        }
+
+        return ingresosTotales;
+    }
+
 
     public List<Producto> productosMasVendidosMes(){
-        int mes=obtenerMes();
         Iterator<DetallesOrden> detallesOrdenIterator;
         List<Orden> ordenes = servicioO.idsOrdenesPorMes(mes);
-        System.out.println(ordenes.size());
+        //System.out.println(ordenes.size());
         HashMap<Producto, Integer> productosTotal = new HashMap<Producto, Integer>();
         List<Producto> productosMasVendidos = new LinkedList<Producto>();
 
