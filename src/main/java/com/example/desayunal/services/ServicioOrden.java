@@ -64,4 +64,9 @@ public class ServicioOrden implements IServicioOrden {
     public List<DetallesOrden> detallesOrden(Orden orden){
         return repDetalles.productsId(orden);
     }
+
+    @Override
+    public List<Orden> idsOrdenesPorFecha(int dia, int mes, int año){
+        return data.idsByFecha(dia, mes, año);
+    }
 }

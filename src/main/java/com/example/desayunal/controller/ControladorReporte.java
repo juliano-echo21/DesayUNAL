@@ -1,4 +1,5 @@
 package com.example.desayunal.controller;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.HashMap;
@@ -48,12 +49,19 @@ public class ControladorReporte {
 
         return "reporte";
     }
+
     public int obtenerMes(){
         LocalDateTime fechaActual=LocalDateTime.now();
         int mes=fechaActual.getMonthValue();
         return mes;
     }
 
+    public int obtenerDia(){
+        LocalDateTime fechaActual = LocalDateTime.now();
+        int dia = fechaActual.getDayOfMonth();
+
+        return dia;
+    }
 
 
     public List<Producto> productosMasVendidosMes(){
