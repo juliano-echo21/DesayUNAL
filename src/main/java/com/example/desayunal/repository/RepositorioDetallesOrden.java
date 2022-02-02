@@ -15,5 +15,5 @@ public interface RepositorioDetallesOrden extends CrudRepository<DetallesOrden,I
     public int timesSoldProductByOrdenId(int idProducto, int idOrden);
 
     @Query(value = "SELECT id FROM DetallesOrden WHERE ordenID = ?1")
-    public List<DetallesOrden>  productsId(int idOrden);
+    public List<DetallesOrden>  productsId(Orden Orden);
 }

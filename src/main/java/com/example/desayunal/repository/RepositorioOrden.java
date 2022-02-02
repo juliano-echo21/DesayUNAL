@@ -14,7 +14,7 @@ public interface RepositorioOrden extends CrudRepository<Orden,Integer>{
     public List<Orden> findByUsuario(Usuario usuario);
 
     @Query(value = "SELECT id FROM Orden WHERE mes = ?1")
-    public List<Integer> idsByMes(int mes);
+    public List<Orden> idsByMes(int mes);
 
     @Query(value = "SELECT id FROM Orden WHERE dia = ?1 AND mes = ?2 AND año = ?3")
     public List<Integer> idsByFecha(int dia, int mes, int año);
