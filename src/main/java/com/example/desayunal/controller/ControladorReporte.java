@@ -1,4 +1,5 @@
 package com.example.desayunal.controller;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import java.time.LocalDateTime;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,24 +31,36 @@ public class ControladorReporte {
     @Autowired
     private ServicioProducto servicioP;
 
+    private int mayorVentaMes;
+
     @GetMapping("/reporte")
     public String reporte(Model model){
         if(!sUsuario.getEstadoLogin()){
             return "redirect:desayunal";
         }
 
-        Iterator<Producto> productos = productosMasVendidosMes(2).iterator();
-        
-        while(productos.hasNext()){
+        List<Producto> productos = productosMasVendidosMes();
+        model.addAttribute("masVendidos", productos);
+        model.addAttribute("mayorVentas", mayorVentaMes);
+       /* while(productos.hasNext()){
             System.out.println(productos.next().getNombre());
-        }
+        }*/
 
         return "reporte";
     }
+    public int obtenerMes(){
+        LocalDateTime fechaActual=LocalDateTime.now();
+        int mes=fechaActual.getMonthValue();
+        return mes;
+    }
 
-    public List<Producto> productosMasVendidosMes(int mes){
+
+
+    public List<Producto> productosMasVendidosMes(){
+        int mes=obtenerMes();
         Iterator<DetallesOrden> detallesOrdenIterator;
         List<Orden> ordenes = servicioO.idsOrdenesPorMes(mes);
+        System.out.println(ordenes.size());
         HashMap<Producto, Integer> productosTotal = new HashMap<Producto, Integer>();
         List<Producto> productosMasVendidos = new LinkedList<Producto>();
 
@@ -94,8 +108,8 @@ public class ControladorReporte {
             if(ventaP > ventasT){
                 productosMasVendidos.clear();
                 productosMasVendidos.add(producto);
-
                 ventasT = ventaP;
+                mayorVentaMes=ventaP;
             }
             else if(ventaP == ventasT){
                 productosMasVendidos.add(producto);
