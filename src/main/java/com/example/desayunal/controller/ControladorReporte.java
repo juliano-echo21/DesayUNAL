@@ -38,7 +38,7 @@ public class ControladorReporte {
 
     @GetMapping("/reporte")
     public String reporte(Model model){
-        if(!sUsuario.getEstadoLogin()){
+        if(!sUsuario.getEstadoLogin() || !sUsuario.getUsuarioConectado().getRole().equals("Administrador")){
             return "redirect:desayunal";
         }
 
