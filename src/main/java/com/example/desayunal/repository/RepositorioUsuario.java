@@ -17,7 +17,7 @@ public interface RepositorioUsuario extends JpaRepository<Usuario, Integer>
     @Query(value = "SELECT u FROM Usuario u WHERE u.userName = ?1")
     public List<Usuario> buscarUserName(String userName);
 
-    @Query(value = "SELECT u FROM Usuario")
+    @Query(value = "SELECT u FROM Usuario u")
     public List<Usuario> allUsers();
 
     
