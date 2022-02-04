@@ -37,6 +37,7 @@ public class ControladorReporte {
     private int mayorVentaMes;
     private int mes;
     private int dia;
+    private int anio;
 
     @GetMapping("/reporte")
     public String reporte(Model model){
@@ -46,10 +47,16 @@ public class ControladorReporte {
 
         mes = obtenerMes();
         dia = obtenerDia();
+        anio = obtenerAnio();
 
         List<Producto> productos = productosMasVendidosMes();
+        int ingresoDia = ingresosTotalesDia();
+        int ingresoMes = ingresosTotalesMes();
+
         model.addAttribute("masVendidos", productos);
         model.addAttribute("mayorVentas", mayorVentaMes);
+        model.addAttribute("ingresoMes", ingresoMes);
+        model.addAttribute("ingresoDia", ingresoDia);
 
         //Las siguientes 2 lineas se utilizan para que se muestre correctamente la info en la barra de navegación
         model.addAttribute("page", "admin");
@@ -74,6 +81,11 @@ public class ControladorReporte {
 
         return dia;
     }
+    public int obtenerAnio(){
+        LocalDateTime fechaActual = LocalDateTime.now();
+        int anio = fechaActual.getYear();
+        return anio;
+    }
 
     public int ingresosTotalesMes(){
         int ingresosTotales = 0;
@@ -88,7 +100,7 @@ public class ControladorReporte {
 
     public int ingresosTotalesDia(){
         int ingresosTotales = 0;
-        Iterator<Orden> ordenesIterator = servicioO.idsOrdenesPorFecha(dia, mes, 2022).iterator();
+        Iterator<Orden> ordenesIterator = servicioO.idsOrdenesPorFecha(dia, mes, anio).iterator();
 
         while(ordenesIterator.hasNext()){
             ingresosTotales += ordenesIterator.next().getPrecio();
@@ -98,6 +110,38 @@ public class ControladorReporte {
     }
 
 
+    public List<Double> porcentajeCategoria(){
+        ArrayList<Double> porcentajes = new ArrayList<>()  ;
+        double desayunos = 0;
+        double postres = 0;
+        double onces = 0;
+        double total = 1;
+        Iterator<Orden> ordenesIterator = servicioO.idsOrdenesPorMes(mes).iterator();
+        Iterator<DetallesOrden> detallesOrdenIterator;
+        Orden orden;
+        DetallesOrden detallesOrden;
+        while (ordenesIterator.hasNext()){
+            orden=ordenesIterator.next();
+            detallesOrdenIterator = servicioO.detallesOrden(orden).iterator();
+            while(detallesOrdenIterator.hasNext()){
+                detallesOrden=detallesOrdenIterator.next();
+                if(  detallesOrden.getProductoID().getCategoria().equals("Desayuno")){
+                    desayunos += detallesOrden.getCantidadProducto();
+                }else if( detallesOrden.getProductoID().getCategoria().equals("Onces")){
+                    onces += detallesOrden.getCantidadProducto();
+                }else if (detallesOrden.getProductoID().getCategoria().equals("Postre")){
+                    postres += detallesOrden.getCantidadProducto();
+                }
+            }
+        }
+        total=desayunos+onces+postres;
+
+        porcentajes.add( (desayunos/total)*100);
+        porcentajes.add( (onces/total)*100);
+        porcentajes.add( (postres/total)*100);
+
+        return porcentajes;
+    }
     public List<Producto> productosMasVendidosMes(){
         Iterator<DetallesOrden> detallesOrdenIterator;
         List<Orden> ordenes = servicioO.idsOrdenesPorMes(mes);
