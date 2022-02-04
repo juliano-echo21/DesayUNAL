@@ -74,4 +74,10 @@ public class ServicioOrden implements IServicioOrden {
     public List<Orden> idsOrdenesPorUsuario(Usuario usuario){
         return data.findByUsuario(usuario);
     }
+
+    @Override
+    public List<Integer[]> usuariosMasFrecuentes(){
+        return data.usuariosMasFrecuentes();
+    }
+
 }

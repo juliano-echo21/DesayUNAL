@@ -11,6 +11,7 @@ import com.example.desayunal.services.ServicioUsuario;
 import com.example.desayunal.model.DetallesOrden;
 import com.example.desayunal.model.Orden;
 import com.example.desayunal.model.Producto;
+import com.example.desayunal.model.Usuario;
 import com.example.desayunal.services.ServicioOrden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
