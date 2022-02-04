@@ -174,7 +174,7 @@ public class ControladorCarrito {
         for(Carrito c: listaCarrito){
             Producto producto = sProducto.listarId(c.getIdProducto()).get();
             DetallesOrden dOrden = new DetallesOrden(orden,producto,c.getCantidad(),c.getSubTotal());
-            int res = sOrden.guardarDetalles(dOrden);       
+            int res = sOrden.guardarDetalles(dOrden);  
         }
         
     }

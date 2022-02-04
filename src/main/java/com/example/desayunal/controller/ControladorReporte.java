@@ -2,6 +2,7 @@ package com.example.desayunal.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -157,5 +158,33 @@ public class ControladorReporte {
         }
 
         return productosMasVendidos;
+    }
+
+    /**
+     * Esta función permite proyectar las ventas del próximo mes
+     * @param arregloMeses: arreglo con las ventas de los meses anteriores (se recomienda máximo 3)
+     * @return double con el valor de las ventas proyectadas para el próximo mes
+     */
+    private double proyectar(ArrayList<Double> arregloMeses){
+        int n = arregloMeses.size();
+        ArrayList<Double> x = new ArrayList<>();
+        for(double i = 0; i<n; i++){
+            x.add(i);
+        }
+        double result = 0;
+       
+        
+        
+        for(int i = 0; i< n; i++){
+            double valor = 1;
+
+            for(int j = 0; j< n; j++){
+                if(j!=i){
+                    valor = valor * (n - x.get(j))/(x.get(i)-x.get(j));
+                }
+            }
+            result = result + arregloMeses.get(i)*valor;
+        }
+        return result;
     }
 }
