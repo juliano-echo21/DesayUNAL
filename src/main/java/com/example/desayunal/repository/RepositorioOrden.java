@@ -22,4 +22,6 @@ public interface RepositorioOrden extends CrudRepository<Orden,Integer>{
 
     @Query(value = "SELECT COUNT(id), fk_usuarioid FROM orden GROUP BY fk_usuarioid ORDER BY COUNT(id) DESC LIMIT 0, 5;", nativeQuery = true)
     public List<Integer[]>  usuariosMasFrecuentes();
+
+  
 }
