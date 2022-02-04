@@ -18,4 +18,8 @@ public interface RepositorioOrden extends CrudRepository<Orden,Integer>{
 
     @Query(value = "SELECT id FROM Orden WHERE dia = ?1 AND mes = ?2 AND año = ?3")
     public List<Integer> idsByFecha(int dia, int mes, int año);
+
+    // Suma de ventas en un mes de un año
+    @Query(value = "SELECT SUM(precio) FROM orden where anio = ?1 AND mes ?2")
+    public Integer ventasMes(int anio, int mes);
 }
