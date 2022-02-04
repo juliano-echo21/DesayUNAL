@@ -1,7 +1,8 @@
 package com.example.desayunal.controller;
 
-import java.lang.reflect.Array;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import com.example.desayunal.services.ServicioOrden;
 import com.example.desayunal.services.ServicioProducto;
 import com.example.desayunal.services.ServicioUsuario;
@@ -43,6 +44,8 @@ public class ControladorAnalisis{
             ventas[i] = servicioOrden.ventasMes(anio, i);
 
         }
+        String str = Arrays.toString(ventas);
+        System.out.println(str);
         return ventas;
     }
     
