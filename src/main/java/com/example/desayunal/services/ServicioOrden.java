@@ -64,9 +64,28 @@ public class ServicioOrden implements IServicioOrden {
     public List<DetallesOrden> detallesOrden(Orden orden){
         return repDetalles.productsId(orden);
     }
-
+    
+    @Override
+    public List<Integer> idsOrdenesPorFecha(int dia, int mes, int año){
+        return data.idsByFecha(dia, mes, año);
+    }
+    
+    @Override
+    public List<Orden> idsOrdenesPorUsuario(Usuario usuario){
+        return data.findByUsuario(usuario);
+    }
+    
+    @Override
+    public List<Integer[]> usuariosMasFrecuentes(){
+        return data.usuariosMasFrecuentes();
+    }
+    
     @Override
     public int ventasMes(int anio, int mes){
-        return data.ventasMes(anio, mes);
+    return data.ventasMes(anio, mes);
     }
+
 }
+
+   
+

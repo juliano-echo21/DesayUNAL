@@ -78,5 +78,10 @@ public class ServicioUsuario implements IServicioUsuario {
     public List<Usuario> buscarUserName(String userName) {
         return repositorioUsuario.buscarUserName(userName);
     }
+
+    @Override
+    public List<Usuario> todosUsuarios(){
+        return repositorioUsuario.allUsers();
+    }
     
 }

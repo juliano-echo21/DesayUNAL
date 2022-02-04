@@ -12,7 +12,7 @@ public interface IServicioUsuario {
     String userPassword(String userName);
     
     public Optional<Usuario> buscarId(int id);
-
     public List<Usuario> buscarUserName(String userName);
+    public List<Usuario> todosUsuarios();
 
 }
