@@ -1,4 +1,5 @@
 package com.example.desayunal.controller;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -51,7 +52,7 @@ public class ControladorReporte {
 
         List<Producto> productos = productosMasVendidosMes();
         int ingresoDia = ingresosTotalesDia();
-        int ingresoMes = ingresosTotalesMes();
+        String ingresoMes = NumberFormat.getCurrencyInstance().format(ingresosTotalesMes());
 
         model.addAttribute("masVendidos", productos);
         model.addAttribute("mayorVentas", mayorVentaMes);
