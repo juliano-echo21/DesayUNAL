@@ -18,5 +18,7 @@ public interface IServicioOrden  {
     public List<DetallesOrden> detallesOrden(Orden orden);
     public List<Orden> idsOrdenesPorUsuario(Usuario usuario);
     public List<Integer[]> usuariosMasFrecuentes();
+    public int ventasMes(int anio, int mes);
     public int ordenesPorProducto(Producto producto);
+
 }

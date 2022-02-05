@@ -80,7 +80,7 @@ def crearOrdenes():
         precio = 0
         subtotales = []
         dia= random.randint(1,28)
-        mes = random.randint(1,12)
+        mes = random.randint(1,12) 
         anio = 2021
         estado = "Entregado"
         usuario = random.randint(1,2001)
