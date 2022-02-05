@@ -101,6 +101,12 @@ public class ServicioOrden implements IServicioOrden {
         return repDetalles.numOrdenes();
     }
 
+    @Override
+    public int pedidosFranja(int mes, int limMin, int limMax) {
+        // TODO Auto-generated method stub
+        return data.pedidosFranja(mes, limMin, limMax);
+    }
+
 
 }
 

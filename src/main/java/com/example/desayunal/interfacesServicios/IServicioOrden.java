@@ -22,5 +22,6 @@ public interface IServicioOrden  {
     public int ordenesPorProducto(Producto producto);
     public int cantProductosVendidos();
     public int numOrdenes();
+    public int pedidosFranja(int mes,int limMin, int limMax);
 
 }

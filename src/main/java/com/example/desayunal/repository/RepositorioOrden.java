@@ -27,4 +27,7 @@ public interface RepositorioOrden extends CrudRepository<Orden,Integer>{
     @Query(value = "SELECT SUM(precio) FROM orden WHERE anio = ?1 AND mes = ?2", nativeQuery = true)
     public int ventasMes(int anio, int mes);
 
+    @Query(value = "SELECT COUNT(*) FROM ORDEN WHERE mes = ?1 AND hora_pedido  BETWEEN ?2 AND ?3", nativeQuery = true)
+    public int pedidosFranja(int mes, int limMin, int limMax);
+
 }

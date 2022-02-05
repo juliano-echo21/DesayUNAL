@@ -3,6 +3,10 @@ package com.example.desayunal.controller;
 
 
 import java.util.Arrays;
+import java.util.Calendar;
+
+import javax.sql.rowset.serial.SerialClob;
+
 import com.example.desayunal.services.ServicioOrden;
 import com.example.desayunal.services.ServicioProducto;
 import com.example.desayunal.services.ServicioUsuario;
@@ -39,6 +43,7 @@ public class ControladorAnalisis{
         System.out.println("Promedio producto por compra " + ppp);
 
         //Tendencias hora de pedido por franjas
+        int [] pedidosFranja = pedidoFranjaArreglo();
 
         
         return  "analisis";
@@ -46,6 +51,7 @@ public class ControladorAnalisis{
 
 
     public int[] ventasAño(int anio){
+
         int [] ventas = new int[12]; 
 
         for(int i=0;i<12;i++){
@@ -57,5 +63,20 @@ public class ControladorAnalisis{
         return ventas;
     }
     
+    public int[] pedidoFranjaArreglo(){
+        Calendar calendario = Calendar.getInstance();
+        int mesAct = calendario.get(Calendar.MONTH);
+        int [] cantPedidosFranja = new int[4];
+        int i = 6;
+        int j =0;
+        while(i<=18){
+            cantPedidosFranja[j] = servicioOrden.pedidosFranja(mesAct, i, i+3);
+            System.out.println("franja " + i + "-"+ (i+3) + " "+ cantPedidosFranja[j]);
+            j++;
+            i+=4;
+        }
+        return cantPedidosFranja;
+
+    }
 }
 

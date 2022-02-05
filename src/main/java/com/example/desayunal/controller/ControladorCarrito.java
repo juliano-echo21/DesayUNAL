@@ -188,12 +188,13 @@ public class ControladorCarrito {
         return dia.concat("/" + mes + "/" + annio);
     }
 
-    private String obtenerHora(){
+    private int obtenerHora(){
         Calendar calendario = Calendar.getInstance();
-        String hora = Integer.toString(calendario.get(Calendar.HOUR) + 12*calendario.get(Calendar.AM_PM));
-        String minuto = completar(Integer.toString(calendario.get(Calendar.MINUTE)));
-        String segundo = completar(Integer.toString(calendario.get(Calendar.SECOND)));
-        return hora.concat(":" + minuto + ":" + segundo);
+        int hora = (calendario.get(Calendar.HOUR) + 12*calendario.get(Calendar.AM_PM ));
+        //String minuto = completar(Integer.toString(calendario.get(Calendar.MINUTE)));
+        //String segundo = completar(Integer.toString(calendario.get(Calendar.SECOND)));
+        //return hora.concat(":" + minuto + ":" + segundo);
+        return hora;
     }
 
     private String completar(String dato){

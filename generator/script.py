@@ -51,8 +51,6 @@ def crearProductos():
     
     mydb.commit()
 
-
-
 def generarCantidades(n):
     l =[]
     for i in range(n):
@@ -65,7 +63,6 @@ def traerProductos():
     return  cursor.fetchall()
 
 
-
 def crearOrdenes():
 
     lista_productos = traerProductos()
@@ -74,18 +71,20 @@ def crearOrdenes():
     sql = "SELECT COUNT(*) FROM ORDEN;"
     cursor.execute(sql) 
     n_ord = cursor.fetchall()[0][0]
+    conta = 1
 
     
-    for i in range(n_ord+1, n_ord + 1000): #30.000 ordenes
+    for i in range(n_ord+1, n_ord + 10000): #10.000 ordenes
         precio = 0
         subtotales = []
+
         dia= random.randint(1,28)
         mes = random.randint(1,12) 
-        anio = 2021
+        anio = random.choice([2020,2021,2022])
         estado = "Entregado"
         usuario = random.randint(1,2001)
-        hora_entrega = "12:12:12"
-        hora_pedido = "11:59:10"
+        hora_entrega = "11:59:10"
+        hora_pedido = random.randint(6,21) #hora entre 6am y 9 pm
 
         #n_productos = 2
         n_productos = random.randint(1,8) #numero de productos
@@ -93,8 +92,6 @@ def crearOrdenes():
 
         #produc_compra = random.sample(lista_productos,2)  #asumiendo que hay 25 productos seleccionar n_productos
         produc_compra = random.sample(lista_productos,n_productos)  
-
-        print("\n productos a comprar \n "+str(produc_compra))
 
 
         for k in range(n_productos):
@@ -119,7 +116,10 @@ def crearOrdenes():
         cursor.execute(sql,values)
         mydb.commit()
 
-
+        if(conta%100 == 0):
+            print("se han creado "+ str(i) + "órdenes")
+        
+        conta+=1
         crearDetalleOrden(i,cantidades,produc_compra,subtotales)
 
 
