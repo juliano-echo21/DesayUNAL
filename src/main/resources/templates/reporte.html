@@ -55,7 +55,7 @@
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title">Ingresos mes</h5>
-                                <h4>$ <td th:text="${ingresoMes}"></td></h4>
+                                <h4><td th:text="${ingresoMes}"></td></h4>
                                 <i class="icon ion-md-calendar lead"></i>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title">Ingresos día</h5>
-                                <h4>$ <td th:text="${ingresoDia}"></td></h4>
+                                <h4><td th:text="${ingresoDia}"></td></h4>
                                 <i class="icon ion-md-cash lead "></i>
                             </div>
                         </div>
@@ -73,7 +73,9 @@
 
                 <div class="row mt-5">
                     <div id="grafica" class="col" style=" height:400px;">
+                        <label id="des" th:value="${desayunos}"></label>
                         <script>
+                            console.log(document.getElementById('des').valueOf());
                             Highcharts.chart('grafica', {
 
                                 title: {
@@ -151,6 +153,7 @@
                 <div class="row mt-5">
                     <div class="col-sm-5" id="pastel">
                         <script>
+                            console.log()
                             Highcharts.chart('pastel', {
                                 chart: {
                                     plotBackgroundColor: null,

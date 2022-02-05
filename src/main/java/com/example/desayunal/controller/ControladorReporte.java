@@ -51,13 +51,17 @@ public class ControladorReporte {
         anio = obtenerAnio();
 
         List<Producto> productos = productosMasVendidosMes();
-        int ingresoDia = ingresosTotalesDia();
+        String ingresoDia = NumberFormat.getCurrencyInstance().format(ingresosTotalesDia());
         String ingresoMes = NumberFormat.getCurrencyInstance().format(ingresosTotalesMes());
+        List<Double> porcentajes = porcentajeCategoria();
 
         model.addAttribute("masVendidos", productos);
         model.addAttribute("mayorVentas", mayorVentaMes);
         model.addAttribute("ingresoMes", ingresoMes);
         model.addAttribute("ingresoDia", ingresoDia);
+        model.addAttribute("desayunos", porcentajes.get(0));
+        model.addAttribute("onces", porcentajes.get(1));
+        model.addAttribute("postres", porcentajes.get(2));
 
         //Las siguientes 2 lineas se utilizan para que se muestre correctamente la info en la barra de navegación
         model.addAttribute("page", "admin");
