@@ -57,8 +57,9 @@ public class ControladorReporte {
         String ingresoMes = NumberFormat.getCurrencyInstance().format(ingresosTotalesMes());
         List<Double> porcentajes = porcentajeCategoria();
         usuariosMasFrecuentes();
+        String[] ultimasCompras = ultimaCompra();
 
-        model.addAttribute("masVendidos", productos);
+        model.addAttribute("masVendido", productos.get(0));
         model.addAttribute("mayorVentas", mayorVentaMes);
         model.addAttribute("ingresoMes", ingresoMes);
         model.addAttribute("ingresoDia", ingresoDia);
@@ -67,14 +68,13 @@ public class ControladorReporte {
         model.addAttribute("postres", porcentajes.get(2));
         model.addAttribute("usuarioNombre", topUsuarios);
         model.addAttribute("usuarioOrden", topOrdenes);
+        model.addAttribute("usuarioHora", ultimasCompras);
 
         //Las siguientes 2 lineas se utilizan para que se muestre correctamente la info en la barra de navegación
         model.addAttribute("page", "admin");
         model = sUsuario.actualizarEstados(model);
         
-       /* while(productos.hasNext()){
-            System.out.println(productos.next().getNombre());
-        }*/
+
 
         return "reporte";
     }
@@ -96,6 +96,19 @@ public class ControladorReporte {
         int anio = fechaActual.getYear();
         return anio;
     }
+    public String[] ultimaCompra(){
+        String [] ultimaVez = new String[5];
+        for (int i=0;i<topUsuarios.length;i++){
+            List<Usuario> usuarios = sUsuario.buscarUserName(topUsuarios[i]);
+            List<Orden> ordenesDeUsuario= servicioO.idsOrdenesPorUsuario(usuarios.get(0));
+            String fecha= ordenesDeUsuario.get(ordenesDeUsuario.size()-1).getDia() +"/"+
+                            ordenesDeUsuario.get(ordenesDeUsuario.size()-1).getMes()+"/"+
+                             ordenesDeUsuario.get(ordenesDeUsuario.size()-1).getAnio();
+            ultimaVez[i]=fecha;
+        }
+        return ultimaVez;
+    }
+
     /* Actualiza el arreglo topUsuarios en orden (indice 0 el mas frecuente) y actualiza el arreglo topOrdenes para acceder a la cantidad de ordenes
         realizada por cada usuario en el mismo orden*/
     public void usuariosMasFrecuentes(){

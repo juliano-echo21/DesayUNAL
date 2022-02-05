@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-sm-4 mt-4">
                     <div class="card" style="width: 18rem;">
-                        <div class="card-body" th:each="producto:${masVendidos}">
+                        <div class="card-body" th:each="producto:${masVendido}">
                             <h5 class="card-title">Más vendido</h5>
                             <div class="row">
                                 <div class="col">
@@ -100,6 +100,9 @@
                             title: {
                                 text: 'Porcentajes de categorías'
                             },
+                            subtitle: {
+                                text: 'Vendidos este mes'
+                            },
                             tooltip: {
                                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                             },
@@ -148,7 +151,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Cliente</th>
                                         <th scope="col">Ordenes</th>
-                                        <th scope="col">Correo</th>
+                                        <th scope="col">Ultima compra</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -156,7 +159,7 @@
                                         <th scope="row" th:text="${status.count}"></th>
                                         <td th:text="${usuario}"></td>
                                         <td th:text="${usuarioOrden[status.index]}"></td>
-                                        <td>@mdo</td>
+                                        <td th:text="${usuarioHora[status.index]}"></td>
                                     </tr>
                                     </tbody>
                                 </table>
