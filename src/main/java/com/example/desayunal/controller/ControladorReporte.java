@@ -39,6 +39,9 @@ public class ControladorReporte {
     private int dia;
     private int anio;
 
+    private String topUsuarios[] = new String[5];
+    private Integer topOrdenes[] = new Integer[5];
+
     @GetMapping("/reporte")
     public String reporte(Model model){
         if(!sUsuario.getEstadoLogin() || !sUsuario.getUsuarioConectado().getRole().equals("Administrador")){
@@ -52,6 +55,12 @@ public class ControladorReporte {
         List<Producto> productos = productosMasVendidosMes();
         int ingresoDia = ingresosTotalesDia();
         int ingresoMes = ingresosTotalesMes();
+        usuariosMasFrecuentes();
+
+        /* Prueba por consola usuarios mas frecuentes
+        for(int i = 0; i < 5; ++i){
+            System.out.println((i+1) + " Usuario: " + topUsuarios[i] + " Ordenes: " + topOrdenes[i]);
+        } */
 
         model.addAttribute("masVendidos", productos);
         model.addAttribute("mayorVentas", mayorVentaMes);
@@ -109,6 +118,22 @@ public class ControladorReporte {
         return ingresosTotales;
     }
 
+    /* Actualiza el arreglo topUsuarios en orden (indice 0 el mas frecuente) y actualiza el arreglo topOrdenes para acceder a la cantidad de ordenes
+       realizada por cada usuario en el mismo orden*/
+    public void usuariosMasFrecuentes(){
+        Iterator<Integer[]> listaIterator = servicioO.usuariosMasFrecuentes().iterator();
+        Integer[] ordenesYusuario;
+
+        int index = 0;
+
+        while(listaIterator.hasNext()){
+            ordenesYusuario = listaIterator.next();
+            topUsuarios[index] = sUsuario.usuarioPorId(ordenesYusuario[1]).getuserName();
+            topOrdenes[index] = ordenesYusuario[0];
+
+            ++index;
+        }
+    }
 
     public List<Double> porcentajeCategoria(){
         ArrayList<Double> porcentajes = new ArrayList<>()  ;
