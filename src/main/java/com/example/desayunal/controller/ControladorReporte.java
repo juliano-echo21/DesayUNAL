@@ -57,10 +57,10 @@ public class ControladorReporte {
         int ingresoMes = ingresosTotalesMes();
         usuariosMasFrecuentes();
 
-        /* Prueba por consola usuarios mas frecuentes
-        for(int i = 0; i < 5; ++i){
+        /* Prueba por consola usuarios mas frecuentes */
+        /*for(int i = 0; i < 5; ++i){
             System.out.println((i+1) + " Usuario: " + topUsuarios[i] + " Ordenes: " + topOrdenes[i]);
-        } */
+        }*/
 
         model.addAttribute("masVendidos", productos);
         model.addAttribute("mayorVentas", mayorVentaMes);
