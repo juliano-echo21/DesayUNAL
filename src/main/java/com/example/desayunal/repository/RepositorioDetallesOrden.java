@@ -21,4 +21,10 @@ public interface RepositorioDetallesOrden extends CrudRepository<DetallesOrden,I
     @Query(value = "SELECT COUNT(o.id) FROM DetallesOrden o WHERE o.productoID = ?1")
     public long ordenesPorProducto(Producto producto);
 
+    @Query(value = "SELECT SUM(cantidad_producto) FROM detalles_orden", nativeQuery = true)
+    public int cantProductosVendidos();
+
+    @Query(value="SELECT COUNT(*) FROM ORDEN",nativeQuery = true)
+    public int numOrdenes();
+
 }

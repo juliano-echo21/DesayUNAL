@@ -86,9 +86,22 @@ public class ServicioOrden implements IServicioOrden {
     return data.ventasMes(anio, mes);
     }
 
+    @Override
     public int ordenesPorProducto(Producto producto){
         return (int) repDetalles.ordenesPorProducto(producto);
     }
+
+    @Override
+    public int cantProductosVendidos() {
+        return repDetalles.cantProductosVendidos();
+    }
+
+    @Override
+    public int numOrdenes() {
+        return repDetalles.numOrdenes();
+    }
+
+
 }
 
    

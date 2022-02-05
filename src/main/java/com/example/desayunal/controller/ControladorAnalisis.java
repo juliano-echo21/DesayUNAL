@@ -31,6 +31,13 @@ public class ControladorAnalisis{
         int [] ventas21 = ventasAño(2021);
         //int [] ventas22 = ventasAño(2022);
 
+        // Promedio producto por compra
+        int numOrdenes = servicioOrden.numOrdenes();
+        int  cantProductosVendidos = servicioOrden.cantProductosVendidos();
+
+        double ppp = cantProductosVendidos/numOrdenes;
+        System.out.println("Promedio producto por compra " + ppp);
+
         
         return  "analisis";
     }
