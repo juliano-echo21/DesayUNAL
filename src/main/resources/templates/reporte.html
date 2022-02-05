@@ -75,7 +75,7 @@
                     <div id="grafica" class="col" style=" height:400px;">
                         <label id="des" th:value="${desayunos}"></label>
                         <script>
-                            console.log(document.getElementById('des').valueOf());
+                            
                             Highcharts.chart('grafica', {
 
                                 title: {
@@ -152,8 +152,15 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col-sm-5" id="pastel">
+                        <input class="form-control" type="hidden" id="pordes" th:value="${desayunos}" >
+                        <input class="form-control" type="hidden" id="poronc" th:value="${onces}" >
+                        <input class="form-control" type="hidden" id="porpos" th:value="${postres}" >
+                                        
                         <script>
-                            console.log()
+                            console.log(document.getElementById('porpos').value);
+                            var desayunos = document.getElementById('pordes').value;
+                            var onces = document.getElementById('poronc').value;
+                            var postres = document.getElementById('porpos').value;
                             Highcharts.chart('pastel', {
                                 chart: {
                                     plotBackgroundColor: null,
@@ -187,15 +194,14 @@
                                     colorByPoint: true,
                                     data: [{
                                         name: 'Desayunos',
-                                        y: 40,
-                                        sliced: true,
-                                        selected: true
+                                        y: parseInt(desayunos),
+                                        
                                     }, {
                                         name: 'Postres',
-                                        y: 25
+                                        y: parseInt(postres)
                                     }, {
                                         name: 'Onces',
-                                        y: 35
+                                        y: parseInt(onces)
                                     }]
                                 }]
                             });
