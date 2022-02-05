@@ -42,11 +42,9 @@ public class ControladorAnalisis{
         for(int i=0;i<12;i++){
         
             ventas[i] = servicioOrden.ventasMes(anio, i+1);
-            System.out.println("las ventas son "+ ventas[i]);
+            System.out.println("las ventas son " + ventas[i]);
             
         }
-        //String str = Arrays.toString(ventas);
-        //System.out.println(str);
         return ventas;
     }
     
