@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.desayunal.model.DetallesOrden;
 import com.example.desayunal.model.Orden;
+import com.example.desayunal.model.Producto;
 import com.example.desayunal.model.Usuario;
 
 public interface IServicioOrden  {
@@ -18,4 +19,6 @@ public interface IServicioOrden  {
     public List<Orden> idsOrdenesPorUsuario(Usuario usuario);
     public List<Integer[]> usuariosMasFrecuentes();
     public int ventasMes(int anio, int mes);
+    public int ordenesPorProducto(Producto producto);
+
 }

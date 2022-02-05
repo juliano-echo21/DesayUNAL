@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.desayunal.interfacesServicios.IServicioOrden;
 import com.example.desayunal.model.DetallesOrden;
 import com.example.desayunal.model.Orden;
+import com.example.desayunal.model.Producto;
 import com.example.desayunal.model.Usuario;
 import com.example.desayunal.repository.RepositorioDetallesOrden;
 import com.example.desayunal.repository.RepositorioOrden;
@@ -85,6 +86,9 @@ public class ServicioOrden implements IServicioOrden {
     return data.ventasMes(anio, mes);
     }
 
+    public int ordenesPorProducto(Producto producto){
+        return (int) repDetalles.ordenesPorProducto(producto);
+    }
 }
 
    

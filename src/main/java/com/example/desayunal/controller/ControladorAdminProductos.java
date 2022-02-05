@@ -1,6 +1,7 @@
 package com.example.desayunal.controller;
 
 import com.example.desayunal.model.Producto;
+import com.example.desayunal.services.ServicioOrden;
 import com.example.desayunal.services.ServicioProducto;
 import com.example.desayunal.services.ServicioUsuario;
 import com.example.desayunal.web.dto.RegistroUsuarioDto;
@@ -25,6 +26,9 @@ public class ControladorAdminProductos {
     private ServicioProducto service;
 
     @Autowired
+    private ServicioOrden sOrden;
+
+    @Autowired
     private ServicioUsuario sUsuario;
 
     @Autowired
@@ -39,6 +43,11 @@ public class ControladorAdminProductos {
         }
 
         List<Producto> productos = service.listar();
+        for(int i = 0; i<productos.size(); i++){
+            if(productos.get(i).getEstado().equals("Eliminado")){
+                productos.remove(i--);
+            }
+        }
         model.addAttribute("productos",productos);
         model.addAttribute("page", "admin");
         model = sUsuario.actualizarEstados(model);
@@ -100,6 +109,17 @@ public class ControladorAdminProductos {
 
     @GetMapping("eliminar/{id}")
     public String eliminar(Model model, @PathVariable int id){
+        Producto p = service.listarId(id).get();
+        int numOrdenes = sOrden.ordenesPorProducto(p);
+        for(int i = 0; i <30; i++)
+            System.out.println(numOrdenes);
+            
+        if(numOrdenes > 0){
+            String sql = "UPDATE producto SET estado = 'Eliminado' WHERE id = ?";
+            jdbc.update(sql,id);
+            return "redirect:/listar";
+        }
+
         String sql = "DELETE FROM imagen WHERE id_producto = ?";
         jdbc.update(sql,id);
         service.eliminar(id);
