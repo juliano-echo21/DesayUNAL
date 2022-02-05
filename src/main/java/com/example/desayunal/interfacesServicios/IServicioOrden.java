@@ -12,7 +12,7 @@ public interface IServicioOrden  {
     public List<Orden> listarPorUsuario(Usuario usuario);
     public List<DetallesOrden> listarDetalles(Orden orden);
     public List<Orden> idsOrdenesPorMes(int mes);
-    public List<Integer> idsOrdenesPorFecha(int dia, int mes, int año);
+    public List<Orden> idsOrdenesPorFecha(int dia, int mes, int año);
     public int ventasProductoPorOrden(int idProducto, int idOrden);
     public List<DetallesOrden> detallesOrden(Orden orden);
     public List<Orden> idsOrdenesPorUsuario(Usuario usuario);

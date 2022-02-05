@@ -1,7 +1,7 @@
 package com.example.desayunal.controller;
 
 
-import java.lang.reflect.Array;
+
 import java.util.Arrays;
 import com.example.desayunal.services.ServicioOrden;
 import com.example.desayunal.services.ServicioProducto;
@@ -27,25 +27,26 @@ public class ControladorAnalisis{
     @GetMapping("/analisis")
     public String analisis( Model model){
 
-        int [] ventas20 = ventasAño(2020);
+        //int [] ventas20 = ventasAño(2020);
         int [] ventas21 = ventasAño(2021);
-        int [] ventas22 = ventasAño(2022);
+        //int [] ventas22 = ventasAño(2022);
 
         
-        return  "";
+        return  "analisis";
     }
 
 
     public int[] ventasAño(int anio){
         int [] ventas = new int[12]; 
 
-        for(int i=1;i<=12;i++){
+        for(int i=0;i<12;i++){
         
-            ventas[i] = servicioOrden.ventasMes(anio, i);
-
+            ventas[i] = servicioOrden.ventasMes(anio, i+1);
+            System.out.println("las ventas son "+ ventas[i]);
+            
         }
-        String str = Arrays.toString(ventas);
-        System.out.println(str);
+        //String str = Arrays.toString(ventas);
+        //System.out.println(str);
         return ventas;
     }
     

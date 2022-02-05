@@ -21,10 +21,10 @@ public interface RepositorioOrden extends CrudRepository<Orden,Integer>{
     public List<Integer[]>  usuariosMasFrecuentes();
     
     @Query(value = "SELECT id FROM Orden WHERE dia = ?1 AND mes = ?2 AND año = ?3")
-    public List<Integer> idsByFecha(int dia, int mes, int año);
+    public List<Orden> idsByFecha(int dia, int mes, int año);
     
     // Suma de ventas en un mes de un año
-    @Query(value = "SELECT SUM(precio) FROM orden where anio = ?1 AND mes ?2")
+    @Query(value = "SELECT SUM(precio) FROM orden WHERE anio = ?1 AND mes =?2 ;", nativeQuery = true)
     public Integer ventasMes(int anio, int mes);
 
 }
