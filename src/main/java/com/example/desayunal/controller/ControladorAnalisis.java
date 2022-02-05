@@ -38,6 +38,8 @@ public class ControladorAnalisis{
         double ppp = cantProductosVendidos/numOrdenes;
         System.out.println("Promedio producto por compra " + ppp);
 
+        //Tendencias hora de pedido por franjas
+
         
         return  "analisis";
     }
