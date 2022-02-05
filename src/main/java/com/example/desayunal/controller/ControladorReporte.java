@@ -1,4 +1,5 @@
 package com.example.desayunal.controller;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,9 +39,8 @@ public class ControladorReporte {
     private int mes;
     private int dia;
     private int anio;
-
-    private String topUsuarios[] = new String[5];
-    private Integer topOrdenes[] = new Integer[5];
+    private String [] topUsuarios = new String[5];
+    private int [] topOrdenes = new int[5];
 
     @GetMapping("/reporte")
     public String reporte(Model model){
@@ -53,19 +53,20 @@ public class ControladorReporte {
         anio = obtenerAnio();
 
         List<Producto> productos = productosMasVendidosMes();
-        int ingresoDia = ingresosTotalesDia();
-        int ingresoMes = ingresosTotalesMes();
+        String ingresoDia = NumberFormat.getCurrencyInstance().format(ingresosTotalesDia());
+        String ingresoMes = NumberFormat.getCurrencyInstance().format(ingresosTotalesMes());
+        List<Double> porcentajes = porcentajeCategoria();
         usuariosMasFrecuentes();
-
-        /* Prueba por consola usuarios mas frecuentes */
-        /*for(int i = 0; i < 5; ++i){
-            System.out.println((i+1) + " Usuario: " + topUsuarios[i] + " Ordenes: " + topOrdenes[i]);
-        }*/
 
         model.addAttribute("masVendidos", productos);
         model.addAttribute("mayorVentas", mayorVentaMes);
         model.addAttribute("ingresoMes", ingresoMes);
         model.addAttribute("ingresoDia", ingresoDia);
+        model.addAttribute("desayunos", porcentajes.get(0));
+        model.addAttribute("onces", porcentajes.get(1));
+        model.addAttribute("postres", porcentajes.get(2));
+        model.addAttribute("usuarioNombre", topUsuarios);
+        model.addAttribute("usuarioOrden", topOrdenes);
 
         //Las siguientes 2 lineas se utilizan para que se muestre correctamente la info en la barra de navegación
         model.addAttribute("page", "admin");
@@ -95,6 +96,22 @@ public class ControladorReporte {
         int anio = fechaActual.getYear();
         return anio;
     }
+    /* Actualiza el arreglo topUsuarios en orden (indice 0 el mas frecuente) y actualiza el arreglo topOrdenes para acceder a la cantidad de ordenes
+        realizada por cada usuario en el mismo orden*/
+    public void usuariosMasFrecuentes(){
+        Iterator<Integer[]> listaIterator = servicioO.usuariosMasFrecuentes().iterator();
+        Integer[] ordenesYusuario;
+
+        int index = 0;
+
+        while(listaIterator.hasNext()){
+            ordenesYusuario = listaIterator.next();
+            topUsuarios[index] = sUsuario.usuarioPorId(ordenesYusuario[1]).getuserName();
+            topOrdenes[index] = ordenesYusuario[0];
+
+            ++index;
+        }
+    }
 
     public int ingresosTotalesMes(){
         int ingresosTotales = 0;
@@ -118,22 +135,6 @@ public class ControladorReporte {
         return ingresosTotales;
     }
 
-    /* Actualiza el arreglo topUsuarios en orden (indice 0 el mas frecuente) y actualiza el arreglo topOrdenes para acceder a la cantidad de ordenes
-       realizada por cada usuario en el mismo orden*/
-    public void usuariosMasFrecuentes(){
-        Iterator<Integer[]> listaIterator = servicioO.usuariosMasFrecuentes().iterator();
-        Integer[] ordenesYusuario;
-
-        int index = 0;
-
-        while(listaIterator.hasNext()){
-            ordenesYusuario = listaIterator.next();
-            topUsuarios[index] = sUsuario.usuarioPorId(ordenesYusuario[1]).getuserName();
-            topOrdenes[index] = ordenesYusuario[0];
-
-            ++index;
-        }
-    }
 
     public List<Double> porcentajeCategoria(){
         ArrayList<Double> porcentajes = new ArrayList<>()  ;
