@@ -27,6 +27,9 @@ public class ControladorCompras {
 
     @RequestMapping("/misCompras")
     public String misCompras(Model model){
+        if(!sUsuario.getEstadoLogin()){
+            return "redirect:desayunal";
+        }
         Usuario usuario = sUsuario.getUsuarioConectado();
         List<Orden> lCompras = sOrden.listarPorUsuario(usuario);
         ArrayList<List<DetallesOrden>> lDetalles = new ArrayList<>();
