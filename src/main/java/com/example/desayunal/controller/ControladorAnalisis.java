@@ -31,9 +31,9 @@ public class ControladorAnalisis{
     @GetMapping("/analisis")
     public String analisis( Model model){
 
-        //int [] ventas20 = ventasAño(2020);
+        int [] ventas20 = ventasAño(2020);
         int [] ventas21 = ventasAño(2021);
-        //int [] ventas22 = ventasAño(2022);
+        int [] ventas22 = ventasAño(2022);
 
         // Promedio producto por compra
         int numOrdenes = servicioOrden.numOrdenes();
