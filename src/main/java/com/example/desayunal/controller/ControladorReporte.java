@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -36,6 +37,9 @@ public class ControladorReporte {
     @Autowired
     private ServicioProducto servicioP;
 
+    @Autowired
+    private ServicioOrden sOrden;
+
     private int mayorVentaMes;
     private int mes;
     private int dia;
@@ -45,10 +49,39 @@ public class ControladorReporte {
 
     @GetMapping("/reporteCompras/{id}")
     public String reporteCompras(Model model, @PathVariable String id){
+        String titulo = "";
+        List<Orden> lCompras = new ArrayList<>(); ;
+        ArrayList<List<DetallesOrden>> lDetalles = new ArrayList<>();
+        String[] tipo = id.split("-");
+        if(tipo.length == 3){ //yyyy-mm-dd
+            int dia = Integer.parseInt(tipo[2]);
+            int mes = Integer.parseInt(tipo[1]);
+            int anio = Integer.parseInt(tipo[0]);
+            lCompras = sOrden.idsOrdenesPorFecha(dia,mes,anio);
+            
+            titulo = dia + "-" + convertirMes(mes) + "-" + anio;
+        }else if(tipo.length == 2){ //yyyy-mm
+            int mes = Integer.parseInt(tipo[1]);
+            int anio = Integer.parseInt(tipo[0]);
+            lCompras = sOrden.ordenesDelMes(mes, anio);
 
-        double rand = Math.random();
-        model.addAttribute("desayunos",id);
-        model.addAttribute("titulo",id);
+            titulo = convertirMes(mes) + "-" + anio;
+        }else if(tipo.length == 1){ //yyyy
+             int anio = Integer.parseInt(tipo[0]);
+             lCompras = sOrden.ordenesDelAnio(anio);
+
+             titulo = Integer.toString(anio);
+        }
+
+        Collections.reverse(lCompras);
+        
+
+        for(Orden o: lCompras){
+            lDetalles.add(sOrden.listarDetalles(o));
+        }
+        model.addAttribute("compras", lCompras);
+        model.addAttribute("titulo", titulo);
+        model.addAttribute("detalles", lDetalles);
         return "reporteCompras";
     }
 
@@ -68,6 +101,18 @@ public class ControladorReporte {
         List<Double> porcentajes = porcentajeCategoria();
         usuariosMasFrecuentes();
         String[] ultimasCompras = ultimaCompra();
+        
+        List<Orden> lCompras = sOrden.idsOrdenesPorFecha(dia, mes, anio);
+        ArrayList<List<DetallesOrden>> lDetalles = new ArrayList<>();
+         
+        Collections.reverse(lCompras);
+        model.addAttribute("compras", lCompras);
+
+        for(Orden o: lCompras){
+            lDetalles.add(sOrden.listarDetalles(o));
+        }
+
+        model.addAttribute("detalles", lDetalles);
 
         model.addAttribute("masVendido", productos.get(0));
         model.addAttribute("mayorVentas", mayorVentaMes);
@@ -80,7 +125,7 @@ public class ControladorReporte {
         model.addAttribute("usuarioOrden", topOrdenes);
         model.addAttribute("usuarioHora", ultimasCompras);
 
-        model.addAttribute("titulo",""); 
+        model.addAttribute("titulo",dia+"-"+convertirMes(mes)+"-"+anio); 
 
         //Las siguientes 2 lineas se utilizan para que se muestre correctamente la info en la barra de navegación
         model.addAttribute("page", "admin");
@@ -91,6 +136,38 @@ public class ControladorReporte {
         return "reporte";
     }
 
+    public String convertirMes(int mes){
+        switch(mes){
+            case 1:
+                return "Enero";
+                
+            case 2:
+                return "Febrero";
+            case 3:
+                return "Marzo";
+            case 4:
+                return "Abril";
+            case 5:
+                return "Mayo";
+            case 6:
+                return "Junio";
+            case 7:
+                return "Julio";
+            case 8:
+                return "Agosto";
+            case 9:
+                return "Septiembre";
+            case 10:
+                return "Octubre";
+            case 11:
+                return "Noviembre";
+            case 12:
+                return "Diciembre";
+                
+            default:
+                return "";
+        }
+    }
     public int obtenerMes(){
         LocalDateTime fechaActual=LocalDateTime.now();
         int mes=fechaActual.getMonthValue();
