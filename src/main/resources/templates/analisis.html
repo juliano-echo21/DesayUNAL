@@ -47,10 +47,10 @@
             </div>
             <div class="row mb-4">
                 <div class="col-sm-6" id="pedidosFranja">
-                    <input type="hidden" id="manana" th:text="${pedidosFranja[0]}">
-                    <input type="hidden" id="media" th:text="${pedidosFranja[1]}">
-                    <input type="hidden" id="tarde" th:text="${pedidosFranja[2]}">
-                    <input type="hidden" id="noche" th:text="${pedidosFranja[3]}">
+                    <input type="hidden" id="manana" th:value="${pedidosFranja[0]}">
+                    <input type="hidden" id="media" th:value="${pedidosFranja[1]}">
+                    <input type="hidden" id="tarde" th:value="${pedidosFranja[2]}">
+                    <input type="hidden" id="noche" th:value="${pedidosFranja[3]}">
                     <script>
                         //let mes=new Date(Date.now());
                         Highcharts.chart('pedidosFranja', {
@@ -131,9 +131,6 @@
                             A2020.push(parseInt(document.getElementsByClassName(i).item(1).value));
                             A2021.push(parseInt(document.getElementsByClassName(i).item(3).value));
                             A2022.push(parseInt(document.getElementsByClassName(i).item(5).value));
-                        }
-                        for (let i = 0; i < 12; i++) {
-                            console.log(A2020[i], A2021[i], A2022[i]);
                         }
                         Highcharts.chart('ventasAnio', {
                             chart: {
