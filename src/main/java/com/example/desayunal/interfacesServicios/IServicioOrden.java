@@ -14,6 +14,8 @@ public interface IServicioOrden  {
     public List<DetallesOrden> listarDetalles(Orden orden);
     public List<Orden> idsOrdenesPorMes(int mes);
     public List<Orden> idsOrdenesPorFecha(int dia, int mes, int año);
+    public List<Orden> ordenesDelMes(int mes, int anio);
+    public List<Orden> ordenesDelAnio(int anio);
     public int ventasProductoPorOrden(int idProducto, int idOrden);
     public List<DetallesOrden> detallesOrden(Orden orden);
     public List<Orden> idsOrdenesPorUsuario(Usuario usuario);
