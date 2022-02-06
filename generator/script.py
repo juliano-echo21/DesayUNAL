@@ -38,15 +38,15 @@ def crearUsuario():
         cursor.execute(sql, tupla)
         
         if i%100==0:
-            print("se han insertado: "+ str(i) + "usuarios")
+            print("se han insertado: "+ str(i) + " usuarios")
 
     mydb.commit()
 
 def crearProductos():
     nombres = ["changua","cafe en leche", "chocolate","Arepa con queso","Croissant","Huevo revuelto","Sandwich","Huevos fritos","Torta de Chocolate","Galleta de chocolate","Caldo","Tamal","Hojaldre"]
-    precios = [2500,3000,4000,5000,10000,6500]
+    precios = [5000,1200,2000,2000,1000,3200,1700,700,2500,1500,4000,3500,400]
     for i in range(len(nombres)):
-        values = ( "Desayuno", "rico","Disponible",nombres[i],random.choice(precios) )
+        values = ( "Desayuno", "rico","Disponible",nombres[i],precios[i] )
 
         sql = "INSERT INTO producto (categoria, descripcion, estado, nombre,precio) VALUES (%s, %s, %s, %s,%s);"
         cursor.execute(sql, values)
