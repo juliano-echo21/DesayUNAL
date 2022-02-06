@@ -335,7 +335,7 @@ public class ControladorReporte {
                 productosMasVendidos.add(producto);
             }
         }*/
-        List<Integer[]> resultado = sOrden.proven();
+        List<Integer[]> resultado = sOrden.productoMasVendido(mes,anio); 
         mayorVentaMes = resultado.get(0)[0];
         Producto producto = servicioP.listarId(resultado.get(0)[1]).get();
         

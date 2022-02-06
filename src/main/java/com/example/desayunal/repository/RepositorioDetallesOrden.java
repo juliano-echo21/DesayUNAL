@@ -27,6 +27,6 @@ public interface RepositorioDetallesOrden extends CrudRepository<DetallesOrden,I
     @Query(value="SELECT COUNT(*) FROM ORDEN",nativeQuery = true)
     public int numOrdenes();
 
-    @Query(value = "SELECT SUM(d.cantidad_producto) suma, d.fk_productoid FROM detalles_orden d INNER JOIN Orden ON Orden.id = d.fk_ordenid WHERE Orden.mes = 2 GROUP BY d.fk_productoid ORDER BY suma DESC", nativeQuery = true)
-    public List<Integer[]> proven();
+    @Query(value = "SELECT SUM(d.cantidad_producto) suma, d.fk_productoid FROM detalles_orden d INNER JOIN Orden ON Orden.id = d.fk_ordenid WHERE Orden.mes = ?1 AND Orden.anio = ?2 GROUP BY d.fk_productoid ORDER BY suma DESC",nativeQuery = true)
+    public List<Integer[]> productoMasVendido(int mes, int anio);
 }

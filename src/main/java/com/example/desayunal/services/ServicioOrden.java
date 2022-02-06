@@ -128,8 +128,8 @@ public class ServicioOrden implements IServicioOrden {
     }
 
     @Override
-    public List<Integer[]> proven() {
-        return repDetalles.proven();
+    public List<Integer[]> productoMasVendido(int mes, int anio) {
+        return repDetalles.productoMasVendido(mes,anio);
     }
 
     
