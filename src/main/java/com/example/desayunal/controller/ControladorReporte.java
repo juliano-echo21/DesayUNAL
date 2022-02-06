@@ -175,7 +175,6 @@ public class ControladorReporte {
                 return "Noviembre";
             case 12:
                 return "Diciembre";
-                
             default:
                 return "";
         }
