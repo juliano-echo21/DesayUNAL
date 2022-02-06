@@ -107,6 +107,17 @@ public class ServicioOrden implements IServicioOrden {
         return data.pedidosFranja(mes, limMin, limMax);
     }
 
+    @Override
+    public List<Orden> ordenesDelMes(int mes, int anio) {
+        return data.ordenesDelMes(mes, anio);
+    }
+
+    @Override
+    public List<Orden> ordenesDelAnio(int anio) {
+        return data.ordenesDelAnio(anio);
+    }
+
+    
 
 }
 
