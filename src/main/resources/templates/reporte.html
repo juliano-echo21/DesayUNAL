@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+    <!--YEAR PICKER-->
+    <link rel="stylesheet" th:href="@{yearpicker.css}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -169,12 +173,77 @@
                 </div>
             </div>
             <div class="row mt-5 px-3">
-                <div class="card px-0">
+                <div class="card px-0" id="carta">
                     <div class="card-header">
-                        <h4 class="card-title" >Lista de ventas</h4>
-                        <button class="btn btn-secondary">Día</button>
-                        <button class="btn btn-secondary">Mes</button>
-                        <button class="btn btn-secondary">Año</button>
+                        <h4 class="card-title" th:text="${'Lista de ventas'+titulo}">Lista de ventas</h4>
+                        <select id="filtro"  class="btn btn-secondary dropdown-toggle mr-2" style="align-items: left;">
+                            <option value="">Filtrar...</option>
+                            <option value="dia">Día</option>
+                            <option value="mes">Mes</option>
+                            <option value="anio">Año</option>
+                        </select> 
+                        <input class="form-control border border-info" hidden type="date" style="width: 73px; display: inline;" id="inputDia" >
+                        
+                        <input class="form-control border border-warning" hidden type="month" style="width: 73px; display: inline;" id="inputMes">
+                        
+                        <select hidden id="inputAnio" class="btn btn-light dropdown-toggle border border-secondary" style="align-items: left;">
+                            <option value="">Año</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                        </select> 
+                        
+                        <script>
+                            $(document).ready(function(){
+                                $("#filtro").change(function(){
+                                    let valor = document.getElementById("filtro").value;
+                                    if(valor == "dia"){
+                                        document.getElementById("inputDia").hidden = false;
+                                        document.getElementById("inputMes").hidden = true;
+                                        document.getElementById("inputAnio").hidden = true;
+                                    }else if(valor == "mes"){
+                                        document.getElementById("inputDia").hidden = true;
+                                        document.getElementById("inputMes").hidden = false;
+                                        document.getElementById("inputAnio").hidden = true;
+                                    }else if(valor == "anio"){
+                                        document.getElementById("inputDia").hidden = true;
+                                        document.getElementById("inputMes").hidden = true;
+                                        document.getElementById("inputAnio").hidden = false;
+                                    }else{
+
+                                    }
+                                    
+                                });
+
+                                $("#inputDia").change(function(){
+                                    var id =document.getElementById("inputDia").value;
+                                    var url = "/reporteCompras/"+id;
+                                    $("#carta").load(url);
+                                });
+                                $("#inputMes").change(function(){
+                                    var id =document.getElementById("inputMes").value;
+                                    var url = "/reporteCompras/"+id;
+                                    $("#carta").load(url);
+                                });
+                                $("#inputAnio").change(function(){
+                                    var id =document.getElementById("inputAnio").value;
+                                    var url = "/reporteCompras/"+id;
+                                   
+                                    $("#carta").load(url);
+                                });
+                            });
+
+                            function filtro(){
+                               
+                            }
+                        </script> 
+                        
+                       
                     </div>
                     <div class="card-body">
                         <div class="overflow-auto p-0" style="height: 300px;">
@@ -182,7 +251,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First</th>
+                                    <th scope="col" th:text="${desayunos}">First</th>
                                     <th scope="col">Last</th>
                                     <th scope="col">Handle</th>
                                 </tr>
@@ -278,7 +347,11 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="funciones.js"></script>
-
+ <!--YEAR PICKER-->
+ <script src="yearpicker.js"></script>
+ <script>
+     $('.yearpicker').yearpicker()
+ </script>
 
 </body>
 

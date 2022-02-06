@@ -1,0 +1,147 @@
+<div class="card px-0" id="carta">
+    <div class="card-header">
+        <h4 class="card-title" th:text="${'Lista de ventas '+titulo}">Lista de ventas</h4>
+        <select id="filtro"  class="btn btn-secondary dropdown-toggle mr-2" style="align-items: left;">
+            <option value="">Filtrar...</option>
+            <option value="dia">Día</option>
+            <option value="mes">Mes</option>
+            <option value="anio">Año</option>
+        </select> 
+        <input class="form-control border border-info" hidden type="date" style="width: 73px; display: inline;" id="inputDia">
+        
+        <input class="form-control border border-warning" hidden type="month" style="width: 73px; display: inline;" id="inputMes">
+        
+        <select hidden id="inputAnio" class="btn btn-light dropdown-toggle border border-secondary" style="align-items: left;">
+            <option value="">Año</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+        </select> 
+        <script>
+            $(document).ready(function(){
+                $("#filtro").change(function(){
+                    let valor = document.getElementById("filtro").value;
+                    if(valor == "dia"){
+                        document.getElementById("inputDia").hidden = false;
+                        document.getElementById("inputMes").hidden = true;
+                        document.getElementById("inputAnio").hidden = true;
+                    }else if(valor == "mes"){
+                        document.getElementById("inputDia").hidden = true;
+                        document.getElementById("inputMes").hidden = false;
+                        document.getElementById("inputAnio").hidden = true;
+                    }else if(valor == "anio"){
+                        document.getElementById("inputDia").hidden = true;
+                        document.getElementById("inputMes").hidden = true;
+                        document.getElementById("inputAnio").hidden = false;
+                    }else{
+
+                    }
+                    
+                });
+
+                $("#inputDia").change(function(){
+                    var id =document.getElementById("inputDia").value;
+                    var url = "/reporteCompras/"+id;
+                    $("#carta").load(url);
+                });
+                $("#inputMes").change(function(){
+                    var id =document.getElementById("inputMes").value;
+                    var url = "/reporteCompras/"+id;
+                    $("#carta").load(url);
+                });
+                $("#inputAnio").change(function(){
+                    var id =document.getElementById("inputAnio").value;
+                    var url = "/reporteCompras/"+id;
+                   
+                    $("#carta").load(url);
+                });
+            });
+
+            function filtro(){
+               
+            }
+        </script> 
+        
+    </div>
+    <div class="card-body">
+        <div class="overflow-auto p-0" style="height: 300px;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" th:text="${desayunos}">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

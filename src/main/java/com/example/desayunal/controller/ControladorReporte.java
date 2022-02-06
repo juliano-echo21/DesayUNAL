@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDateTime;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,6 +42,15 @@ public class ControladorReporte {
     private int anio;
     private String [] topUsuarios = new String[5];
     private int [] topOrdenes = new int[5];
+
+    @GetMapping("/reporteCompras/{id}")
+    public String reporteCompras(Model model, @PathVariable String id){
+
+        double rand = Math.random();
+        model.addAttribute("desayunos",id);
+        model.addAttribute("titulo",id);
+        return "reporteCompras";
+    }
 
     @GetMapping("/reporte")
     public String reporte(Model model){
@@ -69,6 +79,8 @@ public class ControladorReporte {
         model.addAttribute("usuarioNombre", topUsuarios);
         model.addAttribute("usuarioOrden", topOrdenes);
         model.addAttribute("usuarioHora", ultimasCompras);
+
+        model.addAttribute("titulo",""); 
 
         //Las siguientes 2 lineas se utilizan para que se muestre correctamente la info en la barra de navegación
         model.addAttribute("page", "admin");
