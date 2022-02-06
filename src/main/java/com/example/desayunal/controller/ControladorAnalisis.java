@@ -101,8 +101,6 @@ public class ControladorAnalisis{
     }
     
     public int[] pedidoFranjaArreglo(){
-        Calendar calendario = Calendar.getInstance();
-        int mesAct = calendario.get(Calendar.MONTH);
         int [] cantPedidosFranja = new int[4];
         int i = 6;
         int j =0;
