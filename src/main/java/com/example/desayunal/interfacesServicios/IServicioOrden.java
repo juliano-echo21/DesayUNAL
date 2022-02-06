@@ -21,9 +21,13 @@ public interface IServicioOrden  {
     public List<Orden> idsOrdenesPorUsuario(Usuario usuario);
     public List<Integer[]> usuariosMasFrecuentes();
     public int ventasMes(int anio, int mes);
+    public int ventasDia(int dia, int mes, int anio);
+    public int ventasAnio(int anio);
     public int ordenesPorProducto(Producto producto);
     public int cantProductosVendidos();
     public int numOrdenes();
     public int pedidosFranja(int mes,int limMin, int limMax);
+
+    public List<Integer[]> productoMasVendido(int mes, int anio);
 
 }

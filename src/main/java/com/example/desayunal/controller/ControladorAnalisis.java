@@ -33,6 +33,8 @@ public class ControladorAnalisis{
     @Autowired
     private ServicioUsuario sUsuario;
 
+    private int mes;
+
     @GetMapping("/analisis")
     public String analisis( Model model){
         if(!sUsuario.getEstadoLogin() || !sUsuario.getUsuarioConectado().getRole().equals("Administrador")){
@@ -41,6 +43,7 @@ public class ControladorAnalisis{
         int [] ventas20 = ventasAño(2020);
         int [] ventas21 = ventasAño(2021);
         int [] ventas22 = ventasAño(2022);
+        mes=obtenerMes();
         model.addAttribute("ventas20",ventas20);
         model.addAttribute("ventas21",ventas21);
         model.addAttribute("ventas22",ventas22);
@@ -74,7 +77,11 @@ public class ControladorAnalisis{
         return  "analisis";
     }
 
-
+    public int obtenerMes(){
+        LocalDateTime fechaActual=LocalDateTime.now();
+        int mes=fechaActual.getMonthValue();
+        return mes;
+    }
     public int[] ventasAño(int anio){
 
         int [] ventas = new int[12]; 
@@ -100,8 +107,7 @@ public class ControladorAnalisis{
         int i = 6;
         int j =0;
         while(i<=18){
-            cantPedidosFranja[j] = servicioOrden.pedidosFranja(mesAct, i, i+3);
-            System.out.println("franja " + i + "-"+ (i+3) + " "+ cantPedidosFranja[j]);
+            cantPedidosFranja[j] = servicioOrden.pedidosFranja(mes, i, i+3);
             j++;
             i+=4;
         }
