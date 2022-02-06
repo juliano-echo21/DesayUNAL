@@ -49,7 +49,7 @@ public class ControladorReporte {
 
     @GetMapping("/reporteCompras/{id}")
     public String reporteCompras(Model model, @PathVariable String id){
-        String titulo = "";
+        String titulo = "", ventas = "";
         List<Orden> lCompras = new ArrayList<>(); ;
         ArrayList<List<DetallesOrden>> lDetalles = new ArrayList<>();
         String[] tipo = id.split("-");
@@ -58,18 +58,18 @@ public class ControladorReporte {
             int mes = Integer.parseInt(tipo[1]);
             int anio = Integer.parseInt(tipo[0]);
             lCompras = sOrden.idsOrdenesPorFecha(dia,mes,anio);
-            
+            ventas = NumberFormat.getCurrencyInstance().format(sOrden.ventasDia(dia, mes, anio));
             titulo = dia + "-" + convertirMes(mes) + "-" + anio;
         }else if(tipo.length == 2){ //yyyy-mm
             int mes = Integer.parseInt(tipo[1]);
             int anio = Integer.parseInt(tipo[0]);
             lCompras = sOrden.ordenesDelMes(mes, anio);
-
+            ventas = NumberFormat.getCurrencyInstance().format(sOrden.ventasMes(anio, mes));
             titulo = convertirMes(mes) + "-" + anio;
         }else if(tipo.length == 1){ //yyyy
              int anio = Integer.parseInt(tipo[0]);
              lCompras = sOrden.ordenesDelAnio(anio);
-
+             ventas = NumberFormat.getCurrencyInstance().format(sOrden.ventasAnio(anio));
              titulo = Integer.toString(anio);
         }
 
@@ -80,7 +80,7 @@ public class ControladorReporte {
             lDetalles.add(sOrden.listarDetalles(o));
         }
         model.addAttribute("compras", lCompras);
-        model.addAttribute("titulo", titulo);
+        model.addAttribute("titulo", titulo+" - "+ventas);
         model.addAttribute("detalles", lDetalles);
         return "reporteCompras";
     }
@@ -125,7 +125,7 @@ public class ControladorReporte {
         model.addAttribute("usuarioOrden", topOrdenes);
         model.addAttribute("usuarioHora", ultimasCompras);
 
-        model.addAttribute("titulo",dia+"-"+convertirMes(mes)+"-"+anio); 
+        model.addAttribute("titulo",dia+"-"+convertirMes(mes)+"-"+anio+" - "+ingresoDia);
 
         //Las siguientes 2 lineas se utilizan para que se muestre correctamente la info en la barra de navegación
         model.addAttribute("page", "admin");
@@ -216,14 +216,9 @@ public class ControladorReporte {
     }
 
     public int ingresosTotalesMes(){
-        int ingresosTotales = 0;
-        Iterator<Orden> ordenesIterator = servicioO.idsOrdenesPorMes(mes).iterator();
-
-        while(ordenesIterator.hasNext()){
-            ingresosTotales += ordenesIterator.next().getPrecio(); 
-        }
-
-        return ingresosTotales;
+        
+        
+        return sOrden.ventasMes(anio, mes);
     }
 
     public int ingresosTotalesDia(){

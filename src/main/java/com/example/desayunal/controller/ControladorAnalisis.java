@@ -171,7 +171,7 @@ public class ControladorAnalisis{
             try {
                 ventas = servicioOrden.ventasMes(aniosMesesAnteriores[i],mesesAnteriores[i]);
             }catch (Exception e){
-                ventas = 0;
+                ventas = 5;
             }
             ventasMesesAnteriores.add((double)ventas);
         }

@@ -117,6 +117,16 @@ public class ServicioOrden implements IServicioOrden {
         return data.ordenesDelAnio(anio);
     }
 
+    @Override
+    public int ventasDia(int dia, int mes, int anio) {
+        return data.ventasDia(dia, mes, anio);
+    }
+
+    @Override
+    public int ventasAnio(int anio) {
+        return data.ventasAnio(anio);
+    }
+
     
 
 }
