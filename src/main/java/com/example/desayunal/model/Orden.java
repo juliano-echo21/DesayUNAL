@@ -3,6 +3,7 @@ package com.example.desayunal.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.print.DocFlavor.STRING;
 
 @Entity
 @Table( )
@@ -10,7 +11,7 @@ public class Orden {
 
     public Orden(){}
 
-    public Orden(int dia, int mes, int anio, int horaPedido, int minPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
+    public Orden(int dia, int mes, int anio, int horaPedido, String minPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
@@ -44,7 +45,7 @@ public class Orden {
 
     @Column(name = "minPedido", nullable = false)
     @NotNull
-    private int minPedido;
+    private String minPedido;
 
     @Column(name = "horaEntrega", nullable = false)
     @NotNull
@@ -105,11 +106,11 @@ public class Orden {
     public void setHoraPedido(int horaPedido) {
         this.horaPedido = horaPedido;
     }
-    public int getMinPedido() {
+    public String getMinPedido() {
         return this.minPedido;
     }
 
-    public void setMinPedido(int minPedido) {
+    public void setMinPedido(String minPedido) {
         this.minPedido = minPedido;
     }
 

@@ -36,9 +36,11 @@ def crearUsuario():
         
         sql = "INSERT INTO usuario (user_name, password, estado, role) VALUES (%s, %s, %s, %s);"
         cursor.execute(sql, tupla)
+        
+        if i%100==0:
+            print("se han insertado: "+ str(i) + "usuarios")
 
     mydb.commit()
-    print(cursor.rowcount, "insertados.")
 
 def crearProductos():
     nombres = ["changua","cafe en leche", "chocolate","Arepa con queso","Croissant","Huevo revuelto","Sandwich","Huevos fritos","Torta de Chocolate","Galleta de chocolate","Caldo","Tamal","Hojaldre"]

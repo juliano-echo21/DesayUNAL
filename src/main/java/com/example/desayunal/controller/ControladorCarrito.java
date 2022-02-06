@@ -198,10 +198,11 @@ public class ControladorCarrito {
         return hora;
     }
     
-    private int obtenerMin() {
+    private String obtenerMin() {
         Calendar calendario = Calendar.getInstance();
         int minuto = (calendario.get(Calendar.MINUTE) );
-        return minuto;
+        String strMin = minuto < 10 ? "0"+Integer.toString(minuto) : Integer.toString(minuto);
+        return strMin;
     }
 
     private String completar(String dato){
