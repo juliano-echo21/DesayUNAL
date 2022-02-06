@@ -10,11 +10,12 @@ public class Orden {
 
     public Orden(){}
 
-    public Orden(int dia, int mes, int anio, int horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
+    public Orden(int dia, int mes, int anio, int horaPedido, int minPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
         this.horaPedido = horaPedido;
+        this.minPedido = minPedido;
         this.horaEntrega = horaEntrega;
         this.precio = precio;
         this.estado = estado;
@@ -40,6 +41,10 @@ public class Orden {
     @Column(name = "horaPedido", nullable = false)
     @NotNull
     private int horaPedido;
+
+    @Column(name = "minPedido", nullable = false)
+    @NotNull
+    private int minPedido;
 
     @Column(name = "horaEntrega", nullable = false)
     @NotNull
@@ -96,8 +101,16 @@ public class Orden {
         return this.horaPedido;
     }
 
+    
     public void setHoraPedido(int horaPedido) {
         this.horaPedido = horaPedido;
+    }
+    public int getminPedido() {
+        return this.minPedido;
+    }
+
+    public void setminPedido(int minPedido) {
+        this.minPedido = minPedido;
     }
 
     public String getHoraEntrega() {

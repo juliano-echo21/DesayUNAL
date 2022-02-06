@@ -86,6 +86,11 @@ def crearOrdenes():
         hora_entrega = "11:59:10"
         hora_pedido = random.randint(6,21) #hora entre 6am y 9 pm
 
+        min_pedido = random.randint(1,50)
+        
+        if min_pedido<10:
+            min_pedido = "0"+str(min_pedido)
+
         #n_productos = 2
         n_productos = random.randint(1,8) #numero de productos
         cantidades = generarCantidades(n_productos)
@@ -99,7 +104,7 @@ def crearOrdenes():
             subtotales.append(cantidades[k]* produc_compra[k][5])
 
 
-        sql = "INSERT INTO orden (dia,mes,anio,estado,hora_entrega,hora_pedido,precio,fk_usuarioid) VALUES (%(dia)s,%(mes)s,%(anio)s,%(estado)s,%(hora_entrega)s,%(hora_pedido)s,%(precio)s,%(usuario)s)"
+        sql = "INSERT INTO orden (dia,mes,anio,estado,hora_entrega,hora_pedido,min_pedido,precio,fk_usuarioid) VALUES (%(dia)s,%(mes)s,%(anio)s,%(estado)s,%(hora_entrega)s,%(hora_pedido)s,%(min_pedido)s,%(precio)s,%(usuario)s)"
         
         values = {
                 "dia" : dia,
@@ -108,6 +113,7 @@ def crearOrdenes():
                 "estado": estado,
                 "hora_entrega":hora_entrega,
                 "hora_pedido":hora_pedido,
+                "min_pedido" : min_pedido,
                 "precio":precio,
                 "usuario":usuario
                 }

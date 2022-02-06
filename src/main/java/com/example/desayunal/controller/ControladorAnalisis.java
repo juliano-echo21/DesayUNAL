@@ -30,6 +30,9 @@ public class ControladorAnalisis{
 
     @GetMapping("/analisis")
     public String analisis( Model model){
+        if(!servicioUsuario.getEstadoLogin() || !servicioUsuario.getUsuarioConectado().getRole().equals("Administrador")){
+            return "redirect:desayunal";
+        }
 
         int [] ventas20 = ventasAño(2020);
         int [] ventas21 = ventasAño(2021);

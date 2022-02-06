@@ -162,7 +162,7 @@ public class ControladorCarrito {
         }
         String[] fecha = {"1","1","2022"};
         fecha = obtenerFecha().split("/");
-        Orden orden = new Orden(Integer.valueOf(fecha[0]), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[2]), obtenerHora(),"",totalPagar,"",usuario);
+        Orden orden = new Orden(Integer.valueOf(fecha[0]), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[2]), obtenerHora(),obtenerMin(),"",totalPagar,"",usuario);
         int res = sOrden.guardar(orden);
 
         guardarDetalles(orden);
@@ -170,6 +170,7 @@ public class ControladorCarrito {
         return "redirect:desayunal";
     }
 
+    
     private void guardarDetalles(Orden orden){
         for(Carrito c: listaCarrito){
             Producto producto = sProducto.listarId(c.getIdProducto()).get();
@@ -178,16 +179,16 @@ public class ControladorCarrito {
         }
         
     }
-
+    
     private String obtenerFecha(){
         Calendar calendario = Calendar.getInstance();
         String dia = completar(Integer.toString(calendario.get(Calendar.DATE)));
         String mes = completar(Integer.toString(calendario.get(Calendar.MONTH) % 12 + 1));
         String annio = Integer.toString(calendario.get(Calendar.YEAR));
-
+        
         return dia.concat("/" + mes + "/" + annio);
     }
-
+    
     private int obtenerHora(){
         Calendar calendario = Calendar.getInstance();
         int hora = (calendario.get(Calendar.HOUR) + 12*calendario.get(Calendar.AM_PM ));
@@ -195,6 +196,12 @@ public class ControladorCarrito {
         //String segundo = completar(Integer.toString(calendario.get(Calendar.SECOND)));
         //return hora.concat(":" + minuto + ":" + segundo);
         return hora;
+    }
+    
+    private int obtenerMin() {
+        Calendar calendario = Calendar.getInstance();
+        int minuto = (calendario.get(Calendar.MINUTE) );
+        return minuto;
     }
 
     private String completar(String dato){
