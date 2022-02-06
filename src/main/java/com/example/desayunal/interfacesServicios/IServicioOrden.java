@@ -28,4 +28,6 @@ public interface IServicioOrden  {
     public int numOrdenes();
     public int pedidosFranja(int mes,int limMin, int limMax);
 
+    public List<Integer[]> proven();
+
 }

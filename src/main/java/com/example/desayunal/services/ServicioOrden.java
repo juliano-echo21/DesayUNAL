@@ -127,6 +127,11 @@ public class ServicioOrden implements IServicioOrden {
         return data.ventasAnio(anio);
     }
 
+    @Override
+    public List<Integer[]> proven() {
+        return repDetalles.proven();
+    }
+
     
 
 }

@@ -58,18 +58,30 @@ public class ControladorReporte {
             int mes = Integer.parseInt(tipo[1]);
             int anio = Integer.parseInt(tipo[0]);
             lCompras = sOrden.idsOrdenesPorFecha(dia,mes,anio);
-            ventas = NumberFormat.getCurrencyInstance().format(sOrden.ventasDia(dia, mes, anio));
+            try{
+                ventas = " - " + NumberFormat.getCurrencyInstance().format(sOrden.ventasDia(dia, mes, anio));
+            }catch(Exception e){
+
+            }
             titulo = dia + "-" + convertirMes(mes) + "-" + anio;
         }else if(tipo.length == 2){ //yyyy-mm
             int mes = Integer.parseInt(tipo[1]);
             int anio = Integer.parseInt(tipo[0]);
             lCompras = sOrden.ordenesDelMes(mes, anio);
-            ventas = NumberFormat.getCurrencyInstance().format(sOrden.ventasMes(anio, mes));
+            try{
+                ventas = " - " + NumberFormat.getCurrencyInstance().format(sOrden.ventasMes(anio, mes));
+            }catch(Exception e){
+
+            }
             titulo = convertirMes(mes) + "-" + anio;
         }else if(tipo.length == 1){ //yyyy
              int anio = Integer.parseInt(tipo[0]);
              lCompras = sOrden.ordenesDelAnio(anio);
-             ventas = NumberFormat.getCurrencyInstance().format(sOrden.ventasAnio(anio));
+             try{
+                ventas = " - "+NumberFormat.getCurrencyInstance().format(sOrden.ventasAnio(anio));
+            }catch(Exception e){
+
+            }
              titulo = Integer.toString(anio);
         }
 
@@ -80,7 +92,7 @@ public class ControladorReporte {
             lDetalles.add(sOrden.listarDetalles(o));
         }
         model.addAttribute("compras", lCompras);
-        model.addAttribute("titulo", titulo+" - "+ventas);
+        model.addAttribute("titulo", titulo + ventas);
         model.addAttribute("detalles", lDetalles);
         return "reporteCompras";
     }
@@ -266,13 +278,13 @@ public class ControladorReporte {
         return porcentajes;
     }
     public List<Producto> productosMasVendidosMes(){
-        Iterator<DetallesOrden> detallesOrdenIterator;
+        /*Iterator<DetallesOrden> detallesOrdenIterator;
         List<Orden> ordenes = servicioO.idsOrdenesPorMes(mes);
         //System.out.println(ordenes.size());
-        HashMap<Producto, Integer> productosTotal = new HashMap<Producto, Integer>();
+        HashMap<Producto, Integer> productosTotal = new HashMap<Producto, Integer>();*/
         List<Producto> productosMasVendidos = new LinkedList<Producto>();
 
-        Iterator<Orden> iterator = ordenes.iterator();
+        /*Iterator<Orden> iterator = ordenes.iterator();
         Iterator<Producto> iteratorP;
 
 
@@ -322,8 +334,13 @@ public class ControladorReporte {
             else if(ventaP == ventasT){
                 productosMasVendidos.add(producto);
             }
-        }
+        }*/
+        List<Integer[]> resultado = sOrden.proven();
+        mayorVentaMes = resultado.get(0)[0];
+        Producto producto = servicioP.listarId(resultado.get(0)[1]).get();
+        
 
+        productosMasVendidos.add(producto);
         return productosMasVendidos;
     }
 
