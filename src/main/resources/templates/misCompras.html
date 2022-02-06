@@ -38,7 +38,7 @@
                             <label style="font-weight: bold;">#</label><label style=" width: 10%;" th:text="${ordenStat.size - ordenStat.index}"></label>
                             <label style="font-weight: bold;">Total:&nbsp;</label><label style=" width: 15%;" th:text="${'$'+orden.precio}"></label>
                             <label style="font-weight: bold;">Fecha:&nbsp;</label><label style=" width: 20%;" th:text="${orden.dia+'/'+orden.mes+'/'+orden.anio}"></label>
-                            <label style="font-weight: bold;">Hora:&nbsp;</label><label style=" width: 35%;"  th:text="${orden.horaPedido}"></label>
+                            <label style="font-weight: bold;">Hora:&nbsp;</label><label style=" width: 35%;"  th:text="${orden.horaPedido+':'+orden.minPedido}"></label>
                             <label style="width:10%; cursor:pointer">Ver detalles</label>
 
                           </button>

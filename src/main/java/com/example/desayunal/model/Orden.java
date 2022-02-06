@@ -105,11 +105,11 @@ public class Orden {
     public void setHoraPedido(int horaPedido) {
         this.horaPedido = horaPedido;
     }
-    public int getminPedido() {
+    public int getMinPedido() {
         return this.minPedido;
     }
 
-    public void setminPedido(int minPedido) {
+    public void setMinPedido(int minPedido) {
         this.minPedido = minPedido;
     }
 

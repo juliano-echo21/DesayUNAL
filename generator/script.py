@@ -44,7 +44,7 @@ def crearProductos():
     nombres = ["changua","cafe en leche", "chocolate","Arepa con queso","Croissant","Huevo revuelto","Sandwich","Huevos fritos","Torta de Chocolate","Galleta de chocolate","Caldo","Tamal","Hojaldre"]
     precios = [2500,3000,4000,5000,10000,6500]
     for i in range(len(nombres)):
-        values = ( "desayuno", "rico","disponible",nombres[i],random.choice(precios) )
+        values = ( "Desayuno", "rico","disponible",nombres[i],random.choice(precios) )
 
         sql = "INSERT INTO producto (categoria, descripcion, estado, nombre,precio) VALUES (%s, %s, %s, %s,%s);"
         cursor.execute(sql, values)
