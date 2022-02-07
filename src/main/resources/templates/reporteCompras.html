@@ -21,7 +21,8 @@
             <option value="2017">2017</option>
             <option value="2016">2016</option>
             <option value="2015">2015</option>
-        </select> 
+        </select>
+        <label hidden id="espera">&nbsp Espere...</label>
         <script>
             $(document).ready(function(){
                 $("#filtro").change(function(){
@@ -47,17 +48,19 @@
                 $("#inputDia").change(function(){
                     var id =document.getElementById("inputDia").value;
                     var url = "/reporteCompras/"+id;
+                    document.getElementById("espera").hidden = false;
                     $("#carta").load(url);
                 });
                 $("#inputMes").change(function(){
                     var id =document.getElementById("inputMes").value;
                     var url = "/reporteCompras/"+id;
+                    document.getElementById("espera").hidden = false;
                     $("#carta").load(url);
                 });
                 $("#inputAnio").change(function(){
                     var id =document.getElementById("inputAnio").value;
                     var url = "/reporteCompras/"+id;
-                   
+                    document.getElementById("espera").hidden = false;
                     $("#carta").load(url);
                 });
             });

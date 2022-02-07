@@ -10,8 +10,9 @@ data = json.load(data_file)
 mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
-    password = "hu1ch0l0_21",
-    database = "desayunal"
+    password = "1234",
+    database = "desayunal",
+    port = 3307
 )
 
 cursor = mydb.cursor()
@@ -27,7 +28,7 @@ def crearUsuario():
     mydb.commit()
 
     cursor.execute(sql, v)
-    for i in range (2000): ##crear 2000 usuarios
+    for i in range (200): ##crear 2000 usuarios
 
         user = data["random_names"][i]
         password = random.choice(data["random_passwords"])
@@ -84,7 +85,7 @@ def crearOrdenes():
         mes = random.randint(1,12) 
         anio = random.choice([2020,2021,2022])
         estado = "Entregado"
-        usuario = random.randint(1,2001)
+        usuario = random.randint(1,201)
         hora_entrega = "11:59:10"
         hora_pedido = random.randint(6,21) #hora entre 6am y 9 pm
 
