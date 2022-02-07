@@ -14,5 +14,5 @@ public interface IServicioUsuario {
     public Optional<Usuario> buscarId(int id);
     public List<Usuario> buscarUserName(String userName);
     public List<Usuario> todosUsuarios();
-
+    public Usuario usuarioPorId(int id);
 }

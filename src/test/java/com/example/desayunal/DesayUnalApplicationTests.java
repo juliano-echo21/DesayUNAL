@@ -3,7 +3,6 @@ package com.example.desayunal;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import javax.transaction.Transactional;
-
 import com.example.desayunal.model.Orden;
 import com.example.desayunal.model.Producto;
 import com.example.desayunal.services.ServicioOrden;
@@ -185,7 +184,8 @@ class DesayUnalApplicationTests{
             26,
             10,
             2001,
-            "07:00 am",
+            07,
+            "00",
             "07:20 am",
             900000,
             " ",

@@ -8,6 +8,7 @@ import com.example.desayunal.model.Usuario;
 import com.example.desayunal.repository.RepositorioUsuario;
 import com.example.desayunal.web.dto.RegistroUsuarioDto;
 
+import org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -82,6 +83,11 @@ public class ServicioUsuario implements IServicioUsuario {
     @Override
     public List<Usuario> todosUsuarios(){
         return repositorioUsuario.allUsers();
+    }
+
+    @Override
+    public Usuario usuarioPorId(int id){
+        return repositorioUsuario.getById(id);
     }
     
 }

@@ -1,6 +1,6 @@
 <!-- Navigation -->
 <div th:fragment="header">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position:fixed; top:0; width: 100%; z-index: 100;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style="position:fixed; top:0; width: 100%; z-index: 100;">
         <a class="navbar-brand" th:href="@{/desayunal}" >
           <img th:src="@{/Images/logo2.png}" width="150px" title="DesayUNAL"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" 
@@ -14,7 +14,7 @@
           <ul class="navbar-nav mr-auto">
             <li th:if="${page == 'catalogo'}" class="nav-item active">
               <li th:unless="${page == 'catalogo'}" class="nav-item"></li>
-              <a class="nav-link" th:href="@{/desayunal}">Catálogo</a>
+              <a th:if="${logueado == true }" class="nav-link" th:href="@{/desayunal}">Catálogo</a>
             </li>
             <li th:if="${page == 'admin'}" class="nav-item active">
               <li th:unless="${page == 'admin'}" class="nav-item"></li>

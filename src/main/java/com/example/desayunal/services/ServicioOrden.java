@@ -86,9 +86,54 @@ public class ServicioOrden implements IServicioOrden {
     return data.ventasMes(anio, mes);
     }
 
+    @Override
     public int ordenesPorProducto(Producto producto){
         return (int) repDetalles.ordenesPorProducto(producto);
     }
+
+    @Override
+    public int cantProductosVendidos() {
+        return repDetalles.cantProductosVendidos();
+    }
+
+    @Override
+    public int numOrdenes() {
+        return repDetalles.numOrdenes();
+    }
+
+    @Override
+    public int pedidosFranja(int mes, int limMin, int limMax) {
+        // TODO Auto-generated method stub
+        return data.pedidosFranja(mes, limMin, limMax);
+    }
+
+    @Override
+    public List<Orden> ordenesDelMes(int mes, int anio) {
+        return data.ordenesDelMes(mes, anio);
+    }
+
+    @Override
+    public List<Orden> ordenesDelAnio(int anio) {
+        return data.ordenesDelAnio(anio);
+    }
+
+    @Override
+    public int ventasDia(int dia, int mes, int anio) {
+        return data.ventasDia(dia, mes, anio);
+    }
+
+    @Override
+    public int ventasAnio(int anio) {
+        return data.ventasAnio(anio);
+    }
+
+    @Override
+    public List<Integer[]> productoMasVendido(int mes, int anio) {
+        return repDetalles.productoMasVendido(mes,anio);
+    }
+
+    
+
 }
 
    

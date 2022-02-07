@@ -3,6 +3,7 @@ package com.example.desayunal.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.print.DocFlavor.STRING;
 
 @Entity
 @Table( )
@@ -10,11 +11,12 @@ public class Orden {
 
     public Orden(){}
 
-    public Orden(int dia, int mes, int anio, String horaPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
+    public Orden(int dia, int mes, int anio, int horaPedido, String minPedido, String horaEntrega, int precio, String estado, Usuario usuario) {
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
         this.horaPedido = horaPedido;
+        this.minPedido = minPedido;
         this.horaEntrega = horaEntrega;
         this.precio = precio;
         this.estado = estado;
@@ -39,7 +41,11 @@ public class Orden {
 
     @Column(name = "horaPedido", nullable = false)
     @NotNull
-    private String horaPedido;
+    private int horaPedido;
+
+    @Column(name = "minPedido", nullable = false)
+    @NotNull
+    private String minPedido;
 
     @Column(name = "horaEntrega", nullable = false)
     @NotNull
@@ -92,12 +98,20 @@ public class Orden {
         this.anio = anio;
     }
 
-    public String getHoraPedido() {
+    public int getHoraPedido() {
         return this.horaPedido;
     }
 
-    public void setHoraPedido(String horaPedido) {
+    
+    public void setHoraPedido(int horaPedido) {
         this.horaPedido = horaPedido;
+    }
+    public String getMinPedido() {
+        return this.minPedido;
+    }
+
+    public void setMinPedido(String minPedido) {
+        this.minPedido = minPedido;
     }
 
     public String getHoraEntrega() {
