@@ -23,10 +23,9 @@ class DesayUnalApplicationTests{
     ServicioProducto servicioProducto;
     @Autowired
     ServicioUsuario servicioUsuario;
-    @Autowired  
-    RegistroUsuarioDto registroUsuarioDto;
     @Autowired
     ServicioOrden servicioOrden;
+    RegistroUsuarioDto registroUsuarioDto;
 
     @Test
     @Transactional
