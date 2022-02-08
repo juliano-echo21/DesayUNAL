@@ -35,6 +35,7 @@ public class ControladorAdminProductos {
     private JdbcTemplate jdbc;
 
     private boolean editando = false;
+    private Producto prodEdit;
     
     @GetMapping("/listar")
     public String listar(Model model){
@@ -67,7 +68,9 @@ public class ControladorAdminProductos {
 
     @PostMapping("/save")
     public String guardar(Producto p, Model model, @RequestParam("file") MultipartFile file) throws IOException {
-        
+    
+        if(editando && !p.getNombre().equals(prodEdit.getNombre()))
+            editando = false;
         int res = service.guardar(p,editando);
 
         if(!editando && res != 1)
@@ -102,6 +105,7 @@ public class ControladorAdminProductos {
         }
         editando = true;
         Optional<Producto> producto = service.listarId(id);
+        prodEdit = producto.get();
         model.addAttribute("producto",producto);
         model = sUsuario.actualizarEstados(model);
         return "formularioProductos";

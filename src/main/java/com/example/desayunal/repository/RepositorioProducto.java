@@ -21,7 +21,7 @@ public interface    RepositorioProducto extends CrudRepository<Producto,Integer>
     @Query(value = "SELECT p FROM Producto p WHERE p.categoria = ?1 AND (p.estado = 'Disponible' OR p.estado = 'Oferta')")
     public List<Producto> findCategoriaDisponible(String categoria);
 
-    @Query(value = "SELECT COUNT(p.id) FROM Producto p WHERE p.nombre = ?1")
+    @Query(value = "SELECT COUNT(p.id) FROM Producto p WHERE p.nombre = ?1 AND p.estado <> 'Eliminado'")
     public long productoExiste(String nombre);
 
     @Query(value = "SELECT COUNT(id) FROM Producto")
